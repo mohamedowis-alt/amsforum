@@ -132,5 +132,6 @@ h1,h2,p{margin:0}
 
 /* light ground: the green square marks the newest and the number */
 .ws-num small{color:var(--signal-text)}
-.ws-list li:first-child a{box-shadow:inset 4px 0 0 var(--signal);padding-left:16px}
+.ws-list a{padding-left:20px}
+.ws-list li:first-child a{box-shadow:inset 4px 0 0 var(--signal)}
 .ws-login{box-shadow:0 1px 0 var(--rule)}
