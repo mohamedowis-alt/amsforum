@@ -285,7 +285,7 @@ $boot = [
 </head>
 <body>
 <header class="bar">
-  <div class="bar-l"><img src="../assets/logo/xx-h-paper.svg" alt="" width="46" height="14" style="align-self:center"><b>Amsterdam Forum</b><span>Website admin</span></div>
+  <div class="bar-l"><img src="../assets/logo/xx-h-reversed.svg" alt="" width="46" height="14" style="align-self:center"><b>Amsterdam Forum</b><span>Website admin</span></div>
   <nav class="views" id="views" aria-label="Admin sections"></nav>
   <div class="bar-r">
     <span id="status" class="status" role="status"></span>
