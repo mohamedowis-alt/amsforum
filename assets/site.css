@@ -391,3 +391,9 @@ footer{border-top:8px solid var(--b-cobalt)}
 .speaker .portrait .sq{fill:var(--b-cobalt);stroke:none}
 .speaker.key .portrait .sq{fill:var(--b-pink)}
 @media (max-width:900px){.config{height:200px;overflow:hidden}}
+
+/* numbers: black (ink), never cobalt. Pink only where it can be read (on ink). */
+.hero-figs strong,.fig strong,.room-legend strong,.room-legend div:nth-child(2) strong,.exp .n,.experience .exp .n{color:var(--b-ink)}
+#long-view .hero-figs strong,#long-view .fig strong,#long-view .exp .n{color:var(--b-cream)}
+footer strong{color:var(--b-pink)}
+.room-bar div:nth-child(1){background:var(--b-ink);color:var(--b-cream)}
