@@ -67,8 +67,8 @@ $heroImg = af_img((string)$g('hero.image'));
 <meta property="og:title" content="<?= e($g('site.title')) ?>">
 <meta property="og:description" content="<?= e($g('site.description')) ?>">
 <meta property="og:type" content="website">
-<link rel="icon" href="assets/logo/af-favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/logo/af-app-icon.svg">
+<link rel="icon" href="assets/logo/xx-favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/logo/xx-app-icon.svg">
 <?php if ($share): ?><meta property="og:image" content="<?= e($scheme . $share) ?>"><meta name="twitter:card" content="summary_large_image"><?php endif; ?>
 <?php if ($fontsUrl): ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,7 +87,7 @@ $heroImg = af_img((string)$g('hero.image'));
 <a class="skip" href="#top">Skip to content</a>
 <nav class="nav" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Amsterdam Forum, home"><img class="logo-light" src="assets/logo/af-horizontal-ink.svg" alt="Amsterdam Forum" width="275" height="30"><img class="logo-dark" src="assets/logo/af-horizontal-reversed.svg" alt="Amsterdam Forum" width="275" height="30"></a>
+    <a class="brand" href="#top" aria-label="Amsterdam Forum, home"><img class="logo-light" src="assets/logo/xxaf-horizontal-ink.svg" alt="Amsterdam Forum" width="345" height="30"><img class="logo-dark" src="assets/logo/xxaf-horizontal-reversed.svg" alt="Amsterdam Forum" width="345" height="30"></a>
     <ul>
       <?php foreach ((array)$g('nav.links', []) as $l): ?><li><a href="<?= e(af_url((string)($l['href'] ?? ''))) ?>"><?= e($l['label'] ?? '') ?></a></li><?php endforeach; ?>
     </ul>
@@ -432,9 +432,8 @@ $heroImg = af_img((string)$g('hero.image'));
 <footer>
   <div class="wrap">
     <div>
-      <img class="logo-light" src="assets/logo/af-primary-reversed.svg" alt="Amsterdam Forum" height="72">
-      <img class="logo-dark" src="assets/logo/af-primary-ink.svg" alt="Amsterdam Forum" height="72">
-      <a class="xx-foot" href="#movement" aria-label="XX+, the movement"><img class="logo-light" src="assets/logo/xx-h-paper.svg" alt="XX+" width="69" height="21"><img class="logo-dark" src="assets/logo/xx-h-ink.svg" alt="XX+" width="69" height="21"></a>
+      <img class="logo-light" src="assets/logo/xxaf-primary-reversed.svg" alt="Amsterdam Forum" height="72">
+      <img class="logo-dark" src="assets/logo/xxaf-primary-ink.svg" alt="Amsterdam Forum" height="72">
       <div class="meta">
         <span><?= e($g('footer.line_1')) ?></span>
         <span><?= e($g('footer.line_2')) ?></span>
