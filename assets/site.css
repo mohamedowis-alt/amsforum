@@ -304,3 +304,82 @@ footer .note{font-family:var(--serif);font-style:italic;font-size:14px;line-heig
 .movement .btn.ghost:hover{background:#FFF8EC;color:#1F3BFF}
 .movement :focus-visible{outline-color:#E9FF3B}
 @media (max-width:860px){.mv{grid-template-columns:1fr;gap:var(--module)}.mv-mark svg{max-width:96px;margin-inline:0}}
+
+/* ── Colour layer (brand book: Electric pairings) ──────────────────────────
+   Cream carries reading; cobalt, pink and acid carry whole bands.
+   Each band redefines the theme tokens locally, so every component inside
+   follows the brand-book pairing: cream on cobalt, ink on pink, ink on acid. */
+:root{--b-cobalt:#1F3BFF;--b-pink:#FF4FA3;--b-pinkdeep:#F2338C;--b-acid:#E9FF3B;--b-cream:#FFF8EC;--b-ink:#0E0E14}
+
+/* buttons: pink for action, cobalt on hover */
+.btn{background:var(--b-pink);border-color:var(--b-pink);color:var(--b-ink)}
+.btn:hover{background:var(--b-cobalt);border-color:var(--b-cobalt);color:var(--b-cream)}
+.btn.ghost{background:transparent;border-color:var(--ink);color:var(--ink)}
+.btn.ghost:hover{background:var(--b-acid);border-color:var(--b-acid);color:var(--b-ink)}
+
+/* hero: cobalt figures under a cobalt rule */
+.hero-figs{border-top:4px solid var(--vermilion)}
+.hero-figs strong{color:var(--vermilion-text)}
+.hero-figs div:nth-child(2) strong{color:var(--edition)}
+
+/* evidence: each shift opens on a colour rule */
+.shift{border-top:4px solid var(--vermilion)}
+.shift:nth-child(4n+2),.shift:nth-child(4n+3){border-top-color:var(--b-pinkdeep)}
+.fig strong{color:var(--vermilion-text)}
+
+/* one map: pink markers */
+.sep-list li::before{background:var(--b-pinkdeep)}
+
+/* two days: one colour per movement; acid "what you leave with" */
+.move{border-top:6px solid var(--b-cobalt)}
+.move:nth-child(2){border-top-color:var(--b-pinkdeep)}
+.move:nth-child(3){border-top-color:var(--b-acid)}
+.move li::before{background:var(--vermilion)}
+.move:nth-child(2) li::before{background:var(--b-pinkdeep)}
+.leave{background:var(--b-acid);border:0;color:var(--b-ink)}
+.leave .label{color:var(--b-ink)}
+.leave li::before{border-color:var(--b-ink)}
+
+/* speakers: kinds of voices as pink chips */
+.kinds li{border-color:var(--b-pinkdeep)}
+.kinds li:nth-child(3n+2){background:var(--b-acid);border-color:var(--b-acid);color:var(--b-ink)}
+.speakers-cta{border-top:4px solid var(--vermilion)}
+
+/* the room: the bar in all three colours */
+.room-bar{border:0}
+.room-bar div:nth-child(1){background:var(--b-cobalt);color:var(--b-cream)}
+.room-bar div:nth-child(2){background:var(--b-pink);color:var(--b-ink)}
+.room-bar div:nth-child(n+3){background:var(--b-acid);color:var(--b-ink)}
+.room-legend div:nth-child(1) strong{color:var(--vermilion-text)}
+.room-legend div:nth-child(2) strong{color:var(--edition)}
+
+/* take part: pink tab marker */
+.tab[aria-selected="true"]{border-bottom-color:var(--b-pinkdeep)}
+.notice{border-left-color:var(--vermilion)}
+
+/* band: the long view on cobalt */
+#long-view{--paper:#1F3BFF;--paper-raised:#2A46FF;--ink:#FFF8EC;--ink-muted:#DCE0FF;--rule:rgba(255,248,236,.3);--stone:#9DA9FF;--edition:#E9FF3B;--vermilion:#E9FF3B;--vermilion-text:#E9FF3B;
+  background:var(--paper);color:var(--ink);border-top:0}
+#long-view .moments li.now::before{background:var(--b-acid);border-color:var(--b-acid)}
+
+/* band: why it's different on hot pink */
+#different{--paper:#FF4FA3;--paper-raised:#FF66B0;--ink:#0E0E14;--ink-muted:#3A0F26;--rule:rgba(14,14,20,.28);--stone:#7A1F4E;--edition:#0E0E14;--vermilion:#0E0E14;--vermilion-text:#0E0E14;
+  background:var(--paper);color:var(--ink);border-top:0}
+#different .btn{background:var(--b-ink);border-color:var(--b-ink);color:var(--b-cream)}
+#different .btn:hover{background:var(--b-cobalt);border-color:var(--b-cobalt)}
+
+/* band: Weak Signal on acid; its displaced square turns cobalt */
+#weak-signal{--paper:#E9FF3B;--paper-raised:#F2FF7A;--ink:#0E0E14;--ink-muted:#3B4110;--rule:rgba(14,14,20,.25);--stone:#8C9A24;--signal:#1F3BFF;--vermilion:#1F3BFF;--vermilion-text:#0E0E14;--edition:#0E0E14;
+  background:var(--paper);color:var(--ink);border-top:0}
+#weak-signal input{background:var(--b-cream);border-color:var(--b-ink)}
+#weak-signal .btn{background:var(--b-ink);border-color:var(--b-ink);color:var(--b-cream)}
+#weak-signal .btn:hover{background:var(--b-cobalt);border-color:var(--b-cobalt)}
+#weak-signal .ws-config .stn{opacity:.9}
+
+/* evenings: night ground with acid numbers */
+.experience{--edition:#E9FF3B;--ink:#0E0E14;--paper:#FFF8EC;--ink-muted:#B4B2C4;--rule:#2E2E40}
+.experience .exp .n{color:var(--b-acid)}
+.experience .exp-grid{border-top:4px solid var(--b-pink)}
+
+/* footer: night with a cobalt top edge */
+footer{border-top:8px solid var(--b-cobalt)}
