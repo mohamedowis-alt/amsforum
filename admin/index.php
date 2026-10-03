@@ -35,7 +35,7 @@ if (empty($config['password_hash'])) {
         elseif (mb_strlen($p1) < 10) $err = 'Use a password of at least 10 characters.';
         elseif ($p1 !== $p2) $err = 'The two passwords do not match.';
         else {
-            af_save_config(['password_hash' => password_hash($p1, PASSWORD_DEFAULT), 'created' => gmdate('c')]);
+            af_save_config(array_merge($config, ['password_hash' => password_hash($p1, PASSWORD_DEFAULT), 'created' => gmdate('c')]));
             @unlink($setupFile);
             session_regenerate_id(true);
             $_SESSION['admin'] = true;

@@ -211,14 +211,14 @@ function ws_mail(string $to, string $subject, string $html, string $text): bool 
 }
 function ws_email_shell(string $inner, string $preheader = ''): string {
     return '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta name="color-scheme" content="light dark"></head>'
-        . '<body style="margin:0;padding:0;background:#1C1B19;">'
+        . '<body style="margin:0;padding:0;background:#2E4440;">'
         . '<div style="display:none;max-height:0;overflow:hidden;">' . e($preheader) . '</div>'
-        . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1C1B19;"><tr><td align="center" style="padding:32px 16px;">'
+        . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#2E4440;"><tr><td align="center" style="padding:32px 16px;">'
         . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">'
         . '<tr><td style="padding:0 0 28px;font-family:Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:2px;font-weight:bold;color:#F0EBE1;">'
-        . '<span style="display:inline-block;width:10px;height:10px;background:#C6D62B;margin-right:10px;"></span>WEAK SIGNAL <span style="color:#8C877D;font-weight:normal;">· THE AMSTERDAM FORUM</span></td></tr>'
+        . '<span style="display:inline-block;width:10px;height:10px;background:#C6D62B;margin-right:10px;"></span>WEAK SIGNAL <span style="color:#A9BAB4;font-weight:normal;">· THE AMSTERDAM FORUM</span></td></tr>'
         . $inner
-        . '<tr><td style="padding:36px 0 0;border-top:1px solid #3A3833;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:18px;color:#8C877D;">'
+        . '<tr><td style="padding:36px 0 0;border-top:1px solid #48625C;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:18px;color:#A9BAB4;">'
         . 'You receive Weak Signal as a subscriber of the Amsterdam Forum. No advertising, no sponsorship, ever. Reply to this email to change your subscription.</td></tr>'
         . '</table></td></tr></table></body></html>';
 }
@@ -228,11 +228,11 @@ function ws_signal_email(array $s): array {
     $shifts = $s['shifts'] ? implode(' · ', $s['shifts']) : '';
     $inner = '<tr><td style="font-family:Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:2px;font-weight:bold;color:#C6D62B;padding:0 0 10px;">NO. ' . ws_num($s['number']) . '</td></tr>'
         . '<tr><td style="font-family:Helvetica,Arial,sans-serif;font-size:28px;line-height:34px;font-weight:bold;color:#F0EBE1;padding:0 0 12px;">' . e($s['title']) . '</td></tr>'
-        . '<tr><td style="font-family:Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:1px;color:#A8A297;padding:0 0 24px;">' . e(strtoupper(date('j M Y', strtotime($s['date'])) . ($shifts ? ' · ' . $shifts : ''))) . '</td></tr>'
-        . '<tr><td style="font-family:Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:2px;font-weight:bold;color:#8C877D;padding:0 0 8px;">01 · WHAT WE OBSERVED</td></tr>'
+        . '<tr><td style="font-family:Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:1px;color:#BFCBC6;padding:0 0 24px;">' . e(strtoupper(date('j M Y', strtotime($s['date'])) . ($shifts ? ' · ' . $shifts : ''))) . '</td></tr>'
+        . '<tr><td style="font-family:Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:2px;font-weight:bold;color:#A9BAB4;padding:0 0 8px;">01 · WHAT WE OBSERVED</td></tr>'
         . '<tr><td style="font-family:Georgia,\'Times New Roman\',serif;font-size:18px;line-height:28px;color:#F0EBE1;padding:0 0 28px;">' . e($pre) . '</td></tr>'
         . '<tr><td style="padding:0 0 36px;"><a href="' . e($url) . '" style="display:inline-block;background:#C6D62B;color:#1C1B19;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:bold;text-decoration:none;padding:14px 22px;">Read the full signal →</a>'
-        . '<div style="font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#8C877D;padding-top:12px;">Sign in with this email address to read why it doesn’t fit, what follows if it is real, and what to decide.</div></td></tr>';
+        . '<div style="font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#A9BAB4;padding-top:12px;">Sign in with this email address to read why it doesn’t fit, what follows if it is real, and what to decide.</div></td></tr>';
     $text = "WEAK SIGNAL · No. " . ws_num($s['number']) . "\n\n" . $s['title'] . "\n\nWhat we observed\n" . $pre . "\n\nRead the full signal: " . $url . "\n";
     return ['Weak Signal No. ' . ws_num($s['number']) . ' · ' . $s['title'], ws_email_shell($inner, $pre), $text];
 }
@@ -241,7 +241,7 @@ function ws_login_email(string $email, string $token, int $n = 0): array {
     $inner = '<tr><td style="font-family:Helvetica,Arial,sans-serif;font-size:24px;line-height:30px;font-weight:bold;color:#F0EBE1;padding:0 0 16px;">Your sign-in link</td></tr>'
         . '<tr><td style="font-family:Georgia,serif;font-size:17px;line-height:26px;color:#F0EBE1;padding:0 0 24px;">Click below to open Weak Signal. The link works once and expires in 30 minutes.</td></tr>'
         . '<tr><td style="padding:0 0 28px;"><a href="' . e($url) . '" style="display:inline-block;background:#C6D62B;color:#1C1B19;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:bold;text-decoration:none;padding:14px 22px;">Sign in to Weak Signal →</a></td></tr>'
-        . '<tr><td style="font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#8C877D;padding:0 0 32px;">If you didn’t ask for this, ignore it. Nobody can sign in without this email.</td></tr>';
+        . '<tr><td style="font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#A9BAB4;padding:0 0 32px;">If you didn’t ask for this, ignore it. Nobody can sign in without this email.</td></tr>';
     return ['Your Weak Signal sign-in link', ws_email_shell($inner, 'Your sign-in link'), "Sign in to Weak Signal (works once, 30 minutes):\n" . $url . "\n"];
 }
 function ws_send_signal(array $s, string $to): bool {

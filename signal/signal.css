@@ -1,10 +1,10 @@
-/* Weak Signal — the subscriber section. The Forum's design system on the ink ground:
+/* Weak Signal — the subscriber section. The Forum's design system on the canal ground:
    signal green (#C6D62B) belongs to Weak Signal only; one green square per view. */
 @font-face{font-family:"Schibsted Grotesk";src:url("../assets/fonts/SchibstedGrotesk-Variable.woff") format("woff");font-weight:400 900;font-display:swap}
 @font-face{font-family:"Newsreader";src:url("../assets/fonts/Newsreader-Variable.woff") format("woff");font-weight:200 800;font-display:swap}
 @font-face{font-family:"Newsreader";src:url("../assets/fonts/Newsreader-Italic-Variable.woff") format("woff");font-weight:200 800;font-style:italic;font-display:swap}
 
-:root{--ground:#141412;--raised:#1E1D1A;--ink:#F0EBE1;--muted:#A8A297;--stone:#6F6A61;--rule:#34322D;--signal:#C6D62B;--on-signal:#141412;
+:root{--ground:#2E4440;--raised:#36504B;--ink:#F4F0E8;--muted:#BFCBC6;--stone:#8EA49E;--rule:#48625C;--signal:#C6D62B;--on-signal:#1C1B19;
   --sans:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;--serif:"Newsreader",Georgia,serif;--gut:clamp(16px,4vw,40px);color-scheme:dark}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -15,7 +15,7 @@ h1,h2,p{margin:0}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
 /* bar */
-.ws-bar{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px var(--gut);background:rgba(20,20,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.ws-bar{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px var(--gut);background:rgba(46,68,64,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
 .ws-brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
 .ws-brand .sq{width:12px;height:12px;background:var(--signal);flex:none}
 .ws-brand b{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px;white-space:nowrap}
