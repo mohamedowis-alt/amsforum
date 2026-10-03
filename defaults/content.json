@@ -1,0 +1,666 @@
+{
+  "site": {
+    "title": "Forum I · The Great Reconfiguration · Amsterdam Forum",
+    "description": "Forum I, The Great Reconfiguration. Amsterdam, 14–15 October 2027. Philosophers, scientists, artists, founders and policymakers on the shifts reshaping power, work, cities and meaning. Keynotes, panels, film, art and food. 300 people, by invitation.",
+    "share_image": "",
+    "contact_email": "",
+    "notify_email": ""
+  },
+  "theme": {
+    "mode": "auto",
+    "fonts": {
+      "sans": "Schibsted Grotesk",
+      "serif": "Newsreader"
+    },
+    "colors_light": {
+      "paper": "#FFFFFF",
+      "paper_raised": "#F6F4EF",
+      "ink": "#1C1B19",
+      "ink_muted": "#5E5A53",
+      "rule": "#CFC8BB",
+      "stone": "#8C877D",
+      "vermilion": "#D9381E",
+      "vermilion_text": "#B32D16",
+      "canal": "#2E4440",
+      "signal": "#C6D62B",
+      "edition": "#2448B8",
+      "on_edition": "#FFFFFF"
+    },
+    "colors_dark": {
+      "paper": "#161513",
+      "paper_raised": "#211F1C",
+      "ink": "#F0EBE1",
+      "ink_muted": "#A8A297",
+      "rule": "#3A3833",
+      "stone": "#6F6A61",
+      "vermilion": "#E8492E",
+      "vermilion_text": "#F06A50",
+      "canal": "#8FB0A8",
+      "signal": "#D4E33A",
+      "edition": "#7D9BF0",
+      "on_edition": "#161513"
+    }
+  },
+  "nav": {
+    "links": [
+      {
+        "label": "The evidence",
+        "href": "#evidence"
+      },
+      {
+        "label": "Programme",
+        "href": "#days"
+      },
+      {
+        "label": "Speakers",
+        "href": "#speakers"
+      },
+      {
+        "label": "Experience",
+        "href": "#experience"
+      },
+      {
+        "label": "Why it's different",
+        "href": "#different"
+      },
+      {
+        "label": "Take part",
+        "href": "#apply"
+      }
+    ],
+    "button": "Request an invitation"
+  },
+  "hero": {
+    "eyebrow": "Forum I · Amsterdam · 14–15 October 2027 · 300 people · by invitation",
+    "title_line_1": "The Great",
+    "title_line_2": "Reconfiguration",
+    "lede": "Power, climate, work, cities, trust, culture, meaning and machine intelligence are moving at the same time. For two days in Amsterdam, the people who see it first take the stage: philosophers, scientists, anthropologists, systems thinkers, artists, founders and policymakers. Three hundred leaders come to learn what is changing, and leave ready for it.",
+    "button_invite": "Request an invitation",
+    "button_partner": "Become a partner",
+    "button_witness": "Propose a speaker",
+    "image": "",
+    "image_alt": "",
+    "image_caption": "",
+    "figures": [
+      {
+        "value": "74%",
+        "text": "of humanity now lives under autocracy.",
+        "source": "V-Dem, Mar 2026",
+        "url": "https://www.v-dem.net/documents/75/V-Dem_Institute_Democracy_Report_2026_lowres.pdf"
+      },
+      {
+        "value": "900m",
+        "text": "people use ChatGPT every week. It launched in late 2022.",
+        "source": "OpenAI, Feb 2026",
+        "url": "https://finance.yahoo.com/news/chatgpt-reaches-900m-weekly-active-182551628.html"
+      },
+      {
+        "value": "1.60°C",
+        "text": "2024 was the first year on record above 1.5°C of warming.",
+        "source": "Copernicus, Jan 2025",
+        "url": "https://climate.copernicus.eu/copernicus-2024-first-year-exceed-15degc-above-pre-industrial-level"
+      },
+      {
+        "value": "$2.9tn",
+        "text": "world military spending in 2025, a record and the 11th rise in a row.",
+        "source": "SIPRI, Apr 2026",
+        "url": "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+      }
+    ]
+  },
+  "evidence": {
+    "eyebrow": "The evidence",
+    "title": "The reconfiguration is already in the data.",
+    "intro": "Every figure here is published, dated and linked to its source. Each would make a headline on its own. Read together, they describe one change: the arrangements the modern world was built on are coming apart at once.",
+    "shifts": [
+      {
+        "name": "Power",
+        "tag": "Geopolitics",
+        "map_links": "2",
+        "map_highlight": false,
+        "image": "",
+        "image_alt": "",
+        "figures": [
+          {
+            "value": "8",
+            "text": "conflicts between states in 2025, the most since records began in 1946.",
+            "source": "UCDP, Jun 2026",
+            "url": "https://www.uu.se/en/news/2026/2026-06-09-ucdp-record-number-of-conflicts-between-states"
+          },
+          {
+            "value": "91%",
+            "text": "of the world's rare-earth refining happens in one country.",
+            "source": "IEA, Oct 2025",
+            "url": "https://www.iea.org/commentaries/with-new-export-controls-on-critical-minerals-supply-concentration-risks-become-reality"
+          }
+        ]
+      },
+      {
+        "name": "Earth",
+        "tag": "Climate & economy",
+        "map_links": "1",
+        "map_highlight": false,
+        "image": "",
+        "image_alt": "",
+        "figures": [
+          {
+            "value": "11 of 11",
+            "text": "The last eleven years are the eleven hottest ever recorded.",
+            "source": "Copernicus, Jan 2026",
+            "url": "https://climate.copernicus.eu/copernicus-2025-was-third-hottest-year-record"
+          },
+          {
+            "value": "$224bn",
+            "text": "in disaster losses in 2025. Less than half was insured.",
+            "source": "Munich Re, Jan 2026",
+            "url": "https://www.munichre.com/content/dam/munichre/mrwebsiteslaunches/natcat-2026/MunichRe-Mediarelease2026-NatCat2025.pdf/_jcr_content/renditions/original./MunichRe-Mediarelease2026-NatCat2025.pdf"
+          }
+        ]
+      },
+      {
+        "name": "Work & Wealth",
+        "tag": "Jobs & skills",
+        "map_links": "3, 1",
+        "map_highlight": false,
+        "image": "",
+        "image_alt": "",
+        "figures": [
+          {
+            "value": "40%",
+            "text": "of jobs worldwide are exposed to AI. In advanced economies, 60%.",
+            "source": "IMF, Jan 2024",
+            "url": "https://www.imf.org/en/blogs/articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity"
+          },
+          {
+            "value": "39%",
+            "text": "of workers' core skills are expected to change by 2030.",
+            "source": "WEF Future of Jobs, Jan 2025",
+            "url": "https://www.weforum.org/press/2025/01/future-of-jobs-report-2025-78-million-new-job-opportunities-by-2030-but-urgent-upskilling-needed-to-prepare-workforces/"
+          }
+        ]
+      },
+      {
+        "name": "Cities",
+        "tag": "Where people live",
+        "map_links": "2, 4",
+        "map_highlight": false,
+        "image": "",
+        "image_alt": "",
+        "figures": [
+          {
+            "value": "33",
+            "text": "megacities today. In 1975 there were eight.",
+            "source": "UN DESA, Nov 2025",
+            "url": "https://www.un.org/en/desa/WUP-2025"
+          },
+          {
+            "value": "1 in 70",
+            "text": "people on Earth is forcibly displaced: 117.8 million.",
+            "source": "UNHCR, Jun 2026",
+            "url": "https://www.unhcr.org/sites/default/files/2026-06/global-trends-report-2025.pdf"
+          }
+        ]
+      },
+      {
+        "name": "Institutions",
+        "tag": "Trust & authority",
+        "map_links": "5, 4",
+        "map_highlight": false,
+        "image": "",
+        "image_alt": "",
+        "figures": [
+          {
+            "value": "1978",
+            "text": "For the average person, democracy is back to its 1978 level.",
+            "source": "V-Dem, Mar 2026",
+            "url": "https://www.v-dem.net/documents/75/V-Dem_Institute_Democracy_Report_2026_lowres.pdf"
+          },
+          {
+            "value": "7 in 10",
+            "text": "are unwilling or hesitant to trust someone with different values.",
+            "source": "Edelman, Jan 2026",
+            "url": "https://www.edelman.com/news-awards/2026-edelman-trust-barometer-society-slides-into-insularity"
+          }
+        ]
+      },
+      {
+        "name": "Culture",
+        "tag": "Shared reality",
+        "map_links": "5",
+        "map_highlight": false,
+        "image": "",
+        "image_alt": "",
+        "figures": [
+          {
+            "value": "54%",
+            "text": "get news from social and video platforms each week, now ahead of news sites.",
+            "source": "Reuters Institute, Jun 2026",
+            "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026/dnr-executive-summary"
+          },
+          {
+            "value": "37%",
+            "text": "trust the news, the lowest level the Reuters Institute has recorded.",
+            "source": "Reuters Institute, Jun 2026",
+            "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026/dnr-executive-summary"
+          }
+        ]
+      },
+      {
+        "name": "Meaning",
+        "tag": "Belonging & purpose",
+        "map_links": "3",
+        "map_highlight": false,
+        "image": "",
+        "image_alt": "",
+        "figures": [
+          {
+            "value": "1 in 6",
+            "text": "people worldwide is lonely. 871,000 deaths a year are linked to it.",
+            "source": "WHO, Jun 2025",
+            "url": "https://who.int/news/item/30-06-2025-social-connection-linked-to-improved-heath-and-reduced-risk-of-early-death"
+          },
+          {
+            "value": "20%",
+            "text": "of employees worldwide feel engaged at work.",
+            "source": "Gallup, 2026",
+            "url": "https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx"
+          }
+        ]
+      },
+      {
+        "name": "Intelligence",
+        "tag": "AI deployment",
+        "map_links": "1, 2, 3, 4, 5",
+        "map_highlight": true,
+        "image": "",
+        "image_alt": "",
+        "figures": [
+          {
+            "value": "280×",
+            "text": "drop in the cost of GPT-3.5-level AI in under two years.",
+            "source": "Stanford AI Index, Apr 2025",
+            "url": "https://www.businesswire.com/news/home/20250407539812/en/Stanford-HAIs-2025-AI-Index-Reveals-Record-Growth-in-AI-Capabilities-Investment-and-Regulation"
+          },
+          {
+            "value": "945 TWh",
+            "text": "Data-centre power use more than doubles by 2030, slightly more than Japan uses today.",
+            "source": "IEA, Apr 2025",
+            "url": "https://www.iea.org/reports/energy-and-ai/executive-summary"
+          }
+        ]
+      }
+    ]
+  },
+  "long_view": {
+    "eyebrow": "The long view",
+    "title": "It has happened before. Never this fast.",
+    "text": "The modern world was built on separations: mind from matter, economy from nature, nation from planet, human from machine. They are coming apart at once. Every few centuries the world rethinks its foundations, and each time a few small rooms work out what comes next.",
+    "moments": [
+      {
+        "when": "800–200 BCE",
+        "title": "The Axial Age",
+        "text": "China, India, Persia, Greece and Israel rethink what a human being is, at the same time."
+      },
+      {
+        "when": "1460s · Florence",
+        "title": "The Medici circle",
+        "text": "Bankers fund a philosopher to translate Plato. Poets, scholars and artists gather round. It helped shape the Renaissance."
+      },
+      {
+        "when": "1600s · Amsterdam",
+        "title": "Descartes and Spinoza",
+        "text": "In the Dutch Republic, Descartes separates mind from matter. Spinoza, born in Amsterdam, answers that they are one."
+      },
+      {
+        "when": "1765–1813 · Birmingham",
+        "title": "The Lunar Society",
+        "text": "Industrialists, scientists and philosophers at one table, once a month. It helped shape the industrial age."
+      },
+      {
+        "when": "2027 · Amsterdam",
+        "title": "Forum I",
+        "text": "Three hundred people, one room, the next reconfiguration."
+      }
+    ]
+  },
+  "map": {
+    "eyebrow": "The one map",
+    "title": "Eight shifts. One movement.",
+    "intro": "Each shift traces back to the same five separations the modern world was organised around. All five are failing together, and AI is speeding up every one of them.",
+    "separations": [
+      "Economy / ecology",
+      "Nation / planet",
+      "Human / machine",
+      "Public / private",
+      "Position / legitimacy"
+    ],
+    "outro": "Forum I is built so you see this in one room, in one morning.",
+    "hint": "Hover or tap a shift to trace it."
+  },
+  "days": {
+    "eyebrow": "The programme · 14–15 October 2027",
+    "title": "Two days with the people who see it first.",
+    "intro": "Keynotes and panels on each of the eight shifts, the evidence laid out in the Atlas, an afternoon turning it into decisions, and two evenings of film, art, food and music across the city. One room by day, one programme, no parallel tracks to miss.",
+    "movements": [
+      {
+        "when": "Day one",
+        "title": "Seeing",
+        "items": [
+          "**Opening keynote**: the Great Reconfiguration, and why the eight shifts are one movement.",
+          "**Keynotes and panels** on Power, Earth, Work & Wealth and Cities.",
+          "**The Atlas**: a walk-through exhibition of the evidence, open throughout both days.",
+          "**Evening**: Witness Dinners in Amsterdam houses, then the night programme: screenings, performance and music."
+        ]
+      },
+      {
+        "when": "Day two · morning",
+        "title": "Understanding",
+        "items": [
+          "**Keynotes and panels** on Institutions, Culture, Meaning and Intelligence.",
+          "**The Collision**: a philosopher and a founder who disagree, on stage, about where the movement is going.",
+          "**Conversations** with people living at the edge of each shift."
+        ]
+      },
+      {
+        "when": "Day two · afternoon",
+        "title": "Preparing",
+        "items": [
+          "**Readiness Studios** in eight domains: capital, government, cities, companies, education, culture, philanthropy, technology.",
+          "What the reconfiguration means for decisions in the next 24 months.",
+          "**Closing keynote**, the founding of the first Sensing Circles, and a closing night in the city."
+        ]
+      }
+    ],
+    "leave_label": "You leave with",
+    "leave": [
+      "A Readiness Brief for your domain, plus your own page: three assumptions you're retiring.",
+      "A picture of the decade you didn't have on the way in.",
+      "A year of Weak Signal, the Forum's intelligence dispatch.",
+      "The Atlas of the Great Reconfiguration, published after the Forum.",
+      "For some, a seat in one of five Sensing Circles meeting monthly from November 2027.",
+      "299 people who now see what you see."
+    ]
+  },
+  "speakers": {
+    "eyebrow": "Speakers",
+    "title": "Philosophers to founders. One stage.",
+    "intro": "The shifts don't respect disciplines, so neither does the stage. Each speaker is chosen for what they have seen first, not the size of their title, and brings evidence, a point of view, and time for questions. First names are announced in early 2027.",
+    "kinds": [
+      "Philosophers",
+      "Scientists",
+      "Anthropologists",
+      "Systems thinkers",
+      "Artists",
+      "Filmmakers",
+      "Entrepreneurs",
+      "Economists",
+      "Policymakers",
+      "Polymaths"
+    ],
+    "placeholder": "To be announced",
+    "people": [
+      {
+        "name": "",
+        "role": "",
+        "slot": "Opening keynote",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "name": "",
+        "role": "",
+        "slot": "Keynote · Power",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "name": "",
+        "role": "",
+        "slot": "Keynote · Earth",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "name": "",
+        "role": "",
+        "slot": "Keynote · Work & Wealth",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "name": "",
+        "role": "",
+        "slot": "Keynote · Cities",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "name": "",
+        "role": "",
+        "slot": "Keynote · Institutions",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "name": "",
+        "role": "",
+        "slot": "Keynote · Culture",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "name": "",
+        "role": "",
+        "slot": "Keynote · Meaning",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "name": "",
+        "role": "",
+        "slot": "Keynote · Intelligence",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "name": "",
+        "role": "",
+        "slot": "Closing keynote",
+        "image": "",
+        "image_alt": ""
+      }
+    ],
+    "cta_text": "Know someone who should be on this stage?",
+    "cta_button": "Propose a speaker"
+  },
+  "experience": {
+    "eyebrow": "The experience",
+    "title": "Not only talks.",
+    "intro": "Some of what is changing is easier to see than to say. Around the stage, Forum I is a curated programme of art, film, food and music, made for the people in the room and commissioned around the eight shifts.",
+    "items": [
+      {
+        "label": "Art",
+        "title": "Commissions",
+        "text": "Artists commissioned to answer the eight shifts, shown inside the Atlas and around the venue.",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "label": "Film",
+        "title": "Night screenings",
+        "text": "Short documentaries and films from the edges of each shift, with the makers in the room.",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "label": "Food",
+        "title": "The Table",
+        "text": "Chefs cook the reconfiguration: menus built on what the world will grow, eat and waste next.",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "label": "Performance",
+        "title": "The night programme",
+        "text": "Music, readings and performance in Amsterdam venues after the day closes, and one long-table Salon in the spirit of the Lunar Society.",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "label": "Studios",
+        "title": "Small rooms",
+        "text": "Hands-on sessions with makers, researchers and founders: twenty people, one question, one hour.",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "label": "City",
+        "title": "Amsterdam as a case",
+        "text": "Walks and visits to where the city is already living the shifts: water, housing, energy, food.",
+        "image": "",
+        "image_alt": ""
+      }
+    ],
+    "note": "Business leaders and policymakers come for the stage. Most remember the evenings."
+  },
+  "city": {
+    "show": false,
+    "image": "",
+    "image_alt": "",
+    "quote": "Amsterdam turned openness into the first instruments of trust: the first shares, the first exchange. It is the right city to see what comes next.",
+    "caption": "Amsterdam · 14–15 October 2027"
+  },
+  "different": {
+    "eyebrow": "Why it's different",
+    "title": "A summit built for learning, not for being seen.",
+    "column_usual": "The usual summit",
+    "column_forum": "Forum I",
+    "rows": [
+      {
+        "label": "Size",
+        "usual": "Thousands of delegates across dozens of venues",
+        "forum": "300 people. One room, one programme, two days."
+      },
+      {
+        "label": "Format",
+        "usual": "Back-to-back panels in a hotel ballroom",
+        "forum": "Keynotes and panels by day; film, art, food and music across the city by night."
+      },
+      {
+        "label": "Speakers",
+        "usual": "CEOs on message, chosen for their logo",
+        "forum": "Philosophers, scientists, artists, founders and policymakers, chosen for what they have seen first."
+      },
+      {
+        "label": "Panels",
+        "usual": "Five people, five minutes each, everyone agrees",
+        "forum": "Three voices at most, real disagreement, moderated to get somewhere."
+      },
+      {
+        "label": "Sponsors",
+        "usual": "Paid speaking slots and logo walls",
+        "forum": "No partner buys a slot on stage, shapes the programme or chooses a name."
+      },
+      {
+        "label": "Access",
+        "usual": "Buy a badge",
+        "forum": "By invitation only. More than half the room are Fellows who cannot buy their way in."
+      },
+      {
+        "label": "Afterwards",
+        "usual": "A communiqué and a hashtag",
+        "forum": "A Readiness Brief for the next 24 months, and Sensing Circles that keep meeting."
+      }
+    ],
+    "kicker": "Forum I isn't a smaller Davos. It's a different kind of room."
+  },
+  "room": {
+    "eyebrow": "The room",
+    "title": "Three hundred people, chosen one by one.",
+    "intro": "Every seat is by invitation. An invitation can't be bought. More than half the room are Fellows: researchers, artists, younger builders and leaders from the Global South who attend free, because they carry what the rest of the room needs to hear.",
+    "segments": [
+      {
+        "number": "120",
+        "text": "Invited participants. A participation fee of €1,250, invoiced to the organisation."
+      },
+      {
+        "number": "17",
+        "text": "Partner seats, filled with names agreed with the Curation Council."
+      },
+      {
+        "number": "163",
+        "text": "Fellows, curated and attending free, about thirty with travel covered."
+      }
+    ]
+  },
+  "apply": {
+    "eyebrow": "Take part",
+    "title": "Three ways into the room.",
+    "invite": {
+      "tab": "Request an invitation",
+      "title": "Request an invitation",
+      "text_1": "Tell us who you are and what you're deciding over the next two years. The Curation Council reviews every request and issues invitations in three waves through 2027.",
+      "text_2": "Participation is €1,250, invoiced to your organisation, and includes a year of Weak Signal. An organisation may bring up to three people and underwrites one Fellow's seat for each delegation.",
+      "question": "What are you deciding in the next two years that this could change?",
+      "domains": [
+        "Capital",
+        "Government",
+        "Cities",
+        "Companies",
+        "Education",
+        "Culture",
+        "Philanthropy",
+        "Technology"
+      ],
+      "privacy": "We use your details only to consider your request.",
+      "button": "Send request",
+      "thanks": "Received. The Forum team will be in touch."
+    },
+    "partner": {
+      "tab": "Become a partner",
+      "title": "Partner with Forum I",
+      "text_1": "Partners make the room possible and underwrite Fellows' seats. They are named across Forum I and the Atlas publication. They never buy the stage, the programme or the guest list.",
+      "tiers": [
+        {
+          "name": "Founding Partner · one",
+          "price": "€50,000"
+        },
+        {
+          "name": "Partner · two",
+          "price": "€25,000"
+        },
+        {
+          "name": "Atlas Partner · five, one Atlas room each",
+          "price": "€10,000"
+        }
+      ],
+      "text_2": "To protect the Forum's independence, companies developing frontier AI cannot partner. The Founding Partner closes in February 2027, the others by June.",
+      "question": "Why Forum I, for your organisation?",
+      "privacy": "We'll send the partnership prospectus and arrange a call.",
+      "button": "Request the prospectus",
+      "thanks": "Received. We'll send the prospectus and propose a call."
+    },
+    "speaker": {
+      "tab": "Propose a speaker",
+      "title": "Propose a speaker",
+      "text_1": "We are looking for keynote speakers and panellists who see a shift before it is obvious: researchers, builders, policymakers, writers, people working inside the systems that are changing.",
+      "text_2": "Propose yourself or someone else. Speakers are chosen for the strength of what they bring, not for their title. Travel and accommodation are covered.",
+      "question": "What would they say that this room needs to hear?",
+      "privacy": "We read every proposal and reply to those we take forward.",
+      "button": "Send proposal",
+      "thanks": "Received. Thank you. We reply to every proposal we take forward."
+    }
+  },
+  "weak_signal": {
+    "eyebrow": "Start now · from November 2026",
+    "title": "Weak Signal: read the shifts before they're news.",
+    "text": "A biweekly dispatch of changes that don't have a name yet, each scored in public against what happened next. Founding subscribers pay €190 a year, locked for life, for the first 500.",
+    "button": "Join the founding list",
+    "thanks": "You're on the founding list. Issue 001 arrives in November 2026."
+  },
+  "footer": {
+    "line_1": "Amsterdam · every two years · by invitation",
+    "line_2": "Forum I: 14–15 October 2027 · Forum II: 2029",
+    "note": "Every figure on this page links to its publisher. Figures checked in October 2026; where a source revises its numbers, we update ours."
+  }
+}
