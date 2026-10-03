@@ -21,10 +21,10 @@
       "stone": "#9B98A8",
       "vermilion": "#1F3BFF",
       "vermilion_text": "#1F3BFF",
-      "canal": "#C8166F",
-      "signal": "#E9FF3B",
-      "edition": "#C8166F",
-      "on_edition": "#FFFFFF"
+      "canal": "#1F3BFF",
+      "signal": "#FF4FA3",
+      "edition": "#1F3BFF",
+      "on_edition": "#FFF8EC"
     },
     "colors_dark": {
       "paper": "#0E0E14",
@@ -35,9 +35,9 @@
       "stone": "#6E6C80",
       "vermilion": "#5C73FF",
       "vermilion_text": "#8C9BFF",
-      "canal": "#FF7DBB",
-      "signal": "#E9FF3B",
-      "edition": "#FF7DBB",
+      "canal": "#8C9BFF",
+      "signal": "#FF7DBB",
+      "edition": "#8C9BFF",
       "on_edition": "#0E0E14"
     }
   },
