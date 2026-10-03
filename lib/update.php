@@ -22,7 +22,7 @@ function af_version(): array {
 }
 
 function af_http_get(string $url, string $token, bool $binary = false): array {
-    $headers = ['User-Agent: AmsterdamForumSite', 'Accept: ' . ($binary ? 'application/octet-stream' : 'application/vnd.github+json'), 'X-GitHub-Api-Version: 2022-11-28'];
+    $headers = ['User-Agent: AmsterdamForumSite', 'Accept: ' . ($binary ? '*/*' : 'application/vnd.github+json'), 'X-GitHub-Api-Version: 2022-11-28'];
     if ($token !== '') $headers[] = 'Authorization: Bearer ' . $token;
     if (function_exists('curl_init')) {
         $ch = curl_init($url);
@@ -42,9 +42,11 @@ function af_http_get(string $url, string $token, bool $binary = false): array {
 }
 
 function af_gh_error(int $code, string $err): string {
-    if ($code === 401 || $code === 403) return 'GitHub refused access. Check the access token in Updates.';
-    if ($code === 404) return 'Repository not found. Check its name, and the token if the repository is private.';
-    return 'Could not reach GitHub' . ($err ? ' (' . $err . ')' : '') . '. Try again in a minute.';
+    $detail = ' [code ' . $code . ($err ? ', ' . $err : '') . ']';
+    if ($code === 401) return 'GitHub refused access. Check the access token in Updates.' . $detail;
+    if ($code === 403 || $code === 429) return 'GitHub is limiting requests from this server. Try again in an hour, or add an access token.' . $detail;
+    if ($code === 404) return 'Repository not found. Check its name, and the token if the repository is private.' . $detail;
+    return 'Could not reach GitHub from this server.' . $detail;
 }
 
 function af_update_check(): array {
@@ -115,16 +117,27 @@ function af_backup_code(array $rels): ?string {
 
 function af_update_run(): array {
     if (!class_exists('ZipArchive')) return ['ok' => false, 'error' => 'This hosting has no ZIP support for PHP. Ask the host to enable the "zip" extension.'];
-    $check = af_update_check();
-    if (!$check['ok']) return $check;
     $c = af_config();
-    $repo = (string)$c['update_repo']; $sha = $check['latest']['sha'];
-    [$code, $body, $err] = af_http_get("https://api.github.com/repos/$repo/zipball/$sha", (string)($c['update_token'] ?? ''), true);
+    $repo = (string)($c['update_repo'] ?? ''); $branch = (string)($c['update_branch'] ?? 'main'); $token = (string)($c['update_token'] ?? '');
+    if (!preg_match('#^[\w.-]+/[\w.-]+$#', $repo)) return ['ok' => false, 'error' => 'Set the repository first (owner/name).'];
+    $check = af_update_check();
+    if ($check['ok']) {
+        $latest = $check['latest'];
+        [$code, $body, $err] = af_http_get("https://api.github.com/repos/$repo/zipball/" . $latest['sha'], $token, true);
+    } else {
+        // The API can be blocked or rate-limited on shared hosting; the archive server usually is not.
+        $latest = ['sha' => '', 'date' => gmdate('c'), 'message' => ''];
+        [$code, $body, $err] = af_http_get("https://codeload.github.com/$repo/zip/refs/heads/" . rawurlencode($branch), $token, true);
+    }
     if ($code !== 200 || strlen($body) < 100) return ['ok' => false, 'error' => af_gh_error($code, $err)];
 
     $tmp = AF_DATA . '/update-' . bin2hex(random_bytes(4)) . '.zip';
     file_put_contents($tmp, $body);
-    $r = af_update_apply($tmp, $check['latest']);
+    if ($latest['sha'] === '') {
+        $zc = new ZipArchive();
+        if ($zc->open($tmp) === true) { $latest['sha'] = trim((string)$zc->comment) ?: 'branch-' . $branch; $zc->close(); }
+    }
+    $r = af_update_apply($tmp, $latest);
     @unlink($tmp);
     return $r;
 }
