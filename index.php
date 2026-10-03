@@ -34,7 +34,7 @@ $vars = function (string $set, array $def) use ($g, $tok) {
 };
 $light = $vars('colors_light', $defL);
 $dark = $vars('colors_dark', $defD);
-$mode = (string)$g('theme.mode', 'auto');
+$mode = (string)$g('theme.mode', 'light');
 $fonts = [
     'sans'  => af_safe_font((string)$g('theme.fonts.sans', 'Schibsted Grotesk'), 'Schibsted Grotesk'),
     'serif' => af_safe_font((string)$g('theme.fonts.serif', 'Newsreader'), 'Newsreader'),
