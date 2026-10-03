@@ -597,6 +597,16 @@
       }
     ]
   },
+  "movement": {
+    "eyebrow": "The movement · XX+",
+    "title": "What was. What is. What comes next.",
+    "text": "Amsterdam's three crosses stand on the city's arms, its bollards and its buildings. In ours, the third has reconfigured: two crosses for the order we inherited, a plus for what we build next.",
+    "text_2": "XX+ is the sign of the Great Reconfiguration, for anyone who intends to shape it rather than wait for it. Wear it, draw it, carry it. The Sensing Circles are where it meets, every month, in five cities.",
+    "button_1": "Request an invitation",
+    "button_1_href": "#apply",
+    "button_2": "Read Weak Signal",
+    "button_2_href": "#weak-signal"
+  },
   "apply": {
     "eyebrow": "Take part",
     "title": "Three ways into the room.",

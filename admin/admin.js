@@ -31,11 +31,11 @@
   var SECTION_NAMES = {
     site: "Site settings", theme: "Colours & fonts", nav: "Top bar", hero: "Opening (hero)",
     evidence: "The evidence (numbers)", long_view: "The long view (history)", map: "The one map", days: "Programme (two days)", speakers: "Speakers", experience: "The experience (art, film, food)", city: "Amsterdam photo band",
-    different: "Why it's different", room: "The room", apply: "Take part (forms)", weak_signal: "Weak Signal (home page)", signal_page: "Weak Signal pages", footer: "Footer"
+    different: "Why it's different", room: "The room", movement: "The movement (XX+)", apply: "Take part (forms)", weak_signal: "Weak Signal (home page)", signal_page: "Weak Signal pages", footer: "Footer"
   };
   var LABELS = {
     title_line_1: "Title, first line", title_line_2: "Title, second line (italic)", lede: "Opening paragraph",
-    button_invite: "Invitation button", button_partner: "Partner button", button_witness: "Speaker button",
+    button_invite: "Invitation button", button_1: "First button", button_1_href: "First button links to", button_2: "Second button", button_2_href: "Second button links to", button_partner: "Partner button", button_witness: "Speaker button",
     image_alt: "Image description (for screen readers)", image_caption: "Image caption", share_image: "Share image",
     contact_email: "Public contact email", notify_email: "Send form notifications to",
     colors_light: "Paper theme (light)", colors_dark: "Ink theme (dark)", mode: "Colour mode",
@@ -73,7 +73,9 @@
     "long_view.moments": "A short timeline. The last item is drawn as the present moment. Leave the title empty to hide the whole section.",
     "experience.items": "Art, film, food, performance and so on. Add, remove or reorder.",
     "experience.items.image": "Optional. Landscape photo, about 1600 × 1000 px.",
-    "experience.note": "One line shown in large italic under the cards. Leave empty to hide."
+    "experience.note": "One line shown in large italic under the cards. Leave empty to hide.",
+    "movement.title": "The XX+ band, in vermilion, between The room and Take part. Leave the title empty to hide the whole section.",
+    "movement.button_1_href": "A section on this page (#apply, #weak-signal) or a full web address. #apply opens the invitation form."
   };
   var LONG = ["lede", "intro", "text", "text_1", "text_2", "note", "quote", "description", "outro", "kicker", "question", "privacy", "thanks"];
   var human = function (k) { return LABELS[k] || (k.charAt(0).toUpperCase() + k.slice(1)).replace(/_/g, " "); };
