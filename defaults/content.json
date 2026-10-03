@@ -64,6 +64,10 @@
         "href": "#different"
       },
       {
+        "label": "Circles",
+        "href": "#circles"
+      },
+      {
         "label": "Weak Signal",
         "href": "/signal/"
       },
@@ -609,6 +613,29 @@
       "**Productive tension:** tables are composed to hold real disagreement, not comfort."
     ]
   },
+  "circles": {
+    "eyebrow": "The Sensing Circles",
+    "title": "Eight people. One city. Every month.",
+    "text": "A Sensing Circle is eight people from different worlds who meet in person, monthly, to notice what is changing before it has a name. No agenda, no presentations, no networking: a business leader, a scientist, an artist, a policymaker and others, around one table, under the Chatham House Rule.",
+    "text_2": "The first Circles are founded at Forum I and meet from November 2027. They are composed, not joined: nobody applies for a seat. But you can tell us where the next Circles should be, and who should sit around the table.",
+    "facts": [
+      {
+        "number": "8",
+        "text": "people, composed across sectors, generations and ways of knowing"
+      },
+      {
+        "number": "12",
+        "text": "times a year, in person, in your city"
+      },
+      {
+        "number": "1",
+        "text": "network: Circles in different cities sense together and meet each year"
+      }
+    ],
+    "status": "Founding Circles open at Forum I. New cities are added as Circles can be composed well.",
+    "button": "Bring a Circle to your city",
+    "button_2": "Read Weak Signal"
+  },
   "movement": {
     "eyebrow": "The movement · XX+",
     "title": "What was. What is. What comes next.",
@@ -621,7 +648,7 @@
   },
   "apply": {
     "eyebrow": "Take part",
-    "title": "Three ways into the room.",
+    "title": "Four ways in.",
     "invite": {
       "tab": "Request an invitation",
       "title": "Request an invitation",
@@ -675,6 +702,16 @@
       "privacy": "We read every proposal and reply to those we take forward.",
       "button": "Send proposal",
       "thanks": "Received. Thank you. We reply to every proposal we take forward."
+    },
+    "circle": {
+      "tab": "Bring a Circle",
+      "title": "Bring a Circle to your city",
+      "text_1": "Tell us where the next Sensing Circles should meet. We open a new city when we can compose a Circle there well: eight people whose combination creates real insight, not a peer group.",
+      "text_2": "Propose your city, and the people you would want around the table, including yourself. Circles are composed by the Forum; membership is by invitation and carries an annual contribution, waived for up to a third of every Circle.",
+      "question": "Why your city, and who should be around the table?",
+      "privacy": "We read every proposal and reply to those we take forward.",
+      "button": "Send proposal",
+      "thanks": "Received. Thank you. We will be in touch when we open your city, or sooner if we have questions."
     }
   },
   "weak_signal": {

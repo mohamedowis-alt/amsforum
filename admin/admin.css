@@ -77,7 +77,7 @@ fieldset.sub .field:has(textarea){grid-column:1/-1}
 .sub-card dt{color:var(--muted);font-size:.85rem}
 .sub-card dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
 .pill{font-size:.75rem;font-family:var(--mono);padding:2px 8px;border-radius:99px;background:var(--accent-2)}
-.pill.partner{background:#F3E5CC}.pill.witness,.pill.speaker{background:#E2E6F0}
+.pill.partner{background:#F3E5CC}.pill.witness,.pill.speaker,.pill.circle{background:#E2E6F0}
 .empty{color:var(--muted)}
 .backups{display:grid;gap:6px;max-width:460px}
 .backup{justify-content:space-between;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:6px 10px}

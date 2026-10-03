@@ -414,3 +414,19 @@ footer{border-top:8px solid var(--b-cobalt)}
 .privacy .priv-sec h2{font-size:20px}
 .privacy .btn{margin-top:28px}
 .form-foot small a,footer .meta a{color:inherit;text-decoration:underline}
+
+/* sensing circles */
+.circles-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:calc(var(--module)*1.5);align-items:start}
+.circles-copy{display:grid;gap:18px;align-content:start}
+.circles-copy .lede{color:var(--ink)}
+.circles-copy .body-serif{color:var(--ink-muted)}
+.circles-side{display:grid;gap:28px}
+.table8{width:min(260px,70%);height:auto;display:block}
+.table8 .tbl{fill:none;stroke:var(--ink);stroke-width:2}
+.table8 .seat{fill:none;stroke:var(--ink);stroke-width:2}
+.table8 .seat.you{fill:var(--edition);stroke:var(--edition)}
+.circle-facts{display:grid;gap:0;border-top:2px solid var(--ink)}
+.circle-facts div{display:grid;grid-template-columns:72px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule)}
+.circle-facts strong{font-size:40px;line-height:1;font-weight:600;letter-spacing:-.02em;color:var(--edition)}
+.circle-facts span{font-family:var(--serif);font-size:17px;line-height:1.45;color:var(--ink-muted)}
+@media (max-width:860px){.circles-grid{grid-template-columns:1fr}}

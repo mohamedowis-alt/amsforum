@@ -11,7 +11,7 @@ if (trim((string)($_POST['website'] ?? '')) !== '') af_json(['ok' => true]);
 
 if (!af_rate_ok('submit', 8, 3600)) af_json(['ok' => false, 'error' => 'Too many submissions from this connection. Please try again in an hour.'], 429);
 
-$kinds = ['invitation', 'partner', 'speaker', 'witness', 'weak-signal'];
+$kinds = ['invitation', 'partner', 'speaker', 'circle', 'witness', 'weak-signal'];
 $kind = (string)($_POST['kind'] ?? '');
 if (!in_array($kind, $kinds, true)) af_json(['ok' => false, 'error' => 'Unknown form.'], 400);
 
@@ -19,6 +19,7 @@ $fields = [
     'invitation'  => ['name' => 120, 'email' => 160, 'organisation' => 160, 'role' => 160, 'country' => 80, 'domain' => 60, 'note' => 3000, 'seats' => 2],
     'partner'     => ['name' => 120, 'email' => 160, 'organisation' => 160, 'role' => 160, 'tier' => 120, 'note' => 3000],
     'speaker'     => ['name' => 120, 'email' => 160, 'speaker' => 160, 'role' => 160, 'format' => 20, 'shift' => 60, 'note' => 3000, 'link' => 300],
+    'circle'      => ['name' => 120, 'email' => 160, 'city' => 80, 'country' => 80, 'role' => 160, 'note' => 3000],
     'witness'     => ['name' => 120, 'email' => 160, 'witness' => 160, 'shift' => 60, 'note' => 3000],
     'weak-signal' => ['email' => 160],
 ];
@@ -26,6 +27,7 @@ $required = [
     'invitation'  => ['name', 'email', 'organisation', 'role', 'note'],
     'partner'     => ['name', 'email', 'organisation'],
     'speaker'     => ['name', 'email', 'note'],
+    'circle'      => ['name', 'email', 'city', 'note'],
     'witness'     => ['name', 'email', 'note'],
     'weak-signal' => ['email'],
 ];
@@ -52,7 +54,7 @@ if (@file_put_contents(AF_SUBMISSIONS, $line, FILE_APPEND | LOCK_EX) === false) 
 $c = af_content();
 $to = (string)af_get($c, 'site.notify_email', '');
 if ($to && filter_var($to, FILTER_VALIDATE_EMAIL) && function_exists('mail')) {
-    $labels = ['invitation' => 'Invitation request', 'partner' => 'Partner enquiry', 'speaker' => 'Speaker proposal', 'witness' => 'Witness proposal', 'weak-signal' => 'Weak Signal founding list'];
+    $labels = ['invitation' => 'Invitation request', 'partner' => 'Partner enquiry', 'speaker' => 'Speaker proposal', 'circle' => 'Circle proposal', 'witness' => 'Witness proposal', 'weak-signal' => 'Weak Signal founding list'];
     $subject = '[Amsterdam Forum] ' . $labels[$kind] . (!empty($row['name']) ? ' — ' . $row['name'] : '');
     $body = '';
     foreach ($row as $k => $v) { if ($k !== 'ip_hash') $body .= ucfirst($k) . ': ' . $v . "\n"; }

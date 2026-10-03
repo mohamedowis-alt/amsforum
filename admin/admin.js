@@ -31,7 +31,7 @@
   var SECTION_NAMES = {
     site: "Site settings", theme: "Colours & fonts", nav: "Top bar", hero: "Opening (hero)",
     evidence: "The evidence (numbers)", long_view: "The long view (history)", map: "The one map", days: "Programme (two days)", speakers: "Speakers", experience: "The experience (art, film, food)", city: "Amsterdam photo band",
-    different: "Why it's different", room: "The room", movement: "The movement (XX+)", apply: "Take part (forms)", weak_signal: "Weak Signal (home page)", signal_page: "Weak Signal pages", privacy: "Privacy notice", movement: "The movement (XX+)", footer: "Footer"
+    different: "Why it's different", room: "The room", movement: "The movement (XX+)", apply: "Take part (forms)", weak_signal: "Weak Signal (home page)", signal_page: "Weak Signal pages", privacy: "Privacy notice", circles: "Sensing Circles", movement: "The movement (XX+)", footer: "Footer"
   };
   var LABELS = {
     title_line_1: "Title, first line", title_line_2: "Title, second line (italic)", lede: "Opening paragraph",
@@ -269,7 +269,7 @@
 
   function renderSubmissions(kind) {
     main.innerHTML = ""; side.innerHTML = ""; side.hidden = true;
-    var kinds = [["", "All"], ["invitation", "Invitations"], ["partner", "Partners"], ["speaker", "Speakers"], ["witness", "Witnesses (old)"], ["weak-signal", "Weak Signal"]];
+    var kinds = [["", "All"], ["invitation", "Invitations"], ["partner", "Partners"], ["speaker", "Speakers"], ["circle", "Circles"], ["witness", "Witnesses (old)"], ["weak-signal", "Weak Signal"]];
     var filter = el("select", { "aria-label": "Show" });
     kinds.forEach(function (k) { filter.appendChild(el("option", { value: k[0], text: k[1] })); });
     filter.value = kind || "";
@@ -283,7 +283,7 @@
       if (!rows.length) { holder.appendChild(el("p", { "class": "empty", text: "Nothing yet. Requests from the website's forms appear here." })); return; }
       rows.forEach(function (r) {
         var dl = el("dl");
-        ["name", "email", "organisation", "role", "country", "domain", "seats", "tier", "speaker", "format", "witness", "shift", "link", "note"].forEach(function (f) {
+        ["name", "email", "organisation", "role", "city", "country", "domain", "seats", "tier", "speaker", "format", "witness", "shift", "link", "note"].forEach(function (f) {
           if (r[f]) { dl.appendChild(el("dt", { text: human(f) })); dl.appendChild(el("dd", { text: r[f] })); }
         });
         var card = el("article", { "class": "sub-card" }, [

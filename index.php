@@ -341,6 +341,32 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
     </div>
   </section>
 
+  <?php if ($g('circles.title')): ?>
+  <section id="circles" class="circles">
+    <div class="wrap circles-grid">
+      <div class="circles-copy">
+        <span class="label"><?= e($g('circles.eyebrow')) ?></span>
+        <h2 class="headline"><?= e($g('circles.title')) ?></h2>
+        <p class="lede"><?= e($g('circles.text')) ?></p>
+        <?php if ($g('circles.text_2')): ?><p class="body-serif"><?= e($g('circles.text_2')) ?></p><?php endif; ?>
+        <?= status_line((string)$g('circles.status')) ?>
+        <div class="ctas">
+          <a class="btn" href="#apply" data-tab="circle"><?= e($g('circles.button')) ?></a>
+        </div>
+      </div>
+      <div class="circles-side">
+        <svg class="table8" viewBox="0 0 200 200" aria-hidden="true">
+          <rect class="tbl" x="60" y="60" width="80" height="80"/>
+          <?php foreach ([[70,24],[115,24],[156,70],[156,115],[115,156],[70,156],[24,115],[24,70]] as $i => $pt): ?><rect class="seat<?= $i === 2 ? ' you' : '' ?>" x="<?= $pt[0] ?>" y="<?= $pt[1] ?>" width="20" height="20"/><?php endforeach; ?>
+        </svg>
+        <div class="circle-facts">
+          <?php foreach ((array)$g('circles.facts', []) as $f): ?><div><strong><?= e($f['number'] ?? '') ?></strong><span><?= e($f['text'] ?? '') ?></span></div><?php endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </section>
+  <?php endif; ?>
+
   <?php if ($g('movement.title')): ?>
   <section id="movement" class="movement">
     <div class="wrap mv">
@@ -371,6 +397,7 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
         <button class="tab" role="tab" id="t-invite" aria-controls="p-invite" aria-selected="true" data-tab="invite"><?= e($g('apply.invite.tab')) ?></button>
         <button class="tab" role="tab" id="t-partner" aria-controls="p-partner" aria-selected="false" data-tab="partner"><?= e($g('apply.partner.tab')) ?></button>
         <button class="tab" role="tab" id="t-speaker" aria-controls="p-speaker" aria-selected="false" data-tab="speaker"><?= e($g('apply.speaker.tab')) ?></button>
+        <?php if ($g('apply.circle.tab')): ?><button class="tab" role="tab" id="t-circle" aria-controls="p-circle" aria-selected="false" data-tab="circle"><?= e($g('apply.circle.tab')) ?></button><?php endif; ?>
       </div>
 
       <div class="panel" role="tabpanel" id="p-invite" aria-labelledby="t-invite">
@@ -434,6 +461,26 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
           <div class="notice" role="status" hidden></div>
         </form>
       </div>
+      <?php if ($g('apply.circle.tab')): ?>
+      <div class="panel" role="tabpanel" id="p-circle" aria-labelledby="t-circle" hidden>
+        <div class="about">
+          <h3><?= e($g('apply.circle.title')) ?></h3>
+          <p><?= e($g('apply.circle.text_1')) ?></p>
+          <p><?= e($g('apply.circle.text_2')) ?></p>
+        </div>
+        <form data-kind="circle" data-thanks="<?= e($g('apply.circle.thanks')) ?>" novalidate>
+          <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" required autocomplete="name" maxlength="120"></div>
+          <div class="field"><label for="c-email">Your email</label><input id="c-email" name="email" type="email" required autocomplete="email" maxlength="160"></div>
+          <div class="field"><label for="c-city">City</label><input id="c-city" name="city" required autocomplete="address-level2" maxlength="80"></div>
+          <div class="field"><label for="c-country">Country</label><input id="c-country" name="country" autocomplete="country-name" maxlength="80"></div>
+          <div class="field full"><label for="c-role">Your role and organisation</label><input id="c-role" name="role" autocomplete="organization-title" maxlength="160"></div>
+          <div class="field full"><label for="c-note"><?= e($g('apply.circle.question')) ?></label><textarea id="c-note" name="note" required maxlength="3000"></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="c-web">Website</label><input id="c-web" name="website" tabindex="-1" autocomplete="off"></div>
+          <div class="form-foot"><small><?= e($g('apply.circle.privacy')) ?> <?= $privacyLink ?></small><button class="btn" type="submit"><?= e($g('apply.circle.button')) ?></button></div>
+          <div class="notice" role="status" hidden></div>
+        </form>
+      </div>
+      <?php endif; ?>
     </div>
   </section>
 

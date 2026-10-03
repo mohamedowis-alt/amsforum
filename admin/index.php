@@ -105,7 +105,7 @@ if ($action !== '') {
         case 'export':
             $kind = (string)($_GET['kind'] ?? '');
             $rows = array_filter(read_submissions(), fn($r) => $kind === '' || ($r['kind'] ?? '') === $kind);
-            $cols = ['received', 'kind', 'name', 'email', 'organisation', 'role', 'country', 'domain', 'seats', 'tier', 'speaker', 'format', 'witness', 'shift', 'link', 'note'];
+            $cols = ['received', 'kind', 'name', 'email', 'organisation', 'role', 'city', 'country', 'domain', 'seats', 'tier', 'speaker', 'format', 'witness', 'shift', 'link', 'note'];
             header('Content-Type: text/csv; charset=utf-8');
             header('Content-Disposition: attachment; filename="amsterdam-forum-' . ($kind ?: 'all') . '-' . date('Y-m-d') . '.csv"');
             $out = fopen('php://output', 'w');
