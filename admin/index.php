@@ -3,6 +3,7 @@
 declare(strict_types=1);
 require dirname(__DIR__) . '/lib/core.php';
 require dirname(__DIR__) . '/lib/update.php';
+require dirname(__DIR__) . '/lib/signal.php';
 
 header('X-Frame-Options: DENY');
 header('X-Content-Type-Options: nosniff');
@@ -147,6 +148,74 @@ if ($action !== '') {
 
         case 'update_rollback':
             af_json(af_update_rollback());
+
+        // ---------------- Weak Signal
+        case 'ws_list':
+            ws_remember_base_url();
+            [$from, $reply] = ws_from();
+            $subs = ws_subscribers();
+            af_json(['ok' => true, 'signals' => ws_signals(false), 'subscribers' => $subs,
+                'active' => count(ws_active_subscribers()),
+                'shifts' => array_values(array_filter(array_map(fn($s) => (string)($s['name'] ?? ''), (array)af_get(af_content(), 'evidence.shifts', [])))),
+                'statuses' => AF_SIGNAL_STATUSES, 'plans' => AF_SIGNAL_PLANS, 'parts' => AF_SIGNAL_PARTS,
+                'settings' => ['from' => $from, 'reply_to' => $reply, 'custom_from' => (string)($config['signal_from'] ?? '')],
+                'leads' => count(array_filter(read_submissions(), fn($r) => ($r['kind'] ?? '') === 'weak-signal'))]);
+
+        case 'ws_save_signal':
+            $body = json_decode((string)file_get_contents('php://input'), true);
+            af_json(ws_save_signal(is_array($body['signal'] ?? null) ? $body['signal'] : []));
+
+        case 'ws_delete_signal':
+            af_json(['ok' => ws_delete_signal((string)($_POST['id'] ?? ''))]);
+
+        case 'ws_test':
+            $sig = null; foreach (ws_signals(false) as $x) if ($x['id'] === ($_POST['id'] ?? '')) $sig = $x;
+            $to = trim((string)($_POST['email'] ?? ''));
+            if (!$sig) af_json(['ok' => false, 'error' => 'Save the signal first.'], 404);
+            if (!filter_var($to, FILTER_VALIDATE_EMAIL)) af_json(['ok' => false, 'error' => 'Enter a valid email address for the test.'], 422);
+            af_json(['ok' => ws_send_signal($sig, $to), 'error' => 'The server could not send the email. Check PHP mail with your host.']);
+
+        case 'ws_send':
+            @set_time_limit(120);
+            $sig = null; foreach (ws_signals(false) as $x) if ($x['id'] === ($_POST['id'] ?? '')) $sig = $x;
+            if (!$sig) af_json(['ok' => false, 'error' => 'Signal not found.'], 404);
+            if (empty($sig['published'])) af_json(['ok' => false, 'error' => 'Publish the signal before sending it.'], 422);
+            $list = ws_active_subscribers();
+            $offset = max(0, (int)($_POST['offset'] ?? 0));
+            $batch = array_slice($list, $offset, 20);
+            $sent = 0; $failed = [];
+            foreach ($batch as $sub) { if (ws_send_signal($sig, $sub['email'])) $sent++; else $failed[] = $sub['email']; usleep(150000); }
+            $next = $offset + count($batch);
+            $done = $next >= count($list);
+            if ($done) ws_mark_sent($sig['id'], count($list));
+            af_json(['ok' => true, 'sent' => $sent, 'failed' => $failed, 'next' => $next, 'total' => count($list), 'done' => $done]);
+
+        case 'ws_save_subscriber':
+            af_json(ws_save_subscriber($_POST));
+
+        case 'ws_delete_subscriber':
+            af_json(['ok' => ws_delete_subscriber((string)($_POST['email'] ?? ''))]);
+
+        case 'ws_import':
+            $lines = preg_split('/[\r\n]+/', (string)($_POST['lines'] ?? '')) ?: [];
+            if (!empty($_POST['leads'])) foreach (read_submissions() as $r) if (($r['kind'] ?? '') === 'weak-signal' && !empty($r['email'])) $lines[] = $r['email'];
+            $added = 0; $skipped = 0;
+            foreach ($lines as $line) {
+                $parts = array_map('trim', str_getcsv($line));
+                $email = ws_norm_email($parts[0] ?? '');
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { if (trim($line) !== '') $skipped++; continue; }
+                if (ws_subscriber($email)) { $skipped++; continue; }
+                $r = ws_save_subscriber(['email' => $email, 'name' => $parts[1] ?? '', 'plan' => $_POST['plan'] ?? 'individual', 'status' => 'active', 'expires' => $_POST['expires'] ?? '']);
+                if ($r['ok']) $added++;
+            }
+            af_json(['ok' => true, 'added' => $added, 'skipped' => $skipped]);
+
+        case 'ws_settings':
+            $from = trim((string)($_POST['from'] ?? '')); $reply = trim((string)($_POST['reply_to'] ?? ''));
+            if ($from !== '' && !filter_var($from, FILTER_VALIDATE_EMAIL)) af_json(['ok' => false, 'error' => 'The sender address is not valid.'], 422);
+            if ($reply !== '' && !filter_var($reply, FILTER_VALIDATE_EMAIL)) af_json(['ok' => false, 'error' => 'The reply-to address is not valid.'], 422);
+            $config['signal_from'] = $from; $config['signal_reply_to'] = $reply;
+            af_json(['ok' => af_save_config($config)]);
 
         case 'password':
             $cur = (string)($_POST['current'] ?? ''); $n1 = (string)($_POST['new'] ?? ''); $n2 = (string)($_POST['new2'] ?? '');

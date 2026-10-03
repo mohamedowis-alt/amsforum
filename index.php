@@ -406,6 +406,7 @@ $heroImg = af_img((string)$g('hero.image'));
         <button class="btn" type="submit"><?= e($g('weak_signal.button')) ?></button>
         <div class="hp" aria-hidden="true"><label for="ws-web">Website</label><input id="ws-web" name="website" tabindex="-1" autocomplete="off"></div>
         <div class="notice" role="status" hidden></div>
+        <?php if ($g('weak_signal.signin_link')): ?><p class="ws-signin"><?= e($g('weak_signal.signin_text')) ?> <a href="signal/"><?= e($g('weak_signal.signin_link')) ?></a></p><?php endif; ?>
       </form>
     </div>
   </section>

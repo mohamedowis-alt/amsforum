@@ -64,6 +64,10 @@
         "href": "#different"
       },
       {
+        "label": "Weak Signal",
+        "href": "/signal/"
+      },
+      {
         "label": "Take part",
         "href": "#apply"
       }
@@ -656,11 +660,29 @@
     "title": "Weak Signal: read the shifts before they're news.",
     "text": "A biweekly dispatch of changes that don't have a name yet, each scored in public against what happened next. Founding subscribers pay €190 a year, locked for life, for the first 500.",
     "button": "Join the founding list",
-    "thanks": "You're on the founding list. Issue 001 arrives in November 2026."
+    "thanks": "You're on the founding list. Issue 001 arrives in November 2026.",
+    "signin_text": "Already a subscriber?",
+    "signin_link": "Sign in to Weak Signal"
   },
   "footer": {
     "line_1": "Amsterdam · every two years · by invitation",
     "line_2": "Forum I: 14–15 October 2027 · Forum II: 2029",
     "note": "Every figure on this page links to its publisher. Figures checked in October 2026; where a source revises its numbers, we update ours."
+  },
+  "signal_page": {
+    "description": "Weak Signal: a biweekly dispatch from the Amsterdam Forum on the shifts that do not have a name yet, scored in public against what happened next.",
+    "eyebrow": "Biweekly · from the Amsterdam Forum",
+    "title": "Read the shifts before they are news.",
+    "lede": "Weak Signal reports changes that do not have a name yet: observed in the documents where behaviour leaks before narrative forms, and scored in public, issue after issue, against what happened next.",
+    "signin_title": "Subscribers",
+    "signin_text": "Sign in with the email address your subscription is under. We send you a link; no password needed.",
+    "join_title": "Not a subscriber yet?",
+    "join_text": "Founding subscribers pay €190 a year, locked for life, for the first 500. Institutions: €2,500 a year for up to ten readers. Forum I participants receive a year with their invitation.",
+    "join_button": "Join the founding list",
+    "locked_title": "The rest is for subscribers.",
+    "locked_text": "Sign in with the email address your subscription is under. We send you a link; no password needed.",
+    "archive_eyebrow": "The archive",
+    "archive_title": "Signals",
+    "empty": "The first signal arrives with Issue 001."
   }
 }

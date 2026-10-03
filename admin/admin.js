@@ -20,7 +20,7 @@
   var SECTION_NAMES = {
     site: "Site settings", theme: "Colours & fonts", nav: "Top bar", hero: "Opening (hero)",
     evidence: "The evidence (numbers)", long_view: "The long view (history)", map: "The one map", days: "Programme (two days)", speakers: "Speakers", experience: "The experience (art, film, food)", city: "Amsterdam photo band",
-    different: "Why it's different", room: "The room", apply: "Take part (forms)", weak_signal: "Weak Signal", footer: "Footer"
+    different: "Why it's different", room: "The room", apply: "Take part (forms)", weak_signal: "Weak Signal (home page)", signal_page: "Weak Signal pages", footer: "Footer"
   };
   var LABELS = {
     title_line_1: "Title, first line", title_line_2: "Title, second line (italic)", lede: "Opening paragraph",
@@ -388,10 +388,198 @@
     });
   }
 
+  // ------------------------------------------------------------ Weak Signal
+  var WS = null;
+  var wsPost = function (action, fd) { return fetch("?action=" + action, { method: "POST", body: fd, headers: { "X-CSRF": CSRF } }).then(function (r) { return r.json(); }); };
+  var num3 = function (n) { return ("00" + n).slice(-3); };
+  function wsLoad(then) {
+    fetch("?action=ws_list", { headers: { "X-CSRF": CSRF } }).then(function (r) { return r.json(); }).then(function (j) { WS = j; then(); });
+  }
+  function renderSignal(sub, arg) {
+    main.innerHTML = ""; side.innerHTML = ""; side.hidden = false;
+    [["signals", "Signals"], ["subscribers", "Subscribers"], ["settings", "Email settings"]].forEach(function (v) {
+      side.appendChild(el("a", { href: "#", "class": v[0] === (sub || "signals") ? "on" : "", text: v[1], onclick: function (e) { e.preventDefault(); renderSignal(v[0]); } }));
+    });
+    side.appendChild(el("a", { href: "../signal/", target: "_blank", rel: "noopener", text: "Open Weak Signal ↗" }));
+    main.appendChild(el("p", { text: "Loading…" }));
+    wsLoad(function () {
+      main.innerHTML = "";
+      if (sub === "subscribers") wsSubscribers();
+      else if (sub === "settings") wsSettings();
+      else if (sub === "edit") wsEditor(arg);
+      else wsSignalList();
+    });
+  }
+  function wsSignalList() {
+    main.append(el("h2", { text: "Weak Signal · Signals" }),
+      el("p", { "class": "lead", text: "Each signal has a number and a title. Publishing puts it in the subscriber archive at amsforum.com/signal; sending emails the title and opening lines to every active subscriber, with a link to read the rest after signing in." }),
+      el("div", { "class": "row toolbar" }, [el("button", { type: "button", "class": "primary", text: "+ New signal", onclick: function () { renderSignal("edit", null); } }),
+        el("span", { "class": "help", text: WS.active + " active subscriber" + (WS.active === 1 ? "" : "s") })]));
+    if (!WS.signals.length) { main.appendChild(el("p", { "class": "empty", text: "No signals yet. Start with No. 001." })); return; }
+    var list = el("div", { "class": "subs" });
+    WS.signals.forEach(function (s) {
+      list.appendChild(el("article", { "class": "sub-card ws-card" }, [
+        el("header", {}, [
+          el("span", { "class": "pill " + (s.published ? "speaker" : ""), text: s.published ? "Published" : "Draft" }),
+          el("time", { text: "No. " + num3(s.number) + " · " + s.date + (s.sent_at ? " · emailed to " + s.sent_count : " · not emailed") }),
+          el("button", { type: "button", "class": "ghost", text: "Edit", onclick: function () { renderSignal("edit", s.id); } })
+        ]),
+        el("p", { style: "margin:0;font-weight:600;font-size:1.1rem", text: s.title }),
+        el("p", { "class": "help", text: (WS.statuses[s.status] || s.status) + (s.shifts.length ? " · " + s.shifts.join(" · ") : "") })
+      ]));
+    });
+    main.appendChild(list);
+  }
+  function wsEditor(id) {
+    var s = null;
+    WS.signals.forEach(function (x) { if (x.id === id) s = x; });
+    var maxN = 0; WS.signals.forEach(function (x) { maxN = Math.max(maxN, x.number); });
+    s = s ? JSON.parse(JSON.stringify(s)) : { number: maxN + 1, title: "", date: new Date().toISOString().slice(0, 10), shifts: [], status: "open", status_note: "", published: false, observed: "", doesnt_fit: "", if_real: "", implication: "" };
+    var msg = el("p", { "class": "status", role: "status" });
+    var say = function (t, ok) { msg.textContent = t; msg.className = "status " + (ok ? "ok" : "err"); };
+    var inp = function (k, label, type, help) {
+      var i = el(type === "textarea" ? "textarea" : "input", { id: "ws-" + k, rows: type === "textarea" ? "7" : null, type: type === "textarea" ? null : (type || "text") });
+      i.value = s[k] == null ? "" : s[k];
+      i.addEventListener("input", function () { s[k] = type === "number" ? parseInt(i.value || "0", 10) : i.value; });
+      return el("div", { "class": "field" }, [el("label", { "for": "ws-" + k, text: label }), i, help ? el("p", { "class": "help", text: help }) : null]);
+    };
+    var shiftBox = el("div", { "class": "row" });
+    WS.shifts.forEach(function (name) {
+      var cb = el("input", { type: "checkbox", id: "sh-" + name });
+      cb.checked = s.shifts.indexOf(name) >= 0;
+      cb.addEventListener("change", function () { s.shifts = s.shifts.filter(function (x) { return x !== name; }); if (cb.checked) s.shifts.push(name); });
+      shiftBox.appendChild(el("label", { "for": "sh-" + name, "class": "row", style: "gap:6px;font-weight:400;margin-right:10px" }, [cb, name]));
+    });
+    var status = el("select", { id: "ws-status" });
+    Object.keys(WS.statuses).forEach(function (k) { status.appendChild(el("option", { value: k, text: WS.statuses[k] })); });
+    status.value = s.status; status.addEventListener("change", function () { s.status = status.value; });
+    var pub = el("input", { type: "checkbox", id: "ws-pub" }); pub.checked = !!s.published;
+    pub.addEventListener("change", function () { s.published = pub.checked; });
+
+    var save = function () {
+      return fetch("?action=ws_save_signal", { method: "POST", headers: { "Content-Type": "application/json", "X-CSRF": CSRF }, body: JSON.stringify({ signal: s }) })
+        .then(function (r) { return r.json(); }).then(function (j) {
+          if (!j.ok) { say(j.error || "Not saved.", false); return null; }
+          s = j.signal; say("Saved.", true); return s;
+        });
+    };
+    var testTo = el("input", { type: "email", placeholder: "your@email.com", style: "max-width:260px" });
+    var sendBtn = el("button", { type: "button", "class": "primary", text: "Email to " + WS.active + " subscriber" + (WS.active === 1 ? "" : "s") });
+    var progress = el("p", { "class": "help" });
+    sendBtn.addEventListener("click", function () {
+      if (!s.published) return say("Tick 'Published' and save before sending.", false);
+      if (sendBtn.dataset.confirm !== "1") { sendBtn.dataset.confirm = "1"; sendBtn.textContent = (s.sent_at ? "Already sent once. " : "") + "Click again to send now"; return; }
+      sendBtn.disabled = true;
+      save().then(function (saved) {
+        if (!saved) { sendBtn.disabled = false; return; }
+        var sentTotal = 0, failed = [];
+        var step = function (offset) {
+          var fd = new FormData(); fd.append("id", s.id); fd.append("offset", offset);
+          wsPost("ws_send", fd).then(function (j) {
+            if (!j.ok) { sendBtn.disabled = false; return say(j.error, false); }
+            sentTotal += j.sent; failed = failed.concat(j.failed || []);
+            progress.textContent = "Sent " + sentTotal + " of " + j.total + "…";
+            if (!j.done) return step(j.next);
+            sendBtn.disabled = false; sendBtn.dataset.confirm = ""; sendBtn.textContent = "Email to subscribers";
+            say("Done: sent to " + sentTotal + " of " + j.total + "." + (failed.length ? " Failed: " + failed.join(", ") : ""), !failed.length);
+          }).catch(function () { sendBtn.disabled = false; say("Sending stopped (connection). Some subscribers may already have it; check with your host before sending again.", false); });
+        };
+        step(0);
+      });
+    });
+
+    main.append(el("h2", { text: id ? "Edit No. " + num3(s.number) : "New signal" }),
+      el("div", { "class": "group" }, [
+        el("div", { "class": "row", style: "align-items:flex-start;gap:16px" }, [inp("number", "Number", "number"), inp("date", "Date", "date")]),
+        inp("title", "Title", "text", "One line. It is the email subject and the archive headline."),
+        el("div", { "class": "field" }, [el("label", { text: "Shifts" }), shiftBox]),
+        el("p", { "class": "help", text: "The four parts never change. Separate paragraphs with an empty line; **double asterisks** for bold. The opening lines of part 1 appear in the email and to visitors who are not signed in." }),
+        inp("observed", "01 · " + WS.parts.observed, "textarea"),
+        inp("doesnt_fit", "02 · " + WS.parts.doesnt_fit, "textarea"),
+        inp("if_real", "03 · " + WS.parts.if_real, "textarea"),
+        inp("implication", "04 · " + WS.parts.implication, "textarea"),
+        el("div", { "class": "row", style: "gap:16px;align-items:flex-end" }, [el("div", { "class": "field" }, [el("label", { "for": "ws-status", text: "Ledger status" }), status])]),
+        inp("status_note", "Ledger note", "textarea", "What happened since, and the next review date. Shown under the signal."),
+        el("label", { "for": "ws-pub", "class": "row", style: "gap:8px" }, [pub, "Published (visible to subscribers)"]),
+        el("div", { "class": "row" }, [
+          el("button", { type: "button", "class": "primary", text: "Save signal", onclick: function () { save().then(function (x) { if (x && !id) renderSignal("edit", x.id); }); } }),
+          el("a", { "class": "ghost", href: "../signal/?n=" + s.number, target: "_blank", rel: "noopener", text: "Preview ↗" }),
+          el("button", { type: "button", "class": "ghost", text: "Back to signals", onclick: function () { renderSignal("signals"); } })
+        ]), msg,
+        el("h3", { text: "Send" }),
+        el("div", { "class": "row" }, [testTo, el("button", { type: "button", "class": "ghost", text: "Send a test", onclick: function () {
+          save().then(function (x) { if (!x) return; var fd = new FormData(); fd.append("id", x.id); fd.append("email", testTo.value);
+            wsPost("ws_test", fd).then(function (j) { say(j.ok ? "Test sent to " + testTo.value + "." : j.error, j.ok); }); });
+        } })]),
+        el("div", { "class": "row" }, [sendBtn]), progress,
+        id ? el("button", { type: "button", "class": "mini danger", style: "justify-self:start;margin-top:24px", text: "Delete this signal", onclick: function () {
+          if (this.dataset.confirm !== "1") { this.dataset.confirm = "1"; this.textContent = "Click again to delete permanently"; return; }
+          var fd = new FormData(); fd.append("id", s.id); wsPost("ws_delete_signal", fd).then(function () { renderSignal("signals"); });
+        } }) : null
+      ]));
+  }
+  function wsSubscribers() {
+    var msg = el("p", { "class": "status", role: "status" });
+    var say = function (t, ok) { msg.textContent = t; msg.className = "status " + (ok ? "ok" : "err"); };
+    var planSel = function (v) { var p = el("select"); Object.keys(WS.plans).forEach(function (k) { p.appendChild(el("option", { value: k, text: WS.plans[k] })); }); p.value = v || "founding"; return p; };
+    var email = el("input", { type: "email", placeholder: "email", required: "required" }), name = el("input", { placeholder: "name (optional)" });
+    var plan = planSel("founding"), exp = el("input", { type: "date", title: "Access until (empty = no end date)" });
+    var add = el("form", { "class": "row" }, [email, name, plan, exp, el("button", { type: "submit", "class": "primary", text: "Add subscriber" })]);
+    add.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var fd = new FormData(); fd.append("email", email.value); fd.append("name", name.value); fd.append("plan", plan.value); fd.append("expires", exp.value); fd.append("status", "active");
+      wsPost("ws_save_subscriber", fd).then(function (j) { if (!j.ok) return say(j.error, false); renderSignal("subscribers"); });
+    });
+    var lines = el("textarea", { rows: "4", placeholder: "One per line: email, name" });
+    var leads = el("input", { type: "checkbox", id: "ws-leads" });
+    var iplan = planSel("founding"), iexp = el("input", { type: "date" });
+    var imp = el("button", { type: "button", "class": "ghost", text: "Import", onclick: function () {
+      var fd = new FormData(); fd.append("lines", lines.value); fd.append("plan", iplan.value); fd.append("expires", iexp.value); if (leads.checked) fd.append("leads", "1");
+      wsPost("ws_import", fd).then(function (j) { say("Added " + j.added + ", skipped " + j.skipped + " (already there or not an email).", true); setTimeout(function () { renderSignal("subscribers"); }, 1200); });
+    } });
+    var table = el("div", { "class": "subs" });
+    WS.subscribers.slice().sort(function (a, b) { return a.email < b.email ? -1 : 1; }).forEach(function (r) {
+      var st = el("select"); [["active", "Active"], ["paused", "Paused"]].forEach(function (o) { st.appendChild(el("option", { value: o[0], text: o[1] })); }); st.value = r.status;
+      var pl = planSel(r.plan), ex = el("input", { type: "date", value: r.expires || "" });
+      var saveRow = function () { var fd = new FormData(); fd.append("email", r.email); fd.append("plan", pl.value); fd.append("status", st.value); fd.append("expires", ex.value);
+        wsPost("ws_save_subscriber", fd).then(function (j) { say(j.ok ? "Saved " + r.email + "." : j.error, j.ok); }); };
+      [st, pl, ex].forEach(function (x) { x.addEventListener("change", saveRow); });
+      table.appendChild(el("div", { "class": "row backup", style: "flex-wrap:wrap" }, [
+        el("span", { style: "flex:1 1 220px;min-width:0;overflow-wrap:anywhere", text: r.email + (r.name ? " · " + r.name : "") + (r.last_login ? "" : " · never signed in") }), pl, st, ex,
+        el("button", { type: "button", "class": "mini danger", text: "Remove", onclick: function () {
+          if (this.dataset.confirm !== "1") { this.dataset.confirm = "1"; this.textContent = "Click again"; return; }
+          var fd = new FormData(); fd.append("email", r.email); wsPost("ws_delete_subscriber", fd).then(function () { renderSignal("subscribers"); });
+        } })
+      ]));
+    });
+    main.append(el("h2", { text: "Weak Signal · Subscribers" }),
+      el("p", { "class": "lead", text: WS.active + " active of " + WS.subscribers.length + ". Only active subscribers (and not past their end date) can sign in and receive emails. Add people here once they have paid or been invited. Changes save as you make them." }),
+      add, msg, el("h3", { text: "Everyone" }), WS.subscribers.length ? table : el("p", { "class": "empty", text: "No subscribers yet." }),
+      el("h3", { text: "Import" }),
+      el("div", { "class": "group narrow", style: "max-width:560px" }, [lines,
+        el("label", { "for": "ws-leads", "class": "row", style: "gap:8px;font-weight:400" }, [leads, "Also add everyone on the founding list from the website form (" + WS.leads + ")"]),
+        el("div", { "class": "row" }, [iplan, iexp, imp])]));
+  }
+  function wsSettings() {
+    var msg = el("p", { "class": "status", role: "status" });
+    var from = el("input", { type: "email", value: WS.settings.custom_from || "", placeholder: WS.settings.from });
+    var reply = el("input", { type: "email", value: WS.settings.reply_to || "", placeholder: "forum@amsforum.com" });
+    var f = el("form", { "class": "group narrow" }, [
+      el("div", { "class": "field" }, [el("label", { text: "Send from" }), from, el("p", { "class": "help", text: "Use an address at your domain (for example signal@amsforum.com), created in cPanel → Email Accounts, so emails are not marked as spam. Empty uses " + WS.settings.from + "." })]),
+      el("div", { "class": "field" }, [el("label", { text: "Replies go to" }), reply]),
+      el("button", { type: "submit", "class": "primary", text: "Save" }), msg]);
+    f.addEventListener("submit", function (e) { e.preventDefault(); var fd = new FormData(); fd.append("from", from.value); fd.append("reply_to", reply.value);
+      wsPost("ws_settings", fd).then(function (j) { msg.textContent = j.ok ? "Saved." : j.error; msg.className = "status " + (j.ok ? "ok" : "err"); }); });
+    main.append(el("h2", { text: "Weak Signal · Email settings" }),
+      el("p", { "class": "lead", text: "Signals and sign-in links are sent by your hosting's email. Shared hosting limits how many emails go out per hour (often a few hundred); beyond a few hundred subscribers, move sending to an email service." }), f);
+  }
+
   var VIEWS = [
+
     ["content", "Page content", function () { renderContent(); }],
     ["theme", "Colours & fonts", function () { renderSingle("theme", "Colours apply across the whole site. Change one, save, and reload the site to see it."); }],
     ["site", "Site settings", function () { renderSingle("site", "Page title, link preview, emails."); }],
+    ["signal", "Weak Signal", function () { renderSignal("signals"); }],
     ["subs", "Submissions", function () { renderSubmissions(""); }],
     ["updates", "Updates", renderUpdates],
     ["account", "Account", renderAccount]

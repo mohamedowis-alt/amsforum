@@ -9,7 +9,7 @@ define('AF_APPLIED', AF_DATA . '/content.applied.json'); // the defaults last ap
 define('AF_VERSION', AF_DATA . '/version.json');
 
 // Files an update may write. Everything else (root .htaccess, data, uploads) is never touched.
-const AF_UPDATE_ALLOW = '#^(index\.php|robots\.txt|assets/.+|admin/.+|api/.+|lib/.+|uploads/\.htaccess|data/\.htaccess|data/index\.php|data/backups/\.htaccess)$#';
+const AF_UPDATE_ALLOW = '#^(index\.php|robots\.txt|assets/.+|admin/.+|api/.+|lib/.+|signal/.+|uploads/\.htaccess|data/\.htaccess|data/index\.php|data/backups/\.htaccess)$#';
 
 function af_update_settings(): array {
     $c = af_config();
