@@ -494,6 +494,7 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
         <span class="label"><?= e($g('weak_signal.eyebrow')) ?></span>
         <h2 class="headline"><?= e($g('weak_signal.title')) ?></h2>
         <p class="body-serif"><?= e($g('weak_signal.text')) ?></p>
+        <?php if ($g('weak_signal.text_2')): ?><p class="ws-between"><?= e($g('weak_signal.text_2')) ?></p><?php endif; ?>
       </div>
       <form data-kind="weak-signal" data-thanks="<?= e($g('weak_signal.thanks')) ?>" novalidate>
         <div class="field"><label for="ws-email">Email</label><input id="ws-email" name="email" type="email" required autocomplete="email" maxlength="160"></div>

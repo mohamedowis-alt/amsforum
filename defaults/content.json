@@ -119,7 +119,7 @@
   "evidence": {
     "eyebrow": "The evidence",
     "title": "The reconfiguration is already in the data.",
-    "intro": "Every figure here is published, dated and linked to its source. Some show things breaking, some show things being built. Read together, they describe one movement: the arrangements the modern world was built on are being rearranged, all at once.",
+    "intro": "Every figure here is published, dated and linked to its source. Some show things breaking, some show things being built. Read together, they describe one reconfiguration: the arrangements the modern world was built on are being rearranged, all at once.",
     "shifts": [
       {
         "name": "Power",
@@ -333,7 +333,7 @@
   },
   "map": {
     "eyebrow": "The one map",
-    "title": "Eight shifts. One movement.",
+    "title": "Eight shifts. One reconfiguration.",
     "intro": "Each shift traces back to the same five separations the modern world was organised around. All five are failing together, and AI is speeding up every one of them.",
     "separations": [
       "Economy / ecology",
@@ -347,14 +347,14 @@
   },
   "days": {
     "eyebrow": "The programme · target dates 14–15 October 2027",
-    "title": "Two days with the people who see it first.",
+    "title": "Two days with the people who notice change early.",
     "intro": "Keynotes and panels on each of the eight shifts, the evidence laid out in the Atlas, an afternoon turning it into decisions, and two evenings of film, art, food and music across the city. One room by day, one programme, no parallel tracks to miss.",
     "movements": [
       {
         "when": "Day one",
         "title": "Seeing",
         "items": [
-          "**Opening keynote**: the Great Reconfiguration, and why the eight shifts are one movement.",
+          "**Opening keynote**: the Great Reconfiguration, and why the eight shifts are one reconfiguration.",
           "**Keynotes and panels** on Power, Earth, Work & Wealth and Cities.",
           "**The Atlas**: a walk-through exhibition of the evidence, open throughout both days.",
           "**Evening**: Witness Dinners in Amsterdam houses, then the night programme: screenings, performance and music."
@@ -365,7 +365,7 @@
         "title": "Understanding",
         "items": [
           "**Keynotes and panels** on Institutions, Culture, Meaning and Intelligence.",
-          "**The Collision**: a philosopher and a founder who disagree, on stage, about where the movement is going.",
+          "**The Collision**: a philosopher and a founder who disagree, on stage, about where the reconfiguration is going.",
           "**Conversations** with people living at the edge of each shift."
         ]
       },
@@ -385,15 +385,14 @@
       "A picture of the decade you didn't have on the way in.",
       "A year of Weak Signal, the Forum's intelligence dispatch.",
       "The Atlas of the Great Reconfiguration, published after the Forum.",
-      "For some, a seat in one of five Sensing Circles meeting monthly from November 2027.",
-      "299 people who now see what you see."
+      "For some, a seat in one of five Sensing Circles meeting monthly from November 2027."
     ],
     "status": "Programme in development. The format is set; sessions, speakers and venues are confirmed through 2027."
   },
   "speakers": {
     "eyebrow": "Speakers",
     "title": "Philosophers to founders. One stage.",
-    "intro": "The shifts don't respect disciplines, so neither does the stage. Each speaker is chosen for what they have seen first, not the size of their title, and brings evidence, a point of view, and time for questions.",
+    "intro": "The shifts don't respect disciplines, so neither does the stage. Each speaker is chosen for what they have noticed, understood or lived through before it became obvious, not for the size of their title, and brings evidence, a point of view, and time for questions.",
     "kinds": [
       "Philosophers",
       "Scientists",
@@ -544,7 +543,7 @@
   },
   "different": {
     "eyebrow": "Why it's different",
-    "title": "A summit built for learning, not for being seen.",
+    "title": "A summit built for learning, not signalling.",
     "column_usual": "The usual summit",
     "column_forum": "Forum I",
     "rows": [
@@ -561,7 +560,7 @@
       {
         "label": "Speakers",
         "usual": "CEOs on message, chosen for their logo",
-        "forum": "Philosophers, scientists, artists, founders and policymakers, chosen for what they have seen first."
+        "forum": "Philosophers, scientists, artists, founders and policymakers, chosen for what they noticed before it became obvious."
       },
       {
         "label": "Panels",
@@ -735,6 +734,7 @@
     "eyebrow": "Start now · from November 2026",
     "title": "Weak Signal: read the shifts before they're news.",
     "text": "A biweekly dispatch of changes that don't have a name yet, each scored in public against what happened next. Founding subscribers pay €190 a year, locked for life, for the first 500.",
+    "text_2": "The Forum is the gathering. Weak Signal and the Sensing Circles are the work between gatherings.",
     "button": "Join the founding list",
     "thanks": "You're on the founding list. Issue 001 arrives in November 2026.",
     "signin_text": "Already a subscriber?",
