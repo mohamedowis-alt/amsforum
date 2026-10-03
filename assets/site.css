@@ -367,3 +367,27 @@ footer .note{font-family:var(--serif);font-style:italic;font-size:14px;line-heig
 
 /* footer: ink, with a cobalt edge */
 footer{border-top:8px solid var(--b-cobalt)}
+
+/* ── XX+ graphic system: X = what exists, + = what is emerging ──────────────
+   Squares and frames are retired. Every marker, bullet and pattern is an X or a +. */
+:root{--x-shape:polygon(20% 0,50% 30%,80% 0,100% 20%,70% 50%,100% 80%,80% 100%,50% 70%,20% 100%,0 80%,30% 50%,0 20%);
+  --p-shape:polygon(35% 0,65% 0,65% 35%,100% 35%,100% 65%,65% 65%,65% 100%,35% 100%,35% 65%,0 65%,0 35%,35% 35%)}
+/* hero: a field of X's, one + turns */
+.config .xx{fill:var(--b-cobalt)}
+.config .pl{fill:var(--b-pink)}
+/* bullets: a small + */
+.move li::before,.sep-list li::before,.leave li::before{width:10px;height:10px;border:0;background:var(--b-cobalt);clip-path:var(--p-shape)}
+.sep-list li::before{width:12px;height:12px}
+#different .move li::before,#different .sep-list li::before,#different .leave li::before{background:var(--b-ink)}
+/* timeline: past moments are X's, now is the pink + */
+.moments li::before{width:14px;height:14px;top:-8px;border:0;background:var(--ink);clip-path:var(--x-shape)}
+.moments li.now::before,#long-view .moments li.now::before{background:var(--b-pink);clip-path:var(--p-shape);border:0}
+@media (max-width:520px){.moments li::before{left:-28px}}
+/* Weak Signal: a field of X's, one pink + escaped from the grid */
+.ws-config .stn{fill:var(--b-cobalt);opacity:.35}
+.ws-config .sig{fill:var(--b-pink)}
+/* speaker placeholders: X's with one + */
+.speaker .portrait .xs{fill:var(--stone);opacity:.45}
+.speaker .portrait .sq{fill:var(--b-cobalt);stroke:none}
+.speaker.key .portrait .sq{fill:var(--b-pink)}
+@media (max-width:900px){.config{height:200px;overflow:hidden}}
