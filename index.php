@@ -116,14 +116,11 @@ $heroImg = af_img((string)$g('hero.image'));
           <svg viewBox="0 0 560 440">
             <defs><pattern id="mod" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" class="grid"/></pattern></defs>
             <rect x="0" y="0" width="560" height="440" fill="url(#mod)"/>
-            <rect class="st" x="40" y="40" width="120" height="120"/>
-            <rect class="stf" x="86" y="246" width="108" height="108" stroke-width="12"/>
-            <rect class="st" x="400" y="40" width="40" height="40"/>
-            <rect class="st" x="480" y="120" width="40" height="40"/>
-            <rect class="st" x="160" y="360" width="40" height="40"/>
-            <rect class="so" x="120" y="80" width="200" height="200"/>
-            <g class="move"><rect class="fr" x="246.67" y="206.67" width="186.67" height="186.67" stroke-width="13.33"/></g>
-            <rect class="ve" x="253.33" y="213.33" width="66.67" height="66.67"/>
+            <g transform="translate(212 14) scale(3.4)">
+              <path class="xx" d="M30.25 37.45L0.55 7.75L9.75 -1.45L39.45 28.25Z M39.45 7.75L9.75 37.45L0.55 28.25L30.25 -1.45Z"/>
+              <path class="xx" d="M30.25 79.45L0.55 49.75L9.75 40.55L39.45 70.25Z M39.45 49.75L9.75 79.45L0.55 70.25L30.25 40.55Z"/>
+              <g class="plus"><path class="pl" d="M38.90 108.50L1.10 108.50L1.10 95.50L38.90 95.50Z M13.50 120.90L13.50 83.10L26.50 83.10L26.50 120.90Z"/></g>
+            </g>
           </svg>
         </div>
         <?php endif; ?>
@@ -317,6 +314,26 @@ $heroImg = af_img((string)$g('hero.image'));
     </div>
   </section>
 
+  <?php if ($g('movement.title')): ?>
+  <section id="movement" class="movement">
+    <div class="wrap mv">
+      <div class="mv-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 123"><g transform="translate(0 1.5)"><path d="M30.25 37.45L0.55 7.75L9.75 -1.45L39.45 28.25Z M39.45 7.75L9.75 37.45L0.55 28.25L30.25 -1.45Z"/><path d="M30.25 79.45L0.55 49.75L9.75 40.55L39.45 70.25Z M39.45 49.75L9.75 79.45L0.55 70.25L30.25 40.55Z"/><path d="M38.90 108.50L1.10 108.50L1.10 95.50L38.90 95.50Z M13.50 120.90L13.50 83.10L26.50 83.10L26.50 120.90Z"/></g></svg>
+      </div>
+      <div class="mv-body">
+        <span class="label"><?= e($g('movement.eyebrow')) ?></span>
+        <h2><?= e($g('movement.title')) ?></h2>
+        <p class="lede"><?= e($g('movement.text')) ?></p>
+        <?php if ($g('movement.text_2')): ?><p class="body-serif"><?= e($g('movement.text_2')) ?></p><?php endif; ?>
+        <div class="ctas">
+          <?php if ($g('movement.button_1')): ?><a class="btn" href="<?= e(af_url((string)$g('movement.button_1_href', '#apply'))) ?>"<?= str_starts_with((string)$g('movement.button_1_href', '#apply'), '#apply') ? ' data-tab="invite"' : '' ?>><?= e($g('movement.button_1')) ?></a><?php endif; ?>
+          <?php if ($g('movement.button_2')): ?><a class="btn ghost" href="<?= e(af_url((string)$g('movement.button_2_href', '#weak-signal'))) ?>"><?= e($g('movement.button_2')) ?></a><?php endif; ?>
+        </div>
+      </div>
+    </div>
+  </section>
+  <?php endif; ?>
+
   <section id="apply" class="apply">
     <div class="wrap">
       <div class="sec-head">
@@ -417,6 +434,7 @@ $heroImg = af_img((string)$g('hero.image'));
     <div>
       <img class="logo-light" src="assets/logo/af-primary-reversed.svg" alt="Amsterdam Forum" height="72">
       <img class="logo-dark" src="assets/logo/af-primary-ink.svg" alt="Amsterdam Forum" height="72">
+      <a class="xx-foot" href="#movement" aria-label="XX+, the movement"><img class="logo-light" src="assets/logo/xx-h-paper.svg" alt="XX+" width="69" height="21"><img class="logo-dark" src="assets/logo/xx-h-ink.svg" alt="XX+" width="69" height="21"></a>
       <div class="meta">
         <span><?= e($g('footer.line_1')) ?></span>
         <span><?= e($g('footer.line_2')) ?></span>

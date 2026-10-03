@@ -42,12 +42,12 @@ section{padding-block:calc(var(--module)*2.5) calc(var(--module)*3);border-top:1
 .nav{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--rule)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
 .brand{display:block;flex:none;line-height:0}
-.brand img{height:30px;width:auto}
+.brand img{height:26px;width:auto}
 .logo-dark{display:none}
-.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
-.nav ul a{text-decoration:none;font-size:14px;font-weight:500;color:var(--ink-muted)}
+.nav ul{display:flex;gap:16px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:14px;font-weight:500;color:var(--ink-muted);white-space:nowrap}
 .nav ul a:hover{color:var(--ink)}
-@media (max-width:1060px){.nav ul{display:none}}
+@media (max-width:1220px){.nav ul{display:none}}
 @media (max-width:480px){.brand img{height:22px}.nav .btn{display:none}}
 
 /* buttons: square, ink */
@@ -84,12 +84,16 @@ section{padding-block:calc(var(--module)*2.5) calc(var(--module)*3);border-top:1
   .config{min-height:0;height:260px;order:-1;margin-bottom:8px}
   .config svg{width:calc(100% + var(--gutter));left:auto;right:calc(var(--gutter)*-1)}
 }
+/* XX+ in the opening: the third cross reconfigures into the plus */
+.config .xx{fill:var(--ink)}
+.config .pl{fill:var(--vermilion)}
+.config .plus{transform-box:fill-box;transform-origin:center}
 @media (prefers-reduced-motion:no-preference){
-  .config .move{animation:af-move .6s var(--ease) .3s both}
-  .config .ve{animation:af-fill .3s linear .9s both}
+  .config .plus{animation:af-turn .6s var(--ease) .5s both}
+  .config .pl{animation:af-plus 1.1s linear both}
 }
-@keyframes af-move{from{transform:translate(calc(var(--module)*-1),calc(var(--module)*-1))}to{transform:none}}
-@keyframes af-fill{from{opacity:0}to{opacity:1}}
+@keyframes af-turn{from{transform:rotate(45deg)}to{transform:none}}
+@keyframes af-plus{0%,55%{fill:var(--ink)}100%{fill:var(--vermilion)}}
 
 .hero-figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:calc(var(--module)*2);border-top:2px solid var(--ink);position:relative;z-index:2;background:var(--paper)}
 .hero-figs div{padding:20px 20px 0 0;display:grid;gap:8px;align-content:start;min-width:0}
@@ -284,3 +288,20 @@ footer .note{font-family:var(--serif);font-style:italic;font-size:14px;line-heig
 @media (max-width:860px){.moments{grid-template-columns:1fr 1fr;row-gap:32px}}
 @media (max-width:520px){.moments{grid-template-columns:1fr;border-top:0;border-left:2px solid var(--ink);padding-left:20px}.moments li{padding:0}.moments li::before{top:2px;left:-27px}}
 .ws-signin{grid-column:1/-1;font-size:14px;color:var(--ink-muted);margin-top:4px}.ws-signin a{color:var(--ink);font-weight:600}
+
+/* the movement: XX+ */
+.movement{background:#D9381E;color:#FFFFFF;border-top:0}
+.mv{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:calc(var(--module)*2);align-items:center}
+.mv-mark svg{display:block;width:100%;max-width:190px;height:auto;margin-inline:auto;fill:#FFFFFF}
+.mv-body{display:grid;gap:24px;min-width:0}
+.movement .label{color:#FFFFFF}
+.movement h2{font-size:clamp(40px,6.4vw,84px);line-height:.98;letter-spacing:-.02em}
+.movement .lede,.movement .body-serif{color:#FFFFFF}
+.movement .btn{background:#1C1B19;border-color:#1C1B19;color:#FFFFFF}
+.movement .btn:hover{background:#FFFFFF;border-color:#FFFFFF;color:#1C1B19}
+.movement .btn.ghost{background:transparent;border-color:#FFFFFF;color:#FFFFFF}
+.movement .btn.ghost:hover{background:#FFFFFF;color:#1C1B19}
+.movement :focus-visible{outline-color:#FFFFFF}
+@media (max-width:860px){.mv{grid-template-columns:1fr;gap:var(--module)}.mv-mark svg{max-width:96px;margin-inline:0}}
+footer .xx-foot{display:inline-block;margin-top:24px;line-height:0}
+footer .xx-foot img{height:21px;width:auto}
