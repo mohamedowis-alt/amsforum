@@ -11,6 +11,14 @@ header('Referrer-Policy: same-origin');
 header('Cache-Control: no-store');
 
 af_session();
+// One-time: older updaters could not create the /signal folder; install it from lib/bootstrap if missing or older.
+foreach (['index.php', 'signal.css'] as $f) {
+    $src = AF_ROOT . '/lib/bootstrap/signal/' . $f; $dst = AF_ROOT . '/signal/' . $f;
+    if (is_file($src) && (!is_file($dst) || filemtime($dst) < filemtime($src) && md5_file($dst) !== md5_file($src))) {
+        if (!is_dir(AF_ROOT . '/signal')) @mkdir(AF_ROOT . '/signal', 0755, true);
+        @copy($src, $dst); @chmod($dst, 0644);
+    }
+}
 $config = af_config();
 $action = (string)($_GET['action'] ?? $_POST['action'] ?? '');
 $setupFile = AF_DATA . '/SETUP-CODE.txt';
