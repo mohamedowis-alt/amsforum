@@ -75,10 +75,10 @@
     "button": "Request an invitation"
   },
   "hero": {
-    "eyebrow": "Forum I · Amsterdam · 14–15 October 2027 · 300 people · by invitation",
+    "eyebrow": "Forum I · Amsterdam · October 2027 · 300 people · by invitation",
     "title_line_1": "The Great",
     "title_line_2": "Reconfiguration",
-    "lede": "Power, climate, work, cities, trust, culture, meaning and machine intelligence are moving at the same time. For two days in Amsterdam, the people who see it first take the stage: philosophers, scientists, anthropologists, systems thinkers, artists, founders and policymakers. Three hundred leaders come to learn what is changing, and leave ready for it.",
+    "lede": "Power, climate, work, cities, trust, culture, meaning and machine intelligence are moving at the same time. On stage: philosophers, scientists, anthropologists, systems thinkers, artists, founders and policymakers. Two days in Amsterdam to see these shifts as one movement, test them against people who disagree, and work out what they mean for your next decisions.",
     "button_invite": "Request an invitation",
     "button_partner": "Become a partner",
     "button_witness": "Propose a speaker",
@@ -96,7 +96,7 @@
         "value": "900m",
         "text": "people use ChatGPT every week. It launched in late 2022.",
         "source": "OpenAI, Feb 2026",
-        "url": "https://finance.yahoo.com/news/chatgpt-reaches-900m-weekly-active-182551628.html"
+        "url": "https://openai.com/index/scaling-ai-for-everyone/"
       },
       {
         "value": "1.60°C",
@@ -283,7 +283,7 @@
             "value": "280×",
             "text": "drop in the cost of GPT-3.5-level AI in under two years.",
             "source": "Stanford AI Index, Apr 2025",
-            "url": "https://www.businesswire.com/news/home/20250407539812/en/Stanford-HAIs-2025-AI-Index-Reveals-Record-Growth-in-AI-Capabilities-Investment-and-Regulation"
+            "url": "https://hai.stanford.edu/ai-index/2025-ai-index-report"
           },
           {
             "value": "945 TWh",
@@ -297,8 +297,8 @@
   },
   "long_view": {
     "eyebrow": "The long view",
-    "title": "It has happened before. Never this fast.",
-    "text": "The modern world was built on separations: mind from matter, economy from nature, nation from planet, human from machine. They are coming apart at once. Every few centuries the world rethinks its foundations, and each time a few small rooms work out what comes next.",
+    "title": "Every reconfiguration had its rooms.",
+    "text": "The modern world was built on separations: mind from matter, economy from nature, nation from planet, human from machine. They are coming apart at once. Before, when the world rethought its foundations, small and mixed rooms helped work out what came next.",
     "moments": [
       {
         "when": "800–200 BCE",
@@ -323,7 +323,7 @@
       {
         "when": "2027 · Amsterdam",
         "title": "Forum I",
-        "text": "Three hundred people, one room, the next reconfiguration."
+        "text": "Our attempt at one: three hundred people, one room, the present reconfiguration."
       }
     ]
   },
@@ -342,7 +342,7 @@
     "hint": "Hover or tap a shift to trace it."
   },
   "days": {
-    "eyebrow": "The programme · 14–15 October 2027",
+    "eyebrow": "The programme · target dates 14–15 October 2027",
     "title": "Two days with the people who see it first.",
     "intro": "Keynotes and panels on each of the eight shifts, the evidence laid out in the Atlas, an afternoon turning it into decisions, and two evenings of film, art, food and music across the city. One room by day, one programme, no parallel tracks to miss.",
     "movements": [
@@ -383,12 +383,13 @@
       "The Atlas of the Great Reconfiguration, published after the Forum.",
       "For some, a seat in one of five Sensing Circles meeting monthly from November 2027.",
       "299 people who now see what you see."
-    ]
+    ],
+    "status": "Programme in development. The format is set; sessions, speakers and venues are confirmed through 2027."
   },
   "speakers": {
     "eyebrow": "Speakers",
     "title": "Philosophers to founders. One stage.",
-    "intro": "The shifts don't respect disciplines, so neither does the stage. Each speaker is chosen for what they have seen first, not the size of their title, and brings evidence, a point of view, and time for questions. First names are announced in early 2027.",
+    "intro": "The shifts don't respect disciplines, so neither does the stage. Each speaker is chosen for what they have seen first, not the size of their title, and brings evidence, a point of view, and time for questions.",
     "kinds": [
       "Philosophers",
       "Scientists",
@@ -475,7 +476,9 @@
       }
     ],
     "cta_text": "Know someone who should be on this stage?",
-    "cta_button": "Propose a speaker"
+    "cta_button": "Propose a speaker",
+    "status": "Programme in development. First speakers announced in early 2027.",
+    "slots_label": "The stage, as designed"
   },
   "experience": {
     "eyebrow": "The experience",
@@ -525,7 +528,8 @@
         "image_alt": ""
       }
     ],
-    "note": "Business leaders and policymakers come for the stage. Most remember the evenings."
+    "note": "Business leaders and policymakers come for the stage. Most remember the evenings.",
+    "status": "Planned for Forum I. Artists, chefs, filmmakers and cultural partners are being approached through 2027."
   },
   "city": {
     "show": false,
@@ -580,8 +584,8 @@
   },
   "room": {
     "eyebrow": "The room",
-    "title": "Three hundred people, chosen one by one.",
-    "intro": "Every seat is by invitation. An invitation can't be bought. More than half the room are Fellows: researchers, artists, younger builders and leaders from the Global South who attend free, because they carry what the rest of the room needs to hear.",
+    "title": "Three hundred people, selected for the perspectives they bring.",
+    "intro": "Every seat is by invitation, and an invitation can't be bought. The aim is a room in which no one hears only what they already think. More than half are Fellows, who attend free: researchers, artists, younger builders and leaders from the Global South.",
     "segments": [
       {
         "number": "120",
@@ -595,6 +599,14 @@
         "number": "163",
         "text": "Fellows, curated and attending free, about thirty with travel covered."
       }
+    ],
+    "criteria_label": "How the room is composed",
+    "criteria": [
+      "**Disciplines:** every table spans at least four sectors: business, capital, government, science, culture, civil society, the press. None is a majority.",
+      "**Geographies:** every table includes people from at least three continents. The Global South is never under-represented.",
+      "**Generations:** every table includes someone under thirty-five and someone over sixty.",
+      "**Not by payment:** Fellows, participants and partner guests sit together; no table is seated by who paid.",
+      "**Productive tension:** tables are composed to hold real disagreement, not comfort."
     ]
   },
   "movement": {
@@ -658,7 +670,7 @@
       "tab": "Propose a speaker",
       "title": "Propose a speaker",
       "text_1": "We are looking for keynote speakers and panellists who see a shift before it is obvious: researchers, builders, policymakers, writers, people working inside the systems that are changing.",
-      "text_2": "Propose yourself or someone else. Speakers are chosen for the strength of what they bring, not for their title. Travel and accommodation are covered.",
+      "text_2": "Propose yourself or someone else. Speakers are chosen for the strength of what they bring, not for their title. The Forum covers the travel of confirmed speakers.",
       "question": "What would they say that this room needs to hear?",
       "privacy": "We read every proposal and reply to those we take forward.",
       "button": "Send proposal",
@@ -676,8 +688,9 @@
   },
   "footer": {
     "line_1": "Amsterdam · every two years · by invitation",
-    "line_2": "Forum I: 14–15 October 2027 · Forum II: 2029",
-    "note": "Every figure on this page links to its publisher. Figures checked in October 2026; where a source revises its numbers, we update ours."
+    "line_2": "Forum I: October 2027 (target 14–15 October) · Forum II: 2029",
+    "note": "Every figure on this page links to its publisher. Figures checked in October 2026; where a source revises its numbers, we update ours.",
+    "privacy_link": "Privacy"
   },
   "signal_page": {
     "description": "Weak Signal: a biweekly dispatch from the Amsterdam Forum on the shifts that do not have a name yet, scored in public against what happened next.",
@@ -694,5 +707,37 @@
     "archive_eyebrow": "The archive",
     "archive_title": "Signals",
     "empty": "The first signal arrives with Issue 001."
+  },
+  "privacy": {
+    "title": "Privacy",
+    "updated": "October 2026",
+    "intro": "This notice explains what the Amsterdam Forum does with personal information collected through amsforum.com and Weak Signal. The Amsterdam Forum is in formation; until its Dutch company is registered, the founder is responsible for this data.",
+    "sections": [
+      {
+        "heading": "What we collect",
+        "text": "When you send a form: your name, email address and the details you choose to give (organisation, role, country, your note). When you subscribe to Weak Signal: your email address, name, plan and when you last signed in. To stop abuse of the forms we store a shortened, one-way code of your internet address, not the address itself."
+      },
+      {
+        "heading": "Why",
+        "text": "To consider your request for an invitation, partnership or speaker proposal and reply to it; to send Weak Signal and let you sign in to read it; and to keep the site secure. We do not sell or share your details, and we do not use them for advertising."
+      },
+      {
+        "heading": "Cookies",
+        "text": "The site uses no analytics or tracking cookies. It sets one cookie when a Weak Signal subscriber signs in (to keep you signed in for up to 60 days) and one for the site's own administrator. Both are strictly necessary."
+      },
+      {
+        "heading": "Where it is kept",
+        "text": "On our web hosting (GoDaddy), which may store data outside the European Economic Area under its standard data-protection terms. Emails are sent through the same hosting."
+      },
+      {
+        "heading": "How long",
+        "text": "Requests and proposals: until twelve months after Forum I, then deleted. Weak Signal subscriptions: for as long as you subscribe, and deleted within three months after it ends. You can ask us to delete your details at any time."
+      },
+      {
+        "heading": "Your rights",
+        "text": "You can ask to see, correct or delete your details, or object to how we use them, by emailing the address below. You can unsubscribe from Weak Signal from the link in every email. If you are not satisfied with our answer, you can complain to the Dutch data protection authority (Autoriteit Persoonsgegevens)."
+      }
+    ],
+    "contact_text": "Questions and requests:"
   }
 }

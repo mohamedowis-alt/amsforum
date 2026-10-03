@@ -15,6 +15,11 @@ $t = fn(string $k, string $d) => (string)af_get($c, 'signal_page.' . $k, $d);
 // ---------- actions
 $notice = ''; $noticeKind = '';
 if (isset($_GET['logout'])) { ws_clear_session(); header('Location: ./'); exit; }
+if (isset($_GET['unsubscribe'])) {
+    $ok = ws_unsubscribe((string)$_GET['unsubscribe'], (string)($_GET['s'] ?? ''));
+    $notice = $ok ? 'You are unsubscribed. You will receive no more Weak Signal emails; reply to any issue or write to us to come back.' : 'That unsubscribe link is not valid. Write to us and we will remove you.';
+    $noticeKind = $ok ? 'ok' : 'err';
+}
 
 if (!empty($_GET['t'])) {
     $email = ws_redeem_token((string)$_GET['t']);

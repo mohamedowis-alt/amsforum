@@ -209,7 +209,14 @@ function ws_mail(string $to, string $subject, string $html, string $text): bool 
           . "--{$b}--\r\n";
     return @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . $from);
 }
-function ws_email_shell(string $inner, string $preheader = ''): string {
+function ws_unsub_sig(string $email): string { return substr(hash_hmac('sha256', 'unsub|' . ws_norm_email($email), ws_secret()), 0, 24); }
+function ws_unsub_url(string $email): string { return ws_base_url() . '/signal/?unsubscribe=' . rawurlencode(ws_norm_email($email)) . '&s=' . ws_unsub_sig($email); }
+function ws_unsubscribe(string $email, string $sig): bool {
+    if (!hash_equals(ws_unsub_sig($email), $sig) || !ws_subscriber($email)) return false;
+    $r = ws_save_subscriber(['email' => $email, 'status' => 'paused']);
+    return (bool)$r['ok'];
+}
+function ws_email_shell(string $inner, string $preheader = '', string $to = ''): string {
     return '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta name="color-scheme" content="light dark"></head>'
         . '<body style="margin:0;padding:0;background:#EFF2E8;">'
         . '<div style="display:none;max-height:0;overflow:hidden;">' . e($preheader) . '</div>'
@@ -219,10 +226,10 @@ function ws_email_shell(string $inner, string $preheader = ''): string {
         . '<span style="display:inline-block;width:10px;height:10px;background:#C6D62B;margin-right:10px;"></span>WEAK SIGNAL <span style="color:#6B746F;font-weight:normal;">· THE AMSTERDAM FORUM</span></td></tr>'
         . $inner
         . '<tr><td style="padding:36px 0 0;border-top:1px solid #D2D9CB;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:18px;color:#6B746F;">'
-        . 'You receive Weak Signal as a subscriber of the Amsterdam Forum. No advertising, no sponsorship, ever. Reply to this email to change your subscription.</td></tr>'
+        . 'You receive Weak Signal as a subscriber of the Amsterdam Forum. No advertising, no sponsorship, ever. ' . ($to ? '<a href="' . e(ws_unsub_url($to)) . '" style="color:#6B746F;">Unsubscribe</a> · ' : '') . '<a href="' . e(ws_base_url()) . '/?privacy" style="color:#6B746F;">Privacy</a></td></tr>'
         . '</table></td></tr></table></body></html>';
 }
-function ws_signal_email(array $s): array {
+function ws_signal_email(array $s, string $to = ''): array {
     $url = ws_base_url() . '/signal/?n=' . (int)$s['number'];
     $pre = ws_preview($s, 60);
     $shifts = $s['shifts'] ? implode(' · ', $s['shifts']) : '';
@@ -234,7 +241,7 @@ function ws_signal_email(array $s): array {
         . '<tr><td style="padding:0 0 36px;"><a href="' . e($url) . '" style="display:inline-block;background:#C6D62B;color:#1C1B19;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:bold;text-decoration:none;padding:14px 22px;">Read the full signal →</a>'
         . '<div style="font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#6B746F;padding-top:12px;">Sign in with this email address to read why it doesn’t fit, what follows if it is real, and what to decide.</div></td></tr>';
     $text = "WEAK SIGNAL · No. " . ws_num($s['number']) . "\n\n" . $s['title'] . "\n\nWhat we observed\n" . $pre . "\n\nRead the full signal: " . $url . "\n";
-    return ['Weak Signal No. ' . ws_num($s['number']) . ' · ' . $s['title'], ws_email_shell($inner, $pre), $text];
+    return ['Weak Signal No. ' . ws_num($s['number']) . ' · ' . $s['title'], ws_email_shell($inner, $pre, $to), $text . ($to ? "\nUnsubscribe: " . ws_unsub_url($to) . "\n" : '')];
 }
 function ws_login_email(string $email, string $token, int $n = 0): array {
     $url = ws_base_url() . '/signal/?t=' . $token . ($n ? '&n=' . $n : '');
@@ -245,6 +252,6 @@ function ws_login_email(string $email, string $token, int $n = 0): array {
     return ['Your Weak Signal sign-in link', ws_email_shell($inner, 'Your sign-in link'), "Sign in to Weak Signal (works once, 30 minutes):\n" . $url . "\n"];
 }
 function ws_send_signal(array $s, string $to): bool {
-    [$subj, $html, $text] = ws_signal_email($s);
+    [$subj, $html, $text] = ws_signal_email($s, $to);
     return ws_mail($to, $subj, $html, $text);
 }

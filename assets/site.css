@@ -393,3 +393,24 @@ footer{border-top:8px solid var(--b-cobalt)}
 .speaker .portrait .sq{fill:var(--b-cobalt);stroke:none}
 .speaker.key .portrait .sq{fill:var(--b-pink)}
 @media (max-width:900px){.config{height:200px;overflow:hidden}}
+
+/* status of commitments */
+.status-line{display:flex;gap:10px;align-items:center;font-size:14px;font-weight:500;color:var(--ink-muted);margin-top:4px}
+.status-line span{width:10px;height:10px;border:1.5px dashed var(--ink-muted);flex:none}
+.experience .status-line{color:color-mix(in srgb,var(--paper) 68%,var(--ink))}
+.experience .status-line span{border-color:currentColor}
+/* speakers before names are confirmed */
+.slot-list{border-top:2px solid var(--ink);padding-top:20px;display:grid;gap:16px}
+.slot-list ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.slot-list li{font-size:14px;font-weight:500;padding:8px 14px;border:1px dashed var(--rule);color:var(--ink)}
+/* room composition */
+.criteria{margin-top:calc(var(--module)*1.25);padding-top:20px;border-top:1px solid var(--rule);display:grid;gap:14px}
+.criteria ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px 32px;font-family:var(--serif);font-size:17px;line-height:1.5}
+.criteria li{padding-left:20px;position:relative}
+.criteria li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;border:1.5px solid var(--ink)}
+.criteria b{font-family:var(--sans);font-weight:600;font-size:15px}
+/* privacy */
+.privacy .priv-sec{max-width:44em;padding:22px 0;border-top:1px solid var(--rule);display:grid;gap:8px}
+.privacy .priv-sec h2{font-size:20px}
+.privacy .btn{margin-top:28px}
+.form-foot small a,footer .meta a{color:inherit;text-decoration:underline}

@@ -31,7 +31,7 @@
   var SECTION_NAMES = {
     site: "Site settings", theme: "Colours & fonts", nav: "Top bar", hero: "Opening (hero)",
     evidence: "The evidence (numbers)", long_view: "The long view (history)", map: "The one map", days: "Programme (two days)", speakers: "Speakers", experience: "The experience (art, film, food)", city: "Amsterdam photo band",
-    different: "Why it's different", room: "The room", movement: "The movement (XX+)", apply: "Take part (forms)", weak_signal: "Weak Signal (home page)", signal_page: "Weak Signal pages", footer: "Footer"
+    different: "Why it's different", room: "The room", movement: "The movement (XX+)", apply: "Take part (forms)", weak_signal: "Weak Signal (home page)", signal_page: "Weak Signal pages", privacy: "Privacy notice", movement: "The movement (XX+)", footer: "Footer"
   };
   var LABELS = {
     title_line_1: "Title, first line", title_line_2: "Title, second line (italic)", lede: "Opening paragraph",
@@ -45,7 +45,7 @@
     sans: "Grotesk (headlines, labels, interface)", serif: "Serif (ledes, quotes, long text)",
     map_links: "Map links", map_highlight: "Highlight on the map", column_usual: "Left column heading", column_forum: "Right column heading",
     text_1: "Text, first paragraph", text_2: "Text, second paragraph", leave_label: "'You leave with' label",
-    line_1: "Line 1", line_2: "Line 2", line_3: "Line 3", url: "Source link", href: "Link to", people: "Speakers", slot: "Slot (e.g. Keynote · Power)", placeholder: "Text for unnamed slots", kinds: "Kinds of voices", moments: "Moments in history", when: "When", items: "Cards", cta_text: "Call-to-action text", cta_button: "Call-to-action button"
+    line_1: "Line 1", line_2: "Line 2", line_3: "Line 3", url: "Source link", href: "Link to", people: "Speakers", slot: "Slot (e.g. Keynote · Power)", placeholder: "Text for unnamed slots", kinds: "Kinds of voices", status: "Status line (confirmed or planned)", criteria: "Selection criteria", criteria_label: "Criteria heading", slots_label: "Label above the slots", privacy_link: "Privacy link text", sections: "Sections", heading: "Heading", moments: "Moments in history", when: "When", items: "Cards", cta_text: "Call-to-action text", cta_button: "Call-to-action button"
   };
   var HELP = {
     "site.title": "Shown in the browser tab and when the link is shared.",
@@ -71,6 +71,10 @@
     "speakers.people.role": "Title and organisation, one line.",
     "speakers.kinds": "The kinds of voices on stage, shown as a row of tags under the intro.",
     "long_view.moments": "A short timeline. The last item is drawn as the present moment. Leave the title empty to hide the whole section.",
+    "speakers.status": "Say plainly what is confirmed. Until at least one speaker has a name, the page shows the slots as a short list instead of empty cards.",
+    "days.status": "Say plainly what is confirmed and what is planned.",
+    "experience.status": "Say plainly what is confirmed and what is planned.",
+    "room.criteria": "Use **double asterisks** for bold.",
     "experience.items": "Art, film, food, performance and so on. Add, remove or reorder.",
     "experience.items.image": "Optional. Landscape photo, about 1600 × 1000 px.",
     "experience.note": "One line shown in large italic under the cards. Leave empty to hide.",

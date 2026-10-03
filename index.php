@@ -57,6 +57,8 @@ $mapData = [
 $share = af_img((string)$g('site.share_image'));
 $scheme = isset($_SERVER['HTTP_HOST']) ? ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/' : '';
 $heroImg = af_img((string)$g('hero.image'));
+function status_line(string $t): string { return $t === '' ? '' : '<p class="status-line"><span aria-hidden="true"></span>' . e($t) . '</p>'; }
+$privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Privacy')) . '</a>';
 ?><!doctype html>
 <html lang="en"<?= $mode === 'light' || $mode === 'dark' ? ' data-theme="' . e($mode) . '"' : '' ?>>
 <head>
@@ -96,6 +98,22 @@ $heroImg = af_img((string)$g('hero.image'));
 </nav>
 
 <main id="top">
+<?php if (isset($_GET['privacy'])): ?>
+  <section class="privacy">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label"><?= e($g('privacy.updated')) ?></span>
+        <h1 class="headline"><?= e($g('privacy.title', 'Privacy')) ?></h1>
+        <p class="lede"><?= e($g('privacy.intro')) ?></p>
+      </div>
+      <?php foreach ((array)$g('privacy.sections', []) as $ps): ?>
+      <div class="priv-sec"><h2><?= e($ps['heading'] ?? '') ?></h2><p class="body-serif"><?= e($ps['text'] ?? '') ?></p></div>
+      <?php endforeach; ?>
+      <div class="priv-sec"><h2><?= e($g('privacy.contact_text', 'Questions and requests:')) ?></h2><p class="body-serif"><?php $pe = (string)$g('site.contact_email'); ?><?= $pe ? '<a href="mailto:' . e($pe) . '">' . e($pe) . '</a>' : 'Use the contact address in the footer.' ?></p></div>
+      <p><a class="btn ghost" href="./">Back to the Forum</a></p>
+    </div>
+  </section>
+<?php else: ?>
   <header class="hero">
     <div class="wrap">
       <span class="label edition"><?= e($g('hero.eyebrow')) ?></span>
@@ -193,6 +211,7 @@ $heroImg = af_img((string)$g('hero.image'));
         <span class="label"><?= e($g('experience.eyebrow')) ?></span>
         <h2 class="headline"><?= e($g('experience.title')) ?></h2>
         <p class="lede"><?= e($g('experience.intro')) ?></p>
+        <?= status_line((string)$g('experience.status')) ?>
       </div>
       <div class="exp-grid">
         <?php foreach ((array)$g('experience.items', []) as $i => $x): $img = af_img((string)($x['image'] ?? '')); ?>
@@ -224,6 +243,7 @@ $heroImg = af_img((string)$g('hero.image'));
         <span class="label edition"><?= e($g('days.eyebrow')) ?></span>
         <h2 class="headline"><?= e($g('days.title')) ?></h2>
         <p class="lede"><?= e($g('days.intro')) ?></p>
+        <?= status_line((string)$g('days.status')) ?>
       </div>
       <div class="moves">
         <?php foreach ((array)$g('days.movements', []) as $m): ?>
@@ -248,7 +268,15 @@ $heroImg = af_img((string)$g('hero.image'));
         <h2 class="headline"><?= e($g('speakers.title')) ?></h2>
         <p class="lede"><?= e($g('speakers.intro')) ?></p>
         <?php $kinds = array_filter((array)$g('speakers.kinds', [])); if ($kinds): ?><ul class="kinds"><?php foreach ($kinds as $k): ?><li><?= e($k) ?></li><?php endforeach; ?></ul><?php endif; ?>
+        <?= status_line((string)$g('speakers.status')) ?>
       </div>
+      <?php $people = (array)$g('speakers.people', []); $anyNamed = count(array_filter($people, fn($p) => trim((string)($p['name'] ?? '')) !== '')) > 0; ?>
+      <?php if (!$anyNamed): ?>
+      <div class="slot-list">
+        <span class="label"><?= e($g('speakers.slots_label', 'The stage, as designed')) ?></span>
+        <ol><?php foreach ($people as $p): ?><li><?= e($p['slot'] ?? '') ?></li><?php endforeach; ?></ol>
+      </div>
+      <?php else: ?>
       <div class="speakers">
         <?php foreach ((array)$g('speakers.people', []) as $i => $p): $img = af_img((string)($p['image'] ?? '')); $named = trim((string)($p['name'] ?? '')) !== ''; ?>
         <article class="speaker<?= $named ? '' : ' tba' ?><?= str_contains(strtolower((string)($p['slot'] ?? '')), 'opening') || str_contains(strtolower((string)($p['slot'] ?? '')), 'closing') ? ' key' : '' ?>">
@@ -262,6 +290,7 @@ $heroImg = af_img((string)$g('hero.image'));
         </article>
         <?php endforeach; ?>
       </div>
+      <?php endif; ?>
       <div class="speakers-cta">
         <p class="body-serif"><?= e($g('speakers.cta_text')) ?></p>
         <a class="btn ghost" href="#apply" data-tab="speaker"><?= e($g('speakers.cta_button')) ?></a>
@@ -303,6 +332,12 @@ $heroImg = af_img((string)$g('hero.image'));
       <div class="room-legend">
         <?php foreach ($segs as $s): ?><div><strong><?= e($s['number'] ?? '') ?></strong><span><?= e($s['text'] ?? '') ?></span></div><?php endforeach; ?>
       </div>
+      <?php $crit = array_filter((array)$g('room.criteria', [])); if ($crit): ?>
+      <div class="criteria">
+        <span class="label"><?= e($g('room.criteria_label', 'How the room is composed')) ?></span>
+        <ul><?php foreach ($crit as $it): ?><li><?= rich((string)$it) ?></li><?php endforeach; ?></ul>
+      </div>
+      <?php endif; ?>
     </div>
   </section>
 
@@ -354,7 +389,7 @@ $heroImg = af_img((string)$g('hero.image'));
           <div class="field full"><label for="i-why"><?= e($g('apply.invite.question')) ?></label><textarea id="i-why" name="note" required maxlength="3000"></textarea></div>
           <div class="field"><label for="i-size">Seats</label><select id="i-size" name="seats"><option value="1">Just me</option><option value="2">Two from my organisation</option><option value="3">Three from my organisation</option></select></div>
           <div class="hp" aria-hidden="true"><label for="i-web">Website</label><input id="i-web" name="website" tabindex="-1" autocomplete="off"></div>
-          <div class="form-foot"><small><?= e($g('apply.invite.privacy')) ?></small><button class="btn" type="submit"><?= e($g('apply.invite.button')) ?></button></div>
+          <div class="form-foot"><small><?= e($g('apply.invite.privacy')) ?> <?= $privacyLink ?></small><button class="btn" type="submit"><?= e($g('apply.invite.button')) ?></button></div>
           <div class="notice" role="status" hidden></div>
         </form>
       </div>
@@ -374,7 +409,7 @@ $heroImg = af_img((string)$g('hero.image'));
           <div class="field full"><label for="p-tier">Interested in</label><select id="p-tier" name="tier"><?php foreach ((array)$g('apply.partner.tiers', []) as $t): ?><option><?= e(($t['name'] ?? '') . ' · ' . ($t['price'] ?? '')) ?></option><?php endforeach; ?><option>Underwriting Fellow seats</option><option>Not sure yet</option></select></div>
           <div class="field full"><label for="p-why"><?= e($g('apply.partner.question')) ?></label><textarea id="p-why" name="note" maxlength="3000"></textarea></div>
           <div class="hp" aria-hidden="true"><label for="p-web">Website</label><input id="p-web" name="website" tabindex="-1" autocomplete="off"></div>
-          <div class="form-foot"><small><?= e($g('apply.partner.privacy')) ?></small><button class="btn" type="submit"><?= e($g('apply.partner.button')) ?></button></div>
+          <div class="form-foot"><small><?= e($g('apply.partner.privacy')) ?> <?= $privacyLink ?></small><button class="btn" type="submit"><?= e($g('apply.partner.button')) ?></button></div>
           <div class="notice" role="status" hidden></div>
         </form>
       </div>
@@ -395,7 +430,7 @@ $heroImg = af_img((string)$g('hero.image'));
           <div class="field full"><label for="s-note"><?= e($g('apply.speaker.question')) ?></label><textarea id="s-note" name="note" required maxlength="3000"></textarea></div>
           <div class="field full"><label for="s-link">Link to a talk or bio</label><input id="s-link" name="link" type="url" maxlength="300" placeholder="https://"></div>
           <div class="hp" aria-hidden="true"><label for="s-web">Website</label><input id="s-web" name="website" tabindex="-1" autocomplete="off"></div>
-          <div class="form-foot"><small><?= e($g('apply.speaker.privacy')) ?></small><button class="btn" type="submit"><?= e($g('apply.speaker.button')) ?></button></div>
+          <div class="form-foot"><small><?= e($g('apply.speaker.privacy')) ?> <?= $privacyLink ?></small><button class="btn" type="submit"><?= e($g('apply.speaker.button')) ?></button></div>
           <div class="notice" role="status" hidden></div>
         </form>
       </div>
@@ -419,6 +454,7 @@ $heroImg = af_img((string)$g('hero.image'));
       </form>
     </div>
   </section>
+<?php endif; ?>
 </main>
 
 <footer>
@@ -429,10 +465,11 @@ $heroImg = af_img((string)$g('hero.image'));
       <div class="meta">
         <span><?= e($g('footer.line_1')) ?></span>
         <span><?= e($g('footer.line_2')) ?></span>
+        <?= $privacyLink ?>
         <?php if ($g('site.contact_email')): ?><a href="mailto:<?= e($g('site.contact_email')) ?>"><?= e($g('site.contact_email')) ?></a><?php endif; ?>
       </div>
     </div>
-    <p class="note"><?= e($g('footer.note')) ?></p>
+    <?php if (!isset($_GET['privacy'])): ?><p class="note"><?= e($g('footer.note')) ?></p><?php endif; ?>
   </div>
 </footer>
 <script src="assets/site.js?v=<?= @filemtime(__DIR__ . '/assets/site.js') ?>" defer></script>
