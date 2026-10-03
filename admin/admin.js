@@ -55,7 +55,7 @@
     "site.notify_email": "Each form submission is emailed here. All submissions are also kept under Submissions.",
     "theme.mode": "Auto follows the visitor's device. Light or Dark forces one look.",
     "theme.fonts": "The design system uses Schibsted Grotesk and Newsreader (self-hosted). Other choices load from Google Fonts; never add a third family.",
-    "theme.colors_light": "Electric palette. Page background: #FFF8EC cream (or #FFFFFF white). 'Vermilion' slot now holds cobalt #1F3BFF, the main brand colour; 'Canal' and 'Edition' hold deep pink #C8166F; 'Signal' holds acid yellow #E9FF3B (fills only, never text on light).",
+    "theme.colors_light": "Two colours: cobalt #1F3BFF (structure, links, numbers — the 'Vermilion', 'Canal' and 'Edition' slots) and pink #FF4FA3 (action, highlights — the 'Signal' slot) on cream #FFF8EC.",
     "theme.colors_dark": "The Ink theme inverts paper and ink; vermilion stays the smallest field.",
     "hero.image": "Optional. Portrait photo beside the title, about 1200 × 1500 px. Leave empty for the type-only opening.",
     "evidence.shifts.image": "Optional. Landscape photo for this shift, about 1600 × 900 px.",

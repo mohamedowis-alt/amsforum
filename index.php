@@ -25,8 +25,8 @@ function visual(string $img, string $alt, string $caption = ''): string {
 
 // Theme: Amsterdam Forum design-system tokens, editable in /admin
 $tok = ['paper','paper_raised','ink','ink_muted','rule','stone','vermilion','vermilion_text','canal','signal','edition','on_edition'];
-$defL = ['paper'=>'#FFF8EC','paper_raised'=>'#FFFDF8','ink'=>'#0E0E14','ink_muted'=>'#4D4D5C','rule'=>'#E3DCCB','stone'=>'#9B98A8','vermilion'=>'#1F3BFF','vermilion_text'=>'#1F3BFF','canal'=>'#C8166F','signal'=>'#E9FF3B','edition'=>'#C8166F','on_edition'=>'#FFFFFF'];
-$defD = ['paper'=>'#0E0E14','paper_raised'=>'#1A1A26','ink'=>'#FFF8EC','ink_muted'=>'#B4B2C4','rule'=>'#2E2E40','stone'=>'#6E6C80','vermilion'=>'#5C73FF','vermilion_text'=>'#8C9BFF','canal'=>'#FF7DBB','signal'=>'#E9FF3B','edition'=>'#FF7DBB','on_edition'=>'#0E0E14'];
+$defL = ['paper'=>'#FFF8EC','paper_raised'=>'#FFFDF8','ink'=>'#0E0E14','ink_muted'=>'#4D4D5C','rule'=>'#E3DCCB','stone'=>'#9B98A8','vermilion'=>'#1F3BFF','vermilion_text'=>'#1F3BFF','canal'=>'#1F3BFF','signal'=>'#FF4FA3','edition'=>'#1F3BFF','on_edition'=>'#FFF8EC'];
+$defD = ['paper'=>'#0E0E14','paper_raised'=>'#1A1A26','ink'=>'#FFF8EC','ink_muted'=>'#B4B2C4','rule'=>'#2E2E40','stone'=>'#6E6C80','vermilion'=>'#5C73FF','vermilion_text'=>'#8C9BFF','canal'=>'#8C9BFF','signal'=>'#FF7DBB','edition'=>'#8C9BFF','on_edition'=>'#0E0E14'];
 $vars = function (string $set, array $def) use ($g, $tok) {
     $out = '';
     foreach ($tok as $k) $out .= '--' . str_replace('_', '-', $k) . ':' . af_safe_color((string)$g("theme.$set.$k", $def[$k]), $def[$k]) . ';';
