@@ -25,8 +25,8 @@ function visual(string $img, string $alt, string $caption = ''): string {
 
 // Theme: Amsterdam Forum design-system tokens, editable in /admin
 $tok = ['paper','paper_raised','ink','ink_muted','rule','stone','vermilion','vermilion_text','canal','signal','edition','on_edition'];
-$defL = ['paper'=>'#F4F0E8','paper_raised'=>'#FBF9F4','ink'=>'#1C1B19','ink_muted'=>'#5E5A53','rule'=>'#CFC8BB','stone'=>'#8C877D','vermilion'=>'#D9381E','vermilion_text'=>'#B32D16','canal'=>'#2E4440','signal'=>'#C6D62B','edition'=>'#2448B8','on_edition'=>'#FFFFFF'];
-$defD = ['paper'=>'#161513','paper_raised'=>'#211F1C','ink'=>'#F0EBE1','ink_muted'=>'#A8A297','rule'=>'#3A3833','stone'=>'#6F6A61','vermilion'=>'#E8492E','vermilion_text'=>'#F06A50','canal'=>'#8FB0A8','signal'=>'#D4E33A','edition'=>'#7D9BF0','on_edition'=>'#161513'];
+$defL = ['paper'=>'#FFF8EC','paper_raised'=>'#FFFDF8','ink'=>'#0E0E14','ink_muted'=>'#4D4D5C','rule'=>'#E3DCCB','stone'=>'#9B98A8','vermilion'=>'#1F3BFF','vermilion_text'=>'#1F3BFF','canal'=>'#C8166F','signal'=>'#E9FF3B','edition'=>'#C8166F','on_edition'=>'#FFFFFF'];
+$defD = ['paper'=>'#0E0E14','paper_raised'=>'#1A1A26','ink'=>'#FFF8EC','ink_muted'=>'#B4B2C4','rule'=>'#2E2E40','stone'=>'#6E6C80','vermilion'=>'#5C73FF','vermilion_text'=>'#8C9BFF','canal'=>'#FF7DBB','signal'=>'#E9FF3B','edition'=>'#FF7DBB','on_edition'=>'#0E0E14'];
 $vars = function (string $set, array $def) use ($g, $tok) {
     $out = '';
     foreach ($tok as $k) $out .= '--' . str_replace('_', '-', $k) . ':' . af_safe_color((string)$g("theme.$set.$k", $def[$k]), $def[$k]) . ';';
@@ -318,7 +318,7 @@ $heroImg = af_img((string)$g('hero.image'));
   <section id="movement" class="movement">
     <div class="wrap mv">
       <div class="mv-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 123"><g transform="translate(0 1.5)"><path d="M30.25 37.45L0.55 7.75L9.75 -1.45L39.45 28.25Z M39.45 7.75L9.75 37.45L0.55 28.25L30.25 -1.45Z"/><path d="M30.25 79.45L0.55 49.75L9.75 40.55L39.45 70.25Z M39.45 49.75L9.75 79.45L0.55 70.25L30.25 40.55Z"/><path d="M38.90 108.50L1.10 108.50L1.10 95.50L38.90 95.50Z M13.50 120.90L13.50 83.10L26.50 83.10L26.50 120.90Z"/></g></svg>
+        <svg viewBox="0 0 40 123"><g transform="translate(0 1.5)"><path d="M30.25 37.45L0.55 7.75L9.75 -1.45L39.45 28.25Z M39.45 7.75L9.75 37.45L0.55 28.25L30.25 -1.45Z"/><path d="M30.25 79.45L0.55 49.75L9.75 40.55L39.45 70.25Z M39.45 49.75L9.75 79.45L0.55 70.25L30.25 40.55Z"/><path class="mv-pl" d="M38.90 108.50L1.10 108.50L1.10 95.50L38.90 95.50Z M13.50 120.90L13.50 83.10L26.50 83.10L26.50 120.90Z"/></g></svg>
       </div>
       <div class="mv-body">
         <span class="label"><?= e($g('movement.eyebrow')) ?></span>
