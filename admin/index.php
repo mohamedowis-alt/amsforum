@@ -251,7 +251,7 @@ function auth_page(string $title, string $action, string $err, bool $setup): voi
     ?><!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
 <title><?= e($title) ?> · Amsterdam Forum admin</title><link rel="stylesheet" href="admin.css"></head>
 <body class="auth"><form method="post" class="auth-box" autocomplete="off">
-<img src="../assets/logo/af-horizontal-ink.svg" alt="Amsterdam Forum" style="height:26px;width:auto;margin-bottom:10px"><p class="kicker">Website admin</p><h1><?= e($title) ?></h1>
+<img src="../assets/logo/xxaf-horizontal-ink.svg" alt="Amsterdam Forum" style="height:26px;width:auto;margin-bottom:10px"><p class="kicker">Website admin</p><h1><?= e($title) ?></h1>
 <?php if ($err): ?><p class="error" role="alert"><?= e($err) ?></p><?php endif; ?>
 <input type="hidden" name="action" value="<?= e($action) ?>">
 <?php if ($setup): ?>
@@ -280,12 +280,12 @@ $boot = [
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Website admin · Amsterdam Forum</title>
-<link rel="icon" href="../assets/logo/af-favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/logo/xx-favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="admin.css?v=<?= @filemtime(__DIR__ . '/admin.css') ?>">
 </head>
 <body>
 <header class="bar">
-  <div class="bar-l"><img src="../assets/logo/af-mark-reversed.svg" alt="" width="22" height="22" style="align-self:center"><b>Amsterdam Forum</b><span>Website admin</span></div>
+  <div class="bar-l"><img src="../assets/logo/xx-h-paper.svg" alt="" width="46" height="14" style="align-self:center"><b>Amsterdam Forum</b><span>Website admin</span></div>
   <nav class="views" id="views" aria-label="Admin sections"></nav>
   <div class="bar-r">
     <span id="status" class="status" role="status"></span>

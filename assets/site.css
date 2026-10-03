@@ -303,5 +303,3 @@ footer .note{font-family:var(--serif);font-style:italic;font-size:14px;line-heig
 .movement .btn.ghost:hover{background:#FFFFFF;color:#1C1B19}
 .movement :focus-visible{outline-color:#FFFFFF}
 @media (max-width:860px){.mv{grid-template-columns:1fr;gap:var(--module)}.mv-mark svg{max-width:96px;margin-inline:0}}
-footer .xx-foot{display:inline-block;margin-top:24px;line-height:0}
-footer .xx-foot img{height:21px;width:auto}

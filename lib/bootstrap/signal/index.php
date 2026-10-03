@@ -80,7 +80,7 @@ function login_box(int $n, string $heading, string $text, string $notice, string
 <title><?= e($title) ?></title>
 <meta name="description" content="<?= e($t('description', 'Weak Signal: a biweekly dispatch from the Amsterdam Forum on the shifts that do not have a name yet, scored in public against what happened next.')) ?>">
 <meta name="robots" content="<?= $signal ? 'noindex' : 'index' ?>">
-<link rel="icon" href="../assets/logo/af-favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/logo/xx-favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="signal.css?v=<?= @filemtime(__DIR__ . '/signal.css') ?>">
 </head>
 <body>
