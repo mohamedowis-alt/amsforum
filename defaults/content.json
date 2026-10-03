@@ -7,7 +7,7 @@
     "notify_email": ""
   },
   "theme": {
-    "mode": "auto",
+    "mode": "light",
     "fonts": {
       "sans": "Schibsted Grotesk",
       "serif": "Newsreader"
