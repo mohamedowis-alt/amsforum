@@ -359,8 +359,8 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
       </div>
       <div class="circles-side">
         <svg class="table8" viewBox="0 0 200 200" aria-hidden="true">
-          <rect class="tbl" x="60" y="60" width="80" height="80"/>
-          <?php foreach ([[70,24],[115,24],[156,70],[156,115],[115,156],[70,156],[24,115],[24,70]] as $i => $pt): ?><rect class="seat<?= $i === 2 ? ' you' : '' ?>" x="<?= $pt[0] ?>" y="<?= $pt[1] ?>" width="20" height="20"/><?php endforeach; ?>
+          <circle class="tbl" cx="100" cy="100" r="44"/>
+          <circle class="seat" cx="127.6" cy="33.5" r="11"/><circle class="seat you" cx="166.5" cy="72.4" r="11"/><circle class="seat" cx="166.5" cy="127.6" r="11"/><circle class="seat" cx="127.6" cy="166.5" r="11"/><circle class="seat" cx="72.4" cy="166.5" r="11"/><circle class="seat" cx="33.5" cy="127.6" r="11"/><circle class="seat" cx="33.5" cy="72.4" r="11"/><circle class="seat" cx="72.4" cy="33.5" r="11"/>
         </svg>
         <div class="circle-facts">
           <?php foreach ((array)$g('circles.facts', []) as $f): ?><div><strong><?= e($f['number'] ?? '') ?></strong><span><?= e($f['text'] ?? '') ?></span></div><?php endforeach; ?>
