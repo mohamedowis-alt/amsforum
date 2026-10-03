@@ -321,7 +321,8 @@ footer .note{font-family:var(--serif);font-style:italic;font-size:14px;line-heig
 
 /* cobalt: every structural rule and every figure */
 .hero-figs{border-top:4px solid var(--b-cobalt)}
-.hero-figs strong,.room-legend strong{color:var(--b-cobalt)}
+.room-legend strong{color:var(--b-cobalt)}
+.hero-figs strong{color:var(--b-ink)}
 .fig strong{color:var(--b-ink)}
 .shift{border-top:4px solid var(--b-cobalt)}
 .move{border-top:4px solid var(--b-cobalt)}
