@@ -109,17 +109,17 @@
         "url": "https://climate.copernicus.eu/copernicus-2024-first-year-exceed-15degc-above-pre-industrial-level"
       },
       {
-        "value": "$2.9tn",
-        "text": "world military spending in 2025, a record and the 11th rise in a row.",
-        "source": "SIPRI, Apr 2026",
-        "url": "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+        "value": "34%",
+        "text": "of the world's electricity came from renewables in early 2025, overtaking coal for the first time.",
+        "source": "Ember, Oct 2025",
+        "url": "https://ember-energy.org/latest-insights/global-electricity-mid-year-insights-2025/global-analysis/"
       }
     ]
   },
   "evidence": {
     "eyebrow": "The evidence",
     "title": "The reconfiguration is already in the data.",
-    "intro": "Every figure here is published, dated and linked to its source. Each would make a headline on its own. Read together, they describe one change: the arrangements the modern world was built on are coming apart at once.",
+    "intro": "Every figure here is published, dated and linked to its source. Some show things breaking, some show things being built. Read together, they describe one movement: the arrangements the modern world was built on are being rearranged, all at once.",
     "shifts": [
       {
         "name": "Power",
@@ -158,10 +158,10 @@
             "url": "https://climate.copernicus.eu/copernicus-2025-was-third-hottest-year-record"
           },
           {
-            "value": "$224bn",
-            "text": "in disaster losses in 2025. Less than half was insured.",
-            "source": "Munich Re, Jan 2026",
-            "url": "https://www.munichre.com/content/dam/munichre/mrwebsiteslaunches/natcat-2026/MunichRe-Mediarelease2026-NatCat2025.pdf/_jcr_content/renditions/original./MunichRe-Mediarelease2026-NatCat2025.pdf"
+            "value": "2×",
+            "text": "as much invested in clean energy as in oil, gas and coal: about $2.2tn against $1.1tn in 2025.",
+            "source": "IEA, Jun 2025",
+            "url": "https://www.iea.org/reports/world-energy-investment-2025/executive-summary"
           }
         ]
       },
@@ -240,14 +240,14 @@
         "image_alt": "",
         "figures": [
           {
-            "value": "54%",
-            "text": "get news from social and video platforms each week, now ahead of news sites.",
-            "source": "Reuters Institute, Jun 2026",
-            "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026/dnr-executive-summary"
+            "value": "6bn",
+            "text": "people are online, about three in four people on Earth.",
+            "source": "ITU, Nov 2025",
+            "url": "https://www.itu.int/en/mediacentre/Pages/PR-2025-11-17-Facts-and-Figures.aspx"
           },
           {
-            "value": "37%",
-            "text": "trust the news, the lowest level the Reuters Institute has recorded.",
+            "value": "54%",
+            "text": "get news from social and video platforms each week, now ahead of news sites.",
             "source": "Reuters Institute, Jun 2026",
             "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026/dnr-executive-summary"
           }
