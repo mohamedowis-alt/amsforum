@@ -3,6 +3,17 @@
   var boot = JSON.parse(document.getElementById("boot").textContent);
   var content = boot.content, CSRF = boot.csrf, FONTS = boot.fonts;
   var dirty = false;
+  var _fetch = window.fetch.bind(window);
+  window.fetch = function (url, opts) {
+    return _fetch(url, Object.assign({ credentials: "same-origin" }, opts || {})).then(function (r) {
+      var ct = r.headers.get("content-type") || "";
+      if (String(url).indexOf("?action=") === 0 && ct.indexOf("application/json") < 0 && String(url).indexOf("action=export") < 0) {
+        setStatus("Your session expired. Reload this page and sign in again.", "err");
+        throw new Error("session");
+      }
+      return r;
+    });
+  };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var el = function (tag, attrs, kids) {
     var n = document.createElement(tag);
@@ -355,7 +366,7 @@
       post("update_check").then(function (j) {
         if (!j.ok) return say(j.error, false);
         say(j.available ? "An update is ready: " + fmt(j.latest) : "The website is up to date.", true);
-      }).catch(function () { say("Could not check. Try again.", false); });
+      }).catch(function () { say("Could not check. If this repeats, reload the page and sign in again.", false); });
     });
     btnRun.addEventListener("click", function () {
       if (dirty) return say("Save or discard your unsaved changes first.", false);

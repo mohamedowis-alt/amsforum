@@ -59,6 +59,10 @@ function af_session(): void {
     if (session_status() === PHP_SESSION_ACTIVE) return;
     $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
     session_name('afadmin');
+    // Keep admin sessions in our own folder for 8 hours, so the host's cleaner does not sign you out after ~24 minutes.
+    $dir = AF_DATA . '/sessions';
+    if (!is_dir($dir)) @mkdir($dir, 0700, true);
+    if (is_dir($dir) && is_writable($dir)) { session_save_path($dir); ini_set('session.gc_maxlifetime', '28800'); ini_set('session.gc_probability', '1'); ini_set('session.gc_divisor', '100'); }
     session_set_cookie_params(['lifetime' => 0, 'path' => '/', 'secure' => $secure, 'httponly' => true, 'samesite' => 'Strict']);
     session_start();
 }
