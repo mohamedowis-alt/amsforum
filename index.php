@@ -349,6 +349,9 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
         <h2 class="headline"><?= e($g('circles.title')) ?></h2>
         <p class="lede"><?= e($g('circles.text')) ?></p>
         <?php if ($g('circles.text_2')): ?><p class="body-serif"><?= e($g('circles.text_2')) ?></p><?php endif; ?>
+        <?php $cities = array_filter((array)$g('circles.cities', [])); if ($cities): ?>
+        <div class="cities"><span class="label"><?= e($g('circles.cities_label', 'Where Circles could meet')) ?></span><p><?php foreach (array_values($cities) as $i => $city): ?><span><?= e($city) ?></span> <?php endforeach; ?></p></div>
+        <?php endif; ?>
         <?= status_line((string)$g('circles.status')) ?>
         <div class="ctas">
           <a class="btn" href="#apply" data-tab="circle"><?= e($g('circles.button')) ?></a>

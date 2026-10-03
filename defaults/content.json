@@ -618,6 +618,23 @@
     "title": "Eight people. One city. Every month.",
     "text": "A Sensing Circle is eight people from different worlds who meet in person, monthly, to notice what is changing before it has a name. No agenda, no presentations, no networking: a business leader, a scientist, an artist, a policymaker and others, around one table, under the Chatham House Rule.",
     "text_2": "The first Circles are founded at Forum I and meet from November 2027. They are composed, not joined: nobody applies for a seat. But you can tell us where the next Circles should be, and who should sit around the table.",
+    "cities_label": "Where Circles could meet",
+    "cities": [
+      "Amsterdam",
+      "London",
+      "New York",
+      "Nairobi",
+      "Cairo",
+      "Dubai",
+      "Tokyo",
+      "São Paulo",
+      "Mumbai",
+      "Lagos",
+      "Singapore",
+      "Mexico City",
+      "Seoul",
+      "Istanbul"
+    ],
     "facts": [
       {
         "number": "8",
