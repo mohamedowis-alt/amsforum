@@ -5,6 +5,20 @@ require __DIR__ . '/lib/core.php';
 $c = af_content();
 $g = fn(string $p, $d = '') => af_get($c, $p, $d);
 
+// Pages: the home page, plus /programme/ and /circles/, which include this file with $AF_PAGE set.
+$AF_PAGE = isset($AF_PAGE) && is_string($AF_PAGE) ? $AF_PAGE : 'home';
+$AF_PAGES = [
+    'home'      => ['hero', 'evidence', 'long_view', 'map', 'prog_teaser', 'different', 'room', 'between', 'movement', 'apply'],
+    'programme' => ['days', 'speakers', 'experience', 'city', 'prog_cta'],
+    'circles'   => ['circles', 'circles_how', 'circle_form'],
+];
+function on(string $k): bool { global $AF_PAGE, $AF_PAGES; return isset($_GET['privacy']) ? false : in_array($k, $AF_PAGES[$AF_PAGE] ?? [], true); }
+$root = rtrim(str_replace('\\', '/', dirname((string)($_SERVER['SCRIPT_NAME'] ?? '/index.php'))), '/');
+if ($AF_PAGE !== 'home') $root = rtrim(str_replace('\\', '/', dirname($root)), '/');
+$base = $root . '/';
+$ap = fn(string $tab): string => $AF_PAGE === 'home' ? '#apply' : '?tab=' . rawurlencode($tab) . '#apply';
+$pageTitle = ['programme' => (string)af_get($c, 'days.page_title', 'Programme'), 'circles' => (string)af_get($c, 'circles.page_title', 'Sensing Circles')][$AF_PAGE] ?? '';
+
 // Inline markup in list items: **bold**
 function rich(string $s): string {
     return preg_replace('/\*\*(.+?)\*\*/', '<b>$1</b>', e($s));
@@ -63,8 +77,9 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
 <html lang="en"<?= $mode === 'light' || $mode === 'dark' ? ' data-theme="' . e($mode) . '"' : '' ?>>
 <head>
 <meta charset="utf-8">
+<base href="<?= e($base) ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?= e($g('site.title')) ?></title>
+<title><?= e(($pageTitle ? $pageTitle . ' · ' : '') . $g('site.title')) ?></title>
 <meta name="description" content="<?= e($g('site.description')) ?>">
 <meta property="og:title" content="<?= e($g('site.title')) ?>">
 <meta property="og:description" content="<?= e($g('site.description')) ?>">
@@ -93,7 +108,7 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
     <ul>
       <?php foreach ((array)$g('nav.links', []) as $l): ?><li><a href="<?= e(af_url((string)($l['href'] ?? ''))) ?>"><?= e($l['label'] ?? '') ?></a></li><?php endforeach; ?>
     </ul>
-    <a class="btn small" href="#apply" data-tab="invite"><?= e($g('nav.button')) ?></a>
+    <a class="btn small" href="<?= e($ap('invite')) ?>" data-tab="invite"><?= e($g('nav.button')) ?></a>
   </div>
 </nav>
 
@@ -114,6 +129,7 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
     </div>
   </section>
 <?php else: ?>
+<?php if (on('hero')): ?>
   <header class="hero">
     <div class="wrap">
       <span class="label edition"><?= e($g('hero.eyebrow')) ?></span>
@@ -122,9 +138,9 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
         <div class="hero-text">
           <p class="lede"><?= e($g('hero.lede')) ?></p>
           <div class="ctas">
-            <a class="btn" href="#apply" data-tab="invite"><?= e($g('hero.button_invite')) ?></a>
-            <a class="btn ghost" href="#apply" data-tab="partner"><?= e($g('hero.button_partner')) ?></a>
-            <a class="btn ghost" href="#apply" data-tab="speaker"><?= e($g('hero.button_witness')) ?></a>
+            <a class="btn" href="<?= e($ap('invite')) ?>" data-tab="invite"><?= e($g('hero.button_invite')) ?></a>
+            <a class="btn ghost" href="<?= e($ap('partner')) ?>" data-tab="partner"><?= e($g('hero.button_partner')) ?></a>
+            <a class="btn ghost" href="<?= e($ap('speaker')) ?>" data-tab="speaker"><?= e($g('hero.button_witness')) ?></a>
           </div>
         </div>
         <?php if ($heroImg): ?>
@@ -142,7 +158,9 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
       </div>
     </div>
   </header>
+<?php endif; ?>
 
+<?php if (on('evidence')): ?>
   <section id="evidence">
     <div class="wrap">
       <div class="sec-head">
@@ -165,7 +183,9 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
       </div>
     </div>
   </section>
+<?php endif; ?>
 
+<?php if (on('long_view')): ?>
   <?php if ($g('long_view.title')): ?>
   <section id="long-view">
     <div class="wrap lv">
@@ -182,7 +202,9 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
     </div>
   </section>
   <?php endif; ?>
+<?php endif; ?>
 
+<?php if (on('map')): ?>
   <section id="map">
     <div class="wrap map-grid">
       <div class="map-copy">
@@ -204,39 +226,34 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
     </div>
     <script type="application/json" id="map-data"><?= json_encode($mapData, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP) ?></script>
   </section>
+<?php endif; ?>
 
-  <section id="experience" class="experience">
+<?php if (on('prog_teaser')): ?>
+  <section id="days" class="prog-teaser">
     <div class="wrap">
       <div class="sec-head">
-        <span class="label"><?= e($g('experience.eyebrow')) ?></span>
-        <h2 class="headline"><?= e($g('experience.title')) ?></h2>
-        <p class="lede"><?= e($g('experience.intro')) ?></p>
-        <?= status_line((string)$g('experience.status')) ?>
+        <span class="label edition"><?= e($g('days.eyebrow')) ?></span>
+        <h2 class="headline"><?= e($g('days.title')) ?></h2>
+        <p class="lede"><?= e($g('days.intro')) ?></p>
       </div>
-      <div class="exp-grid">
-        <?php foreach ((array)$g('experience.items', []) as $i => $x): $img = af_img((string)($x['image'] ?? '')); ?>
-        <article class="exp">
-          <?php if ($img): ?><img src="<?= e($img) ?>" alt="<?= e($x['image_alt'] ?? '') ?>" loading="lazy"><?php endif; ?>
-          <span class="label"><span class="n"><?= sprintf('%02d', $i + 1) ?></span><?= e($x['label'] ?? '') ?></span>
-          <h3><?= e($x['title'] ?? '') ?></h3>
-          <p><?= e($x['text'] ?? '') ?></p>
-        </article>
+      <div class="moves teaser">
+        <?php foreach ((array)$g('days.movements', []) as $m): ?>
+        <div class="move">
+          <span class="when"><?= e($m['when'] ?? '') ?></span>
+          <h3><?= e($m['title'] ?? '') ?></h3>
+          <?php if (!empty($m['summary'])): ?><p class="body-serif"><?= e($m['summary']) ?></p><?php endif; ?>
+        </div>
         <?php endforeach; ?>
       </div>
-      <?php if ($g('experience.note')): ?><p class="quote kicker"><?= e($g('experience.note')) ?></p><?php endif; ?>
+      <div class="ctas teaser-ctas">
+        <a class="btn" href="/programme/"><?= e($g('days.teaser_button', 'The full programme')) ?></a>
+        <a class="btn ghost" href="/programme/#speakers"><?= e($g('days.teaser_button_2', 'Speakers and the evenings')) ?></a>
+      </div>
     </div>
   </section>
+<?php endif; ?>
 
-  <?php if ($g('city.show') && af_img((string)$g('city.image'))): ?>
-  <section class="city" aria-label="Amsterdam">
-    <img src="<?= e(af_img((string)$g('city.image'))) ?>" alt="<?= e($g('city.image_alt')) ?>" loading="lazy">
-    <div class="wrap over">
-      <blockquote class="quote" style="margin:0"><?= e($g('city.quote')) ?></blockquote>
-      <span class="label"><?= e($g('city.caption')) ?></span>
-    </div>
-  </section>
-  <?php endif; ?>
-
+<?php if (on('days')): ?>
   <section id="days">
     <div class="wrap">
       <div class="sec-head">
@@ -260,7 +277,9 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
       </div>
     </div>
   </section>
+<?php endif; ?>
 
+<?php if (on('speakers')): ?>
   <section id="speakers">
     <div class="wrap">
       <div class="sec-head">
@@ -293,11 +312,61 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
       <?php endif; ?>
       <div class="speakers-cta">
         <p class="body-serif"><?= e($g('speakers.cta_text')) ?></p>
-        <a class="btn ghost" href="#apply" data-tab="speaker"><?= e($g('speakers.cta_button')) ?></a>
+        <a class="btn ghost" href="<?= e($ap('speaker')) ?>" data-tab="speaker"><?= e($g('speakers.cta_button')) ?></a>
       </div>
     </div>
   </section>
+<?php endif; ?>
 
+<?php if (on('experience')): ?>
+  <section id="experience" class="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label"><?= e($g('experience.eyebrow')) ?></span>
+        <h2 class="headline"><?= e($g('experience.title')) ?></h2>
+        <p class="lede"><?= e($g('experience.intro')) ?></p>
+        <?= status_line((string)$g('experience.status')) ?>
+      </div>
+      <div class="exp-grid">
+        <?php foreach ((array)$g('experience.items', []) as $i => $x): $img = af_img((string)($x['image'] ?? '')); ?>
+        <article class="exp">
+          <?php if ($img): ?><img src="<?= e($img) ?>" alt="<?= e($x['image_alt'] ?? '') ?>" loading="lazy"><?php endif; ?>
+          <span class="label"><span class="n"><?= sprintf('%02d', $i + 1) ?></span><?= e($x['label'] ?? '') ?></span>
+          <h3><?= e($x['title'] ?? '') ?></h3>
+          <p><?= e($x['text'] ?? '') ?></p>
+        </article>
+        <?php endforeach; ?>
+      </div>
+      <?php if ($g('experience.note')): ?><p class="quote kicker"><?= e($g('experience.note')) ?></p><?php endif; ?>
+    </div>
+  </section>
+<?php endif; ?>
+
+<?php if (on('city')): ?>
+  <?php if ($g('city.show') && af_img((string)$g('city.image'))): ?>
+  <section class="city" aria-label="Amsterdam">
+    <img src="<?= e(af_img((string)$g('city.image'))) ?>" alt="<?= e($g('city.image_alt')) ?>" loading="lazy">
+    <div class="wrap over">
+      <blockquote class="quote" style="margin:0"><?= e($g('city.quote')) ?></blockquote>
+      <span class="label"><?= e($g('city.caption')) ?></span>
+    </div>
+  </section>
+  <?php endif; ?>
+<?php endif; ?>
+
+<?php if (on('prog_cta')): ?>
+  <section class="prog-cta">
+    <div class="wrap prog-cta-in">
+      <h2 class="headline"><?= e($g('days.cta_title', 'Join the room.')) ?></h2>
+      <div class="ctas">
+        <a class="btn" href="<?= e($ap('invite')) ?>" data-tab="invite"><?= e($g('hero.button_invite')) ?></a>
+        <a class="btn ghost" href="<?= e($ap('speaker')) ?>" data-tab="speaker"><?= e($g('hero.button_witness')) ?></a>
+      </div>
+    </div>
+  </section>
+<?php endif; ?>
+
+<?php if (on('different')): ?>
   <section id="different">
     <div class="wrap">
       <div class="sec-head">
@@ -317,7 +386,9 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
       <p class="quote kicker"><?= e($g('different.kicker')) ?></p>
     </div>
   </section>
+<?php endif; ?>
 
+<?php if (on('room')): ?>
   <section id="room">
     <div class="wrap">
       <div class="sec-head">
@@ -340,7 +411,31 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
       <?php endif; ?>
     </div>
   </section>
+<?php endif; ?>
 
+<?php if (on('between')): ?>
+  <section id="between" class="between">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label"><?= e($g('between.eyebrow', 'Between Forums')) ?></span>
+        <h2 class="headline"><?= e($g('between.title')) ?></h2>
+        <p class="lede"><?= e($g('between.text')) ?></p>
+      </div>
+      <div class="between-grid">
+        <?php foreach ((array)$g('between.cards', []) as $i => $cd): ?>
+        <a class="bcard<?= $i === 0 ? ' b-ws' : ' b-sc' ?>" href="<?= e(af_url((string)($cd['href'] ?? '/'))) ?>">
+          <span class="label"><?= e($cd['label'] ?? '') ?></span>
+          <h3><?= e($cd['title'] ?? '') ?></h3>
+          <p><?= e($cd['text'] ?? '') ?></p>
+          <span class="go"><?= e($cd['button'] ?? '') ?> →</span>
+        </a>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+<?php endif; ?>
+
+<?php if (on('circles')): ?>
   <?php if ($g('circles.title')): ?>
   <section id="circles" class="circles">
     <div class="wrap circles-grid">
@@ -354,7 +449,7 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
         <?php endif; ?>
         <?= status_line((string)$g('circles.status')) ?>
         <div class="ctas">
-          <a class="btn" href="#apply" data-tab="circle"><?= e($g('circles.button')) ?></a>
+          <a class="btn" href="#apply"><?= e($g('circles.button')) ?></a>
         </div>
       </div>
       <div class="circles-side">
@@ -369,7 +464,50 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
     </div>
   </section>
   <?php endif; ?>
+<?php endif; ?>
 
+<?php if (on('circles_how')): ?>
+  <section id="circles-how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label"><?= e($g('circles.how_eyebrow', 'How a Circle works')) ?></span>
+        <h2 class="headline"><?= e($g('circles.how_title')) ?></h2>
+      </div>
+      <div class="how-grid">
+        <?php foreach ((array)$g('circles.how', []) as $i => $h): ?>
+        <div class="how"><span class="n"><?= sprintf('%02d', $i + 1) ?></span><h3><?= e($h['title'] ?? '') ?></h3><p><?= e($h['text'] ?? '') ?></p></div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+<?php endif; ?>
+
+<?php if (on('circle_form')): ?>
+  <section id="apply" class="apply">
+    <div class="wrap">
+      <div class="panel">
+        <div class="about">
+          <h3><?= e($g('apply.circle.title')) ?></h3>
+          <p><?= e($g('apply.circle.text_1')) ?></p>
+          <p><?= e($g('apply.circle.text_2')) ?></p>
+        </div>
+        <form data-kind="circle" data-thanks="<?= e($g('apply.circle.thanks')) ?>" novalidate>
+          <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" required autocomplete="name" maxlength="120"></div>
+          <div class="field"><label for="c-email">Your email</label><input id="c-email" name="email" type="email" required autocomplete="email" maxlength="160"></div>
+          <div class="field"><label for="c-city">City</label><input id="c-city" name="city" required autocomplete="address-level2" maxlength="80"></div>
+          <div class="field"><label for="c-country">Country</label><input id="c-country" name="country" autocomplete="country-name" maxlength="80"></div>
+          <div class="field full"><label for="c-role">Your role and organisation</label><input id="c-role" name="role" autocomplete="organization-title" maxlength="160"></div>
+          <div class="field full"><label for="c-note"><?= e($g('apply.circle.question')) ?></label><textarea id="c-note" name="note" required maxlength="3000"></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="c-web">Website</label><input id="c-web" name="website" tabindex="-1" autocomplete="off"></div>
+          <div class="form-foot"><small><?= e($g('apply.circle.privacy')) ?> <?= $privacyLink ?></small><button class="btn" type="submit"><?= e($g('apply.circle.button')) ?></button></div>
+          <div class="notice" role="status" hidden></div>
+        </form>
+      </div>
+    </div>
+  </section>
+<?php endif; ?>
+
+<?php if (on('movement')): ?>
   <?php if ($g('movement.title')): ?>
   <section id="movement" class="movement">
     <div class="wrap mv">
@@ -389,7 +527,9 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
     </div>
   </section>
   <?php endif; ?>
+<?php endif; ?>
 
+<?php if (on('apply')): ?>
   <section id="apply" class="apply">
     <div class="wrap">
       <div class="sec-head">
@@ -400,7 +540,6 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
         <button class="tab" role="tab" id="t-invite" aria-controls="p-invite" aria-selected="true" data-tab="invite"><?= e($g('apply.invite.tab')) ?></button>
         <button class="tab" role="tab" id="t-partner" aria-controls="p-partner" aria-selected="false" data-tab="partner"><?= e($g('apply.partner.tab')) ?></button>
         <button class="tab" role="tab" id="t-speaker" aria-controls="p-speaker" aria-selected="false" data-tab="speaker"><?= e($g('apply.speaker.tab')) ?></button>
-        <?php if ($g('apply.circle.tab')): ?><button class="tab" role="tab" id="t-circle" aria-controls="p-circle" aria-selected="false" data-tab="circle"><?= e($g('apply.circle.tab')) ?></button><?php endif; ?>
       </div>
 
       <div class="panel" role="tabpanel" id="p-invite" aria-labelledby="t-invite">
@@ -464,29 +603,11 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
           <div class="notice" role="status" hidden></div>
         </form>
       </div>
-      <?php if ($g('apply.circle.tab')): ?>
-      <div class="panel" role="tabpanel" id="p-circle" aria-labelledby="t-circle" hidden>
-        <div class="about">
-          <h3><?= e($g('apply.circle.title')) ?></h3>
-          <p><?= e($g('apply.circle.text_1')) ?></p>
-          <p><?= e($g('apply.circle.text_2')) ?></p>
-        </div>
-        <form data-kind="circle" data-thanks="<?= e($g('apply.circle.thanks')) ?>" novalidate>
-          <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" required autocomplete="name" maxlength="120"></div>
-          <div class="field"><label for="c-email">Your email</label><input id="c-email" name="email" type="email" required autocomplete="email" maxlength="160"></div>
-          <div class="field"><label for="c-city">City</label><input id="c-city" name="city" required autocomplete="address-level2" maxlength="80"></div>
-          <div class="field"><label for="c-country">Country</label><input id="c-country" name="country" autocomplete="country-name" maxlength="80"></div>
-          <div class="field full"><label for="c-role">Your role and organisation</label><input id="c-role" name="role" autocomplete="organization-title" maxlength="160"></div>
-          <div class="field full"><label for="c-note"><?= e($g('apply.circle.question')) ?></label><textarea id="c-note" name="note" required maxlength="3000"></textarea></div>
-          <div class="hp" aria-hidden="true"><label for="c-web">Website</label><input id="c-web" name="website" tabindex="-1" autocomplete="off"></div>
-          <div class="form-foot"><small><?= e($g('apply.circle.privacy')) ?> <?= $privacyLink ?></small><button class="btn" type="submit"><?= e($g('apply.circle.button')) ?></button></div>
-          <div class="notice" role="status" hidden></div>
-        </form>
-      </div>
-      <?php endif; ?>
     </div>
   </section>
+<?php endif; ?>
 
+<?php if (on('weak_signal')): ?>
   <section id="weak-signal">
     <div class="wrap ws">
       <div class="ws-config" aria-hidden="true"><svg viewBox="0 0 200 200"><path class="stn" d="M23.91 27.41L12.59 16.09L16.09 12.59L27.41 23.91Z M27.41 16.09L16.09 27.41L12.59 23.91L23.91 12.59Z"/><path class="stn" d="M63.91 27.41L52.59 16.09L56.09 12.59L67.41 23.91Z M67.41 16.09L56.09 27.41L52.59 23.91L63.91 12.59Z"/><path class="stn" d="M103.91 27.41L92.59 16.09L96.09 12.59L107.41 23.91Z M107.41 16.09L96.09 27.41L92.59 23.91L103.91 12.59Z"/><path class="stn" d="M143.91 27.41L132.59 16.09L136.09 12.59L147.41 23.91Z M147.41 16.09L136.09 27.41L132.59 23.91L143.91 12.59Z"/><path class="stn" d="M183.91 27.41L172.59 16.09L176.09 12.59L187.41 23.91Z M187.41 16.09L176.09 27.41L172.59 23.91L183.91 12.59Z"/><path class="stn" d="M23.91 67.41L12.59 56.09L16.09 52.59L27.41 63.91Z M27.41 56.09L16.09 67.41L12.59 63.91L23.91 52.59Z"/><path class="stn" d="M63.91 67.41L52.59 56.09L56.09 52.59L67.41 63.91Z M67.41 56.09L56.09 67.41L52.59 63.91L63.91 52.59Z"/><path class="stn" d="M103.91 67.41L92.59 56.09L96.09 52.59L107.41 63.91Z M107.41 56.09L96.09 67.41L92.59 63.91L103.91 52.59Z"/><path class="stn" d="M183.91 67.41L172.59 56.09L176.09 52.59L187.41 63.91Z M187.41 56.09L176.09 67.41L172.59 63.91L183.91 52.59Z"/><path class="stn" d="M23.91 107.41L12.59 96.09L16.09 92.59L27.41 103.91Z M27.41 96.09L16.09 107.41L12.59 103.91L23.91 92.59Z"/><path class="stn" d="M63.91 107.41L52.59 96.09L56.09 92.59L67.41 103.91Z M67.41 96.09L56.09 107.41L52.59 103.91L63.91 92.59Z"/><path class="stn" d="M103.91 107.41L92.59 96.09L96.09 92.59L107.41 103.91Z M107.41 96.09L96.09 107.41L92.59 103.91L103.91 92.59Z"/><path class="stn" d="M143.91 107.41L132.59 96.09L136.09 92.59L147.41 103.91Z M147.41 96.09L136.09 107.41L132.59 103.91L143.91 92.59Z"/><path class="stn" d="M183.91 107.41L172.59 96.09L176.09 92.59L187.41 103.91Z M187.41 96.09L176.09 107.41L172.59 103.91L183.91 92.59Z"/><path class="stn" d="M23.91 147.41L12.59 136.09L16.09 132.59L27.41 143.91Z M27.41 136.09L16.09 147.41L12.59 143.91L23.91 132.59Z"/><path class="stn" d="M63.91 147.41L52.59 136.09L56.09 132.59L67.41 143.91Z M67.41 136.09L56.09 147.41L52.59 143.91L63.91 132.59Z"/><path class="stn" d="M103.91 147.41L92.59 136.09L96.09 132.59L107.41 143.91Z M107.41 136.09L96.09 147.41L92.59 143.91L103.91 132.59Z"/><path class="stn" d="M143.91 147.41L132.59 136.09L136.09 132.59L147.41 143.91Z M147.41 136.09L136.09 147.41L132.59 143.91L143.91 132.59Z"/><path class="stn" d="M183.91 147.41L172.59 136.09L176.09 132.59L187.41 143.91Z M187.41 136.09L176.09 147.41L172.59 143.91L183.91 132.59Z"/><path class="stn" d="M23.91 187.41L12.59 176.09L16.09 172.59L27.41 183.91Z M27.41 176.09L16.09 187.41L12.59 183.91L23.91 172.59Z"/><path class="stn" d="M63.91 187.41L52.59 176.09L56.09 172.59L67.41 183.91Z M67.41 176.09L56.09 187.41L52.59 183.91L63.91 172.59Z"/><path class="stn" d="M103.91 187.41L92.59 176.09L96.09 172.59L107.41 183.91Z M107.41 176.09L96.09 187.41L92.59 183.91L103.91 172.59Z"/><path class="stn" d="M143.91 187.41L132.59 176.09L136.09 172.59L147.41 183.91Z M147.41 176.09L136.09 187.41L132.59 183.91L143.91 172.59Z"/><path class="stn" d="M183.91 187.41L172.59 176.09L176.09 172.59L187.41 183.91Z M187.41 176.09L176.09 187.41L172.59 183.91L183.91 172.59Z"/><path class="sig" d="M161.00 47.10L143.00 47.10L143.00 40.90L161.00 40.90Z M148.90 53.00L148.90 35.00L155.10 35.00L155.10 53.00Z"/></svg></div>
@@ -505,6 +626,8 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
       </form>
     </div>
   </section>
+<?php endif; ?>
+
 <?php endif; ?>
 </main>
 

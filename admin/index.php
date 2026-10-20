@@ -12,10 +12,12 @@ header('Cache-Control: no-store');
 
 af_session();
 // One-time: older updaters could not create the /signal folder; install it from lib/bootstrap if missing or older.
-foreach (['index.php', 'signal.css'] as $f) {
-    $src = AF_ROOT . '/lib/bootstrap/signal/' . $f; $dst = AF_ROOT . '/signal/' . $f;
-    if (is_file($src) && (!is_file($dst) || filemtime($dst) < filemtime($src) && md5_file($dst) !== md5_file($src))) {
-        if (!is_dir(AF_ROOT . '/signal')) @mkdir(AF_ROOT . '/signal', 0755, true);
+foreach (glob(AF_ROOT . '/lib/bootstrap/*/*') ?: [] as $src) {
+    $rel = substr($src, strlen(AF_ROOT . '/lib/bootstrap/'));
+    if (!preg_match('#^(signal|programme|circles)/[\w.-]+$#', $rel)) continue;
+    $dst = AF_ROOT . '/' . $rel;
+    if (!is_file($dst) || (filemtime($dst) < filemtime($src) && md5_file($dst) !== md5_file($src))) {
+        if (!is_dir(dirname($dst))) @mkdir(dirname($dst), 0755, true);
         @copy($src, $dst); @chmod($dst, 0644);
     }
 }

@@ -185,7 +185,30 @@ function login_box(int $n, string $heading, string $text, string $notice, string
       <div class="ws-join">
         <h2><?= e($t('join_title', 'Not a subscriber yet?')) ?></h2>
         <p><?= e($t('join_text', 'Founding subscribers pay €190 a year, locked for life, for the first 500. Institutions: €2,500 a year for up to ten readers. Forum I participants receive a year with their invitation.')) ?></p>
-        <a class="btn-line" href="../#weak-signal"><?= e($t('join_button', 'Join the founding list')) ?></a>
+        <form class="ws-joinform" id="join" novalidate>
+          <label for="wj-email">Email</label>
+          <div class="ws-row"><input id="wj-email" name="email" type="email" required autocomplete="email" placeholder="you@organisation.com"><button type="submit"><?= e($t('join_button', 'Join the founding list')) ?></button></div>
+          <div class="hp" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off"></div>
+          <p class="ws-notice ok" role="status" hidden></p>
+        </form>
+        <script>
+        (function () {
+          var f = document.getElementById("join"); if (!f) return;
+          var note = f.querySelector(".ws-notice");
+          f.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var em = f.querySelector("input[name=email]");
+            if (!em.value || !em.checkValidity()) { note.hidden = false; note.className = "ws-notice err"; note.textContent = "Enter a valid email address."; return; }
+            var fd = new FormData(f); fd.append("kind", "weak-signal");
+            f.querySelector("button").disabled = true;
+            fetch("../api/submit.php", { method: "POST", body: fd, headers: { "Accept": "application/json" } }).then(function (r) { return r.json(); }).then(function (j) {
+              note.hidden = false; note.className = "ws-notice " + (j.ok ? "ok" : "err");
+              note.textContent = j.ok ? <?= json_encode((string)af_get($c, 'weak_signal.thanks', 'You are on the founding list.'), JSON_HEX_TAG | JSON_UNESCAPED_UNICODE) ?> : (j.error || "Something went wrong. Try again.");
+              if (j.ok) f.reset(); f.querySelector("button").disabled = false;
+            }).catch(function () { note.hidden = false; note.className = "ws-notice err"; note.textContent = "Something went wrong. Try again."; f.querySelector("button").disabled = false; });
+          });
+        })();
+        </script>
       </div>
     </div>
     <?php if ($all): ?>

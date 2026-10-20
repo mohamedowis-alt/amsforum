@@ -49,23 +49,11 @@
       },
       {
         "label": "Programme",
-        "href": "#days"
-      },
-      {
-        "label": "Speakers",
-        "href": "#speakers"
-      },
-      {
-        "label": "Experience",
-        "href": "#experience"
-      },
-      {
-        "label": "Why it's different",
-        "href": "#different"
+        "href": "/programme/"
       },
       {
         "label": "Circles",
-        "href": "#circles"
+        "href": "/circles/"
       },
       {
         "label": "Weak Signal",
@@ -358,7 +346,8 @@
           "**Keynotes and panels** on Power, Earth, Work & Wealth and Cities.",
           "**The Atlas**: a walk-through exhibition of the evidence, open throughout both days.",
           "**Evening**: Witness Dinners in Amsterdam houses, then the night programme: screenings, performance and music."
-        ]
+        ],
+        "summary": "Opening keynote, then Power, Earth, Work & Wealth and Cities, each with a keynote and a panel of three. Evenings in the city."
       },
       {
         "when": "Day two · morning",
@@ -367,7 +356,8 @@
           "**Keynotes and panels** on Institutions, Culture, Meaning and Intelligence.",
           "**The Collision**: a philosopher and a founder who disagree, on stage, about where the reconfiguration is going.",
           "**Conversations** with people living at the edge of each shift."
-        ]
+        ],
+        "summary": "Institutions, Culture, Meaning and Intelligence on stage, a Collision, and composed lunch tables of eight."
       },
       {
         "when": "Day two · afternoon",
@@ -376,7 +366,8 @@
           "**Readiness Studios** in eight domains: capital, government, cities, companies, education, culture, philanthropy, technology.",
           "What the reconfiguration means for decisions in the next 24 months.",
           "**Closing keynote**, the founding of the first Sensing Circles, and a closing night in the city."
-        ]
+        ],
+        "summary": "Readiness Studios by domain: what this means for decisions in the next 24 months. Closing keynote and the first Sensing Circles."
       }
     ],
     "leave_label": "You leave with",
@@ -387,7 +378,11 @@
       "The Atlas of the Great Reconfiguration, published after the Forum.",
       "For some, a seat in one of five Sensing Circles meeting monthly from November 2027."
     ],
-    "status": "Programme in development. The format is set; sessions, speakers and venues are confirmed through 2027."
+    "status": "Programme in development. The format is set; sessions, speakers and venues are confirmed through 2027.",
+    "page_title": "Programme",
+    "teaser_button": "The full programme",
+    "teaser_button_2": "Speakers and the evenings",
+    "cta_title": "Join the room."
   },
   "speakers": {
     "eyebrow": "Speakers",
@@ -612,6 +607,27 @@
       "**Productive tension:** tables are composed to hold real disagreement, not comfort."
     ]
   },
+  "between": {
+    "eyebrow": "Between Forums",
+    "title": "The work between gatherings.",
+    "text": "The Forum meets every two years. Weak Signal and the Sensing Circles carry the work in between.",
+    "cards": [
+      {
+        "label": "Weak Signal",
+        "title": "Read the shifts before they are news.",
+        "text": "A biweekly dispatch of changes that do not have a name yet, scored in public against what happened next. From November 2026.",
+        "button": "Read Weak Signal",
+        "href": "/signal/"
+      },
+      {
+        "label": "Sensing Circles",
+        "title": "Eight people. One city. Every month.",
+        "text": "Small groups that meet in person to notice what is changing before it has a name. Founded at Forum I.",
+        "button": "Explore the Circles",
+        "href": "/circles/"
+      }
+    ]
+  },
   "circles": {
     "eyebrow": "The Sensing Circles",
     "title": "Eight people. One city. Every month.",
@@ -650,7 +666,28 @@
     ],
     "status": "Founding Circles open at Forum I. New cities are added as Circles can be composed well.",
     "button": "Bring a Circle to your city",
-    "button_2": "Read Weak Signal"
+    "button_2": "Read Weak Signal",
+    "page_title": "Sensing Circles",
+    "how_eyebrow": "How a Circle works",
+    "how_title": "Small, regular, in person.",
+    "how": [
+      {
+        "title": "Composed, not joined",
+        "text": "Each Circle is composed by the Forum: eight people whose combination creates real insight. A business leader, a scientist, an artist, a policymaker and others. Nobody applies for a seat."
+      },
+      {
+        "title": "Every month, in person",
+        "text": "Circles meet in their city, in a private space, monthly. No agenda, no presentations, no remote attendance. Chatham House Rule."
+      },
+      {
+        "title": "One question",
+        "text": "Each meeting starts the same way: what have you noticed this month that does not fit? The Circle senses together before it discusses."
+      },
+      {
+        "title": "A network",
+        "text": "Circles in different cities meet once a year and at every Forum, so what one city notices reaches the others. Membership renews every two years."
+      }
+    ]
   },
   "movement": {
     "eyebrow": "The movement · XX+",
@@ -664,7 +701,7 @@
   },
   "apply": {
     "eyebrow": "Take part",
-    "title": "Four ways in.",
+    "title": "Three ways in.",
     "invite": {
       "tab": "Request an invitation",
       "title": "Request an invitation",

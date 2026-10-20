@@ -58,6 +58,7 @@
   };
   tabs.forEach(function (t) { t.addEventListener("click", function () { show(t.getAttribute("data-tab")); }); });
   document.querySelectorAll("a[data-tab]").forEach(function (a) { a.addEventListener("click", function () { show(a.getAttribute("data-tab")); }); });
+  try { var qt = new URLSearchParams(location.search).get("tab"); if (qt && tabs.length) show(qt); } catch (e) {}
 
   // ---------- forms
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

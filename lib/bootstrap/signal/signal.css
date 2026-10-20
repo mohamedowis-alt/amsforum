@@ -135,3 +135,4 @@ h1,h2,p{margin:0}
 .ws-list a{padding-left:20px}
 .ws-list li:first-child a{box-shadow:inset 4px 0 0 var(--signal)}
 .ws-login{box-shadow:0 1px 0 var(--rule)}
+.ws-joinform{display:grid;gap:8px}.ws-joinform label{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
