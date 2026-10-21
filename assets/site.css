@@ -463,3 +463,12 @@ footer{border-top:8px solid var(--b-cobalt)}
 @media (max-width:560px){.how-grid{grid-template-columns:minmax(0,1fr)}.how+.how{padding-left:0;border-left:0;border-top:1px solid var(--rule)}}
 /* programme page closing CTA */
 .prog-cta-in{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;justify-content:space-between}
+/* Home: the room in three facts */
+.room-home .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--ink);margin-top:calc(var(--module)*1)}
+.room-home .facts div{padding:20px 20px 0 0;display:grid;gap:8px;align-content:start;min-width:0}
+.room-home .facts div+div{padding-left:20px;border-left:1px solid var(--rule)}
+.room-home .facts strong{font-size:clamp(40px,5vw,64px);line-height:1;font-weight:600;letter-spacing:-.02em;color:var(--edition)}
+.room-home .facts span{font-family:var(--serif);font-size:18px;line-height:1.4}
+.room-home .kicker{margin-top:calc(var(--module)*1.2)}
+.map-copy .ctas{margin-top:24px}
+@media (max-width:760px){.room-home .facts{grid-template-columns:1fr}.room-home .facts div+div{padding-left:0;border-left:0;border-top:1px solid var(--rule);margin-top:16px}}

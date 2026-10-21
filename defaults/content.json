@@ -45,7 +45,7 @@
     "links": [
       {
         "label": "The evidence",
-        "href": "#evidence"
+        "href": "/evidence/"
       },
       {
         "label": "Programme",
@@ -70,7 +70,7 @@
     "eyebrow": "Forum I · Amsterdam · October 2027 · 300 people · by invitation",
     "title_line_1": "The Great",
     "title_line_2": "Reconfiguration",
-    "lede": "Power, climate, work, cities, trust, culture, meaning and machine intelligence are moving at the same time. On stage: philosophers, scientists, anthropologists, systems thinkers, artists, founders and policymakers. Two days in Amsterdam to see these shifts as one movement, test them against people who disagree, and work out what they mean for your next decisions.",
+    "lede": "Power, climate, work, cities, trust, culture, meaning and machine intelligence are all shifting at once. Two days in Amsterdam to see them as one reconfiguration, with the people who noticed early.",
     "button_invite": "Request an invitation",
     "button_partner": "Become a partner",
     "button_witness": "Propose a speaker",
@@ -285,18 +285,14 @@
           }
         ]
       }
-    ]
+    ],
+    "page_title": "The evidence"
   },
   "long_view": {
     "eyebrow": "The long view",
     "title": "Every reconfiguration had its rooms.",
-    "text": "The modern world was built on separations: mind from matter, economy from nature, nation from planet, human from machine. They are coming apart at once. Before, when the world rethought its foundations, small and mixed rooms helped work out what came next.",
+    "text": "When the world last rethought its foundations, small mixed rooms worked out what came next.",
     "moments": [
-      {
-        "when": "800–200 BCE",
-        "title": "The Axial Age",
-        "text": "China, India, Persia, Greece and Israel rethink what a human being is, at the same time."
-      },
       {
         "when": "1460s · Florence",
         "title": "The Medici circle",
@@ -322,7 +318,7 @@
   "map": {
     "eyebrow": "The one map",
     "title": "Eight shifts. One reconfiguration.",
-    "intro": "Each shift traces back to the same five separations the modern world was organised around. All five are failing together, and AI is speeding up every one of them.",
+    "intro": "Power, Earth, work, cities, institutions, culture, meaning and intelligence. Each traces back to the same separations the modern world was built on, and all are failing together.",
     "separations": [
       "Economy / ecology",
       "Nation / planet",
@@ -331,12 +327,13 @@
       "Position / legitimacy"
     ],
     "outro": "Forum I is built so you see this in one room, in one morning.",
-    "hint": "Hover or tap a shift to trace it."
+    "hint": "Hover or tap a shift to trace it.",
+    "evidence_button": "See the evidence"
   },
   "days": {
     "eyebrow": "The programme · target dates 14–15 October 2027",
     "title": "Two days with the people who notice change early.",
-    "intro": "Keynotes and panels on each of the eight shifts, the evidence laid out in the Atlas, an afternoon turning it into decisions, and two evenings of film, art, food and music across the city. One room by day, one programme, no parallel tracks to miss.",
+    "intro": "One room, one programme, no parallel tracks. Keynotes and panels by day; film, art, food and music across the city by night.",
     "movements": [
       {
         "when": "Day one",
@@ -607,6 +604,26 @@
       "**Productive tension:** tables are composed to hold real disagreement, not comfort."
     ]
   },
+  "room_home": {
+    "eyebrow": "The room",
+    "title": "Three hundred people. One room. By invitation.",
+    "text": "Chosen for the perspectives they bring, not what they paid. More than half are Fellows, who attend free.",
+    "facts": [
+      {
+        "value": "4+",
+        "text": "sectors at every table. None is a majority."
+      },
+      {
+        "value": "3",
+        "text": "voices per panel at most, with real disagreement."
+      },
+      {
+        "value": "0",
+        "text": "stage slots for sale. Partners never buy the programme."
+      }
+    ],
+    "button": "How the room works"
+  },
   "between": {
     "eyebrow": "Between Forums",
     "title": "The work between gatherings.",
@@ -697,7 +714,7 @@
     "button_1": "Request an invitation",
     "button_1_href": "#apply",
     "button_2": "Read Weak Signal",
-    "button_2_href": "#weak-signal"
+    "button_2_href": "/signal/"
   },
   "apply": {
     "eyebrow": "Take part",
@@ -780,7 +797,7 @@
   "footer": {
     "line_1": "Amsterdam · every two years · by invitation",
     "line_2": "Forum I: October 2027 (target 14–15 October) · Forum II: 2029",
-    "note": "Every figure on this page links to its publisher. Figures checked in October 2026; where a source revises its numbers, we update ours.",
+    "note": "Every figure on this site links to its publisher. Figures checked in October 2026; where a source revises its numbers, we update ours.",
     "privacy_link": "Privacy"
   },
   "signal_page": {

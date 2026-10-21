@@ -8,8 +8,9 @@ $g = fn(string $p, $d = '') => af_get($c, $p, $d);
 // Pages: the home page, plus /programme/ and /circles/, which include this file with $AF_PAGE set.
 $AF_PAGE = isset($AF_PAGE) && is_string($AF_PAGE) ? $AF_PAGE : 'home';
 $AF_PAGES = [
-    'home'      => ['hero', 'evidence', 'long_view', 'map', 'prog_teaser', 'different', 'room', 'between', 'movement', 'apply'],
-    'programme' => ['days', 'speakers', 'experience', 'city', 'prog_cta'],
+    'home'      => ['hero', 'map', 'long_view', 'prog_teaser', 'room_home', 'between', 'movement', 'apply'],
+    'evidence'  => ['evidence', 'prog_cta'],
+    'programme' => ['days', 'speakers', 'experience', 'different', 'room', 'city', 'prog_cta'],
     'circles'   => ['circles', 'circles_how', 'circle_form'],
 ];
 function on(string $k): bool { global $AF_PAGE, $AF_PAGES; return isset($_GET['privacy']) ? false : in_array($k, $AF_PAGES[$AF_PAGE] ?? [], true); }
@@ -17,7 +18,7 @@ $root = rtrim(str_replace('\\', '/', dirname((string)($_SERVER['SCRIPT_NAME'] ??
 if ($AF_PAGE !== 'home') $root = rtrim(str_replace('\\', '/', dirname($root)), '/');
 $base = $root . '/';
 $ap = fn(string $tab): string => $AF_PAGE === 'home' ? '#apply' : '?tab=' . rawurlencode($tab) . '#apply';
-$pageTitle = ['programme' => (string)af_get($c, 'days.page_title', 'Programme'), 'circles' => (string)af_get($c, 'circles.page_title', 'Sensing Circles')][$AF_PAGE] ?? '';
+$pageTitle = ['evidence' => (string)af_get($c, 'evidence.page_title', 'The evidence'), 'programme' => (string)af_get($c, 'days.page_title', 'Programme'), 'circles' => (string)af_get($c, 'circles.page_title', 'Sensing Circles')][$AF_PAGE] ?? '';
 
 // Inline markup in list items: **bold**
 function rich(string $s): string {
@@ -140,7 +141,6 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
           <div class="ctas">
             <a class="btn" href="<?= e($ap('invite')) ?>" data-tab="invite"><?= e($g('hero.button_invite')) ?></a>
             <a class="btn ghost" href="<?= e($ap('partner')) ?>" data-tab="partner"><?= e($g('hero.button_partner')) ?></a>
-            <a class="btn ghost" href="<?= e($ap('speaker')) ?>" data-tab="speaker"><?= e($g('hero.button_witness')) ?></a>
           </div>
         </div>
         <?php if ($heroImg): ?>
@@ -150,11 +150,6 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
           <svg viewBox="0 0 560 440"><path class="xx" d="M47.81 34.82L25.18 12.19L32.19 5.18L54.82 27.81Z M54.82 12.19L32.19 34.82L25.18 27.81L47.81 5.18Z"/><path class="xx" d="M127.81 34.82L105.18 12.19L112.19 5.18L134.82 27.81Z M134.82 12.19L112.19 34.82L105.18 27.81L127.81 5.18Z"/><path class="xx" d="M207.81 34.82L185.18 12.19L192.19 5.18L214.82 27.81Z M214.82 12.19L192.19 34.82L185.18 27.81L207.81 5.18Z"/><path class="xx" d="M287.81 34.82L265.18 12.19L272.19 5.18L294.82 27.81Z M294.82 12.19L272.19 34.82L265.18 27.81L287.81 5.18Z"/><path class="xx" d="M367.81 34.82L345.18 12.19L352.19 5.18L374.82 27.81Z M374.82 12.19L352.19 34.82L345.18 27.81L367.81 5.18Z"/><path class="xx" d="M447.81 34.82L425.18 12.19L432.19 5.18L454.82 27.81Z M454.82 12.19L432.19 34.82L425.18 27.81L447.81 5.18Z"/><path class="xx" d="M527.81 34.82L505.18 12.19L512.19 5.18L534.82 27.81Z M534.82 12.19L512.19 34.82L505.18 27.81L527.81 5.18Z"/><path class="xx" d="M47.81 114.82L25.18 92.19L32.19 85.18L54.82 107.81Z M54.82 92.19L32.19 114.82L25.18 107.81L47.81 85.18Z"/><path class="xx" d="M127.81 114.82L105.18 92.19L112.19 85.18L134.82 107.81Z M134.82 92.19L112.19 114.82L105.18 107.81L127.81 85.18Z"/><path class="xx" d="M207.81 114.82L185.18 92.19L192.19 85.18L214.82 107.81Z M214.82 92.19L192.19 114.82L185.18 107.81L207.81 85.18Z"/><path class="xx" d="M287.81 114.82L265.18 92.19L272.19 85.18L294.82 107.81Z M294.82 92.19L272.19 114.82L265.18 107.81L287.81 85.18Z"/><path class="xx" d="M367.81 114.82L345.18 92.19L352.19 85.18L374.82 107.81Z M374.82 92.19L352.19 114.82L345.18 107.81L367.81 85.18Z"/><path class="xx" d="M447.81 114.82L425.18 92.19L432.19 85.18L454.82 107.81Z M454.82 92.19L432.19 114.82L425.18 107.81L447.81 85.18Z"/><path class="xx" d="M527.81 114.82L505.18 92.19L512.19 85.18L534.82 107.81Z M534.82 92.19L512.19 114.82L505.18 107.81L527.81 85.18Z"/><path class="xx" d="M47.81 194.82L25.18 172.19L32.19 165.18L54.82 187.81Z M54.82 172.19L32.19 194.82L25.18 187.81L47.81 165.18Z"/><path class="xx" d="M127.81 194.82L105.18 172.19L112.19 165.18L134.82 187.81Z M134.82 172.19L112.19 194.82L105.18 187.81L127.81 165.18Z"/><path class="xx" d="M207.81 194.82L185.18 172.19L192.19 165.18L214.82 187.81Z M214.82 172.19L192.19 194.82L185.18 187.81L207.81 165.18Z"/><path class="xx" d="M287.81 194.82L265.18 172.19L272.19 165.18L294.82 187.81Z M294.82 172.19L272.19 194.82L265.18 187.81L287.81 165.18Z"/><g class="plus"><path class="pl" d="M378.00 186.19L342.00 186.19L342.00 173.81L378.00 173.81Z M353.81 198.00L353.81 162.00L366.19 162.00L366.19 198.00Z"/></g><path class="xx" d="M447.81 194.82L425.18 172.19L432.19 165.18L454.82 187.81Z M454.82 172.19L432.19 194.82L425.18 187.81L447.81 165.18Z"/><path class="xx" d="M527.81 194.82L505.18 172.19L512.19 165.18L534.82 187.81Z M534.82 172.19L512.19 194.82L505.18 187.81L527.81 165.18Z"/><path class="xx" d="M47.81 274.82L25.18 252.19L32.19 245.18L54.82 267.81Z M54.82 252.19L32.19 274.82L25.18 267.81L47.81 245.18Z"/><path class="xx" d="M127.81 274.82L105.18 252.19L112.19 245.18L134.82 267.81Z M134.82 252.19L112.19 274.82L105.18 267.81L127.81 245.18Z"/><path class="xx" d="M207.81 274.82L185.18 252.19L192.19 245.18L214.82 267.81Z M214.82 252.19L192.19 274.82L185.18 267.81L207.81 245.18Z"/><path class="xx" d="M287.81 274.82L265.18 252.19L272.19 245.18L294.82 267.81Z M294.82 252.19L272.19 274.82L265.18 267.81L287.81 245.18Z"/><path class="xx" d="M367.81 274.82L345.18 252.19L352.19 245.18L374.82 267.81Z M374.82 252.19L352.19 274.82L345.18 267.81L367.81 245.18Z"/><path class="xx" d="M447.81 274.82L425.18 252.19L432.19 245.18L454.82 267.81Z M454.82 252.19L432.19 274.82L425.18 267.81L447.81 245.18Z"/><path class="xx" d="M527.81 274.82L505.18 252.19L512.19 245.18L534.82 267.81Z M534.82 252.19L512.19 274.82L505.18 267.81L527.81 245.18Z"/><path class="xx" d="M47.81 354.82L25.18 332.19L32.19 325.18L54.82 347.81Z M54.82 332.19L32.19 354.82L25.18 347.81L47.81 325.18Z"/><path class="xx" d="M127.81 354.82L105.18 332.19L112.19 325.18L134.82 347.81Z M134.82 332.19L112.19 354.82L105.18 347.81L127.81 325.18Z"/><path class="xx" d="M207.81 354.82L185.18 332.19L192.19 325.18L214.82 347.81Z M214.82 332.19L192.19 354.82L185.18 347.81L207.81 325.18Z"/><path class="xx" d="M287.81 354.82L265.18 332.19L272.19 325.18L294.82 347.81Z M294.82 332.19L272.19 354.82L265.18 347.81L287.81 325.18Z"/><path class="xx" d="M367.81 354.82L345.18 332.19L352.19 325.18L374.82 347.81Z M374.82 332.19L352.19 354.82L345.18 347.81L367.81 325.18Z"/><path class="xx" d="M447.81 354.82L425.18 332.19L432.19 325.18L454.82 347.81Z M454.82 332.19L432.19 354.82L425.18 347.81L447.81 325.18Z"/><path class="xx" d="M527.81 354.82L505.18 332.19L512.19 325.18L534.82 347.81Z M534.82 332.19L512.19 354.82L505.18 347.81L527.81 325.18Z"/><path class="xx" d="M47.81 434.82L25.18 412.19L32.19 405.18L54.82 427.81Z M54.82 412.19L32.19 434.82L25.18 427.81L47.81 405.18Z"/><path class="xx" d="M127.81 434.82L105.18 412.19L112.19 405.18L134.82 427.81Z M134.82 412.19L112.19 434.82L105.18 427.81L127.81 405.18Z"/><path class="xx" d="M207.81 434.82L185.18 412.19L192.19 405.18L214.82 427.81Z M214.82 412.19L192.19 434.82L185.18 427.81L207.81 405.18Z"/><path class="xx" d="M287.81 434.82L265.18 412.19L272.19 405.18L294.82 427.81Z M294.82 412.19L272.19 434.82L265.18 427.81L287.81 405.18Z"/><path class="xx" d="M367.81 434.82L345.18 412.19L352.19 405.18L374.82 427.81Z M374.82 412.19L352.19 434.82L345.18 427.81L367.81 405.18Z"/><path class="xx" d="M447.81 434.82L425.18 412.19L432.19 405.18L454.82 427.81Z M454.82 412.19L432.19 434.82L425.18 427.81L447.81 405.18Z"/><path class="xx" d="M527.81 434.82L505.18 412.19L512.19 405.18L534.82 427.81Z M534.82 412.19L512.19 434.82L505.18 427.81L527.81 405.18Z"/></svg>
         </div>
         <?php endif; ?>
-      </div>
-      <div class="hero-figs">
-        <?php foreach ((array)$g('hero.figures', []) as $f): ?>
-        <div><strong><?= e($f['value'] ?? '') ?></strong><span><?= e($f['text'] ?? '') ?></span><?= src_link($f) ?></div>
-        <?php endforeach; ?>
       </div>
     </div>
   </header>
@@ -211,8 +206,8 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
         <span class="label"><?= e($g('map.eyebrow')) ?></span>
         <h2 class="headline"><?= e($g('map.title')) ?></h2>
         <p class="body-serif"><?= e($g('map.intro')) ?></p>
-        <ul class="sep-list"><?php foreach ($seps as $sp): ?><li><?= e(str_replace(' / ', ' and ', (string)$sp)) ?></li><?php endforeach; ?></ul>
         <p class="body-serif"><?= e($g('map.outro')) ?></p>
+        <div class="ctas"><a class="btn ghost" href="evidence/"><?= e($g('map.evidence_button', 'See the evidence')) ?></a></div>
       </div>
       <div>
         <div class="map-box" id="mapbox">
@@ -246,8 +241,8 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
         <?php endforeach; ?>
       </div>
       <div class="ctas teaser-ctas">
-        <a class="btn" href="/programme/"><?= e($g('days.teaser_button', 'The full programme')) ?></a>
-        <a class="btn ghost" href="/programme/#speakers"><?= e($g('days.teaser_button_2', 'Speakers and the evenings')) ?></a>
+        <a class="btn" href="programme/"><?= e($g('days.teaser_button', 'The full programme')) ?></a>
+        <a class="btn ghost" href="programme/#speakers"><?= e($g('days.teaser_button_2', 'Speakers and the evenings')) ?></a>
       </div>
     </div>
   </section>
@@ -413,6 +408,25 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
   </section>
 <?php endif; ?>
 
+<?php if (on('room_home')): ?>
+  <section id="room" class="room-home">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label"><?= e($g('room_home.eyebrow', 'The room')) ?></span>
+        <h2 class="headline"><?= e($g('room_home.title')) ?></h2>
+        <p class="lede"><?= e($g('room_home.text')) ?></p>
+      </div>
+      <div class="facts">
+        <?php foreach ((array)$g('room_home.facts', []) as $f): ?>
+        <div><strong><?= e($f['value'] ?? '') ?></strong><span><?= e($f['text'] ?? '') ?></span></div>
+        <?php endforeach; ?>
+      </div>
+      <p class="quote kicker"><?= e($g('different.kicker')) ?></p>
+      <div class="ctas"><a class="btn ghost" href="programme/#different"><?= e($g('room_home.button', 'How the room works')) ?></a></div>
+    </div>
+  </section>
+<?php endif; ?>
+
 <?php if (on('between')): ?>
   <section id="between" class="between">
     <div class="wrap">
@@ -521,7 +535,7 @@ $privacyLink = '<a href="?privacy">' . e((string)$g('footer.privacy_link', 'Priv
         <?php if ($g('movement.text_2')): ?><p class="body-serif"><?= e($g('movement.text_2')) ?></p><?php endif; ?>
         <div class="ctas">
           <?php if ($g('movement.button_1')): ?><a class="btn" href="<?= e(af_url((string)$g('movement.button_1_href', '#apply'))) ?>"<?= str_starts_with((string)$g('movement.button_1_href', '#apply'), '#apply') ? ' data-tab="invite"' : '' ?>><?= e($g('movement.button_1')) ?></a><?php endif; ?>
-          <?php if ($g('movement.button_2')): ?><a class="btn ghost" href="<?= e(af_url((string)$g('movement.button_2_href', '#weak-signal'))) ?>"><?= e($g('movement.button_2')) ?></a><?php endif; ?>
+          <?php if ($g('movement.button_2')): ?><a class="btn ghost" href="<?= e(af_url((string)$g('movement.button_2_href', '/signal/'))) ?>"><?= e($g('movement.button_2')) ?></a><?php endif; ?>
         </div>
       </div>
     </div>
